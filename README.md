@@ -1,2 +1,2 @@
 # FlexberryStudy2015
-Репозиторий для заданий по курсу Разработка Enterprise-приложений.
+Accomplished tasks for "Enterprise development" course.
