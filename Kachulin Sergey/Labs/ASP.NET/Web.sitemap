@@ -11,7 +11,7 @@
     </siteMapNode>
     <siteMapNode title="АСУ_Склад" roles="*" xmlns="">
       <siteMapNode title="Информация о заказах" roles="Менеджер,Бухгалтер,admin">
-        <siteMapNode title="Документ" description="" url="~/forms/Orders/DokumentL.aspx" />
+        <siteMapNode title="Документ" description="" url="~/forms/Orders/DokumentL.aspx" /> 
         <siteMapNode title="Заказ" description="" url="~/forms/Orders/ZakazL.aspx" />
         <siteMapNode title="Накладная" description="" url="~/forms/Orders/NakladnayaL.aspx" />
       </siteMapNode>
