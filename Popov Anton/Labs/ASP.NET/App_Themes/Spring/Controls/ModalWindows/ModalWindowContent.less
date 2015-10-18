@@ -1,0 +1,113 @@
+﻿@import '../../../BaseTheme/Controls/ModalWindows/ModalWindowContent.less';
+
+/**
+ * Файл визуального оформления содержимого модальных окон.
+ */
+
+
+// Заголовок таблицы модального окна.
+.@{modalWindowTableCaptionClass} {
+    // Элемент в заголовке таблицы модального окна.
+    .@{modalWindowTableItemClass} {
+        border: 1px solid @modalWindowTableItemBorderColor;
+        border-right: 0;
+        background: @modalWindowTableItemBackgroundColor;
+
+        .@{selectAllBtnClass},
+        .@{resetSortBtnClass} {
+            width: 22px;
+            height: 22px;
+        }
+
+        &.@{checkBoxItemClass} {
+            width: 32px;
+        }
+
+        &.@{sortOrderClass} {
+            width: 167px;
+        }
+
+        &.@{sortPriorityClass} {
+            width: 175px;
+        }
+
+        &.@{propertyNameClass} {
+            width: 168px;
+        }
+
+        &.@{captionResetSortClass} {
+            width: 77px;
+            border-right: 1px solid @captionResetSortBorderColor;
+        }
+    }
+}
+
+// Колонки таблицы модального окна.
+#sortable {
+
+    li {
+        margin-top: -1px;
+        border: 1px solid @tableColumnsListBorderColor;
+        background: @tableColumnsListBackgroundColor;
+
+        &:hover {
+            background: @tableColumnsListHoveredBackgroundColor;
+        }
+
+        &:nth-child(even) {
+            background: @tableColumnsListOddBackgroundColor;
+        }
+    }
+
+    .@{checkBoxItemClass},
+    .@{sortOrderWrapperClass},
+    .@{sortPriorityWrapperClass},
+    .@{propertyNameWrapperClass},
+    .@{sortBtnsClass} {
+        border-color: @tableColumnsListCellBorderColor;
+    }
+
+    .@{checkBoxItemClass} {
+        width: 42px;
+    }
+
+    .@{sortOrderWrapperClass} {
+        width: 177px;
+    }
+
+    .@{sortPriorityWrapperClass} {
+        width: 185px;
+    }
+
+    .@{propertyNameWrapperClass} {
+        width: 178px;
+    }
+
+    .@{sortBtnsClass} {
+        width: 89px;
+        height: 36px;
+    }
+}
+
+// Засеривание строк таблицы.
+.@{tableColumnsListClass} #sortable {
+
+    li.disabled {
+        background: @tableColumnsListDisabledBackgroundColor;
+
+        input[type="text"],
+        select {
+            background: @tableColumnsLDisabledSelectBakgroundColor;
+            box-shadow: none;
+        }
+    }
+}
+
+// Футер модального окна.
+.@{modalWindowFooterClass} {
+    border-top: 1px solid @modalWindowFooterBorderColor;
+    background: @modalWindowFooterBackgroundColor;
+}
+
+
+@import '_Settings.less';
