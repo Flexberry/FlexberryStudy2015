@@ -1,0 +1,109 @@
+body{
+    font-family: Courier New, Courier, monospace;
+    background-color: #9ac5ed;
+}
+.login-form{
+    font-family: Courier New, Courier, monospace;
+    background-color: #9ac5ed;
+    color:#0d496e;
+}
+.login-form .login-form-header{
+    color:#0d496e;
+}
+.login-form-header{
+    font-weight: bold;
+}
+.login-form-inner{
+    background-color:#8bbbe8;
+    font-size:20px;
+    color:#0d496e;
+}
+.login-form-inner h2{
+    color:#0d496e;
+}
+
+
+
+.login-form-label{
+    font-size:20px;
+}
+.start{
+    text-align:center;
+    font-size:20px;
+    font-style:italic;
+    color:#0d496e;
+}
+.panda{
+    background-image:url(../Spring/Pages/MainPage/Images/start.png);
+    width:120px;
+    height:128px;
+    background-repeat:no-repeat;
+    display:inline-block;
+    background-position:50% 50%;
+    vertical-align:middle;
+}
+.page-header a:active, .page-header a:hover, body_ahover {color:#36ade0;}
+.page-header-caption a
+{
+    font-family:'Palatino Linotype','Times New Roman';
+    font-size:30px;
+    text-decoration: none;
+    color: #0d496e;
+}
+.page-header-userbar{
+    color:#0d496e;
+}
+.page-header-userbar a{
+    color: #0d496e;
+}
+.page-header{
+    text-align:center;
+    background-color:#8bbbe8;
+}
+.page-navigation{
+    background-color: #0d496e;;
+}
+#pageBlockTreeview{
+    background-color:#8bbbe8;
+
+}
+.ics-treeview{
+    color: #0d496e;
+}
+.page-footer{
+    color:#fff;
+    background:url(Pages/MainPage/Images/navi.png);
+}
+.ics-wolv-header{
+    background-color:#8bbbe8;
+}
+.ics-form{
+    color: #0d496e;
+}
+.treeview-wrapper a{
+    color: #0d496e;
+}
+.TreeView1_0{
+    color: #0d496e;
+}
+#TreeView1t6,#TreeView1t0{
+    font-style: italic;
+    color: #0d496e;
+}
+#TreeView1n0Nodes tr td img{
+    background-image:url(../Spring/Pages/MainPage/Images/admin.png);
+    width:34px;
+    height:30px;
+    background-repeat:no-repeat;
+    display:inline-block;
+    vertical-align:middle;
+}
+
+#TreeView1n6Nodes tr td img{
+    background-image:url(../Spring/Pages/MainPage/Images/name.png);
+    width:37px;
+    height:30px;
+    background-repeat:no-repeat;
+    display:inline-block;
+    vertical-align:middle;
+}
