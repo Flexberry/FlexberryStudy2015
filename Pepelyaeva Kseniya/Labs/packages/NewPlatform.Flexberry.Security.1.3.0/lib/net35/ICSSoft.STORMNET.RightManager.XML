@@ -1,0 +1,776 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ICSSoft.STORMNET.RightManager</name>
+    </assembly>
+    <members>
+        <member name="T:ICSSoft.STORMNET.AccessCustomCheck">
+            <summary>
+            Кастом проверка.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.AccessCustomCheck.AccessCheck(System.Object,System.String)">
+            <summary>
+            Проверка объекта для указанной операции.
+            </summary>
+            <param name="obj">Объект для проверки.</param>
+            <param name="operation">Тип операции.</param>
+            <returns>Результат проверки объекта.</returns>
+        </member>
+        <member name="T:ICSSoft.STORMNET.AccessCustomCheckAttribute">
+            <summary>
+            Проверять полномочия для класса или метода "специальным" образом.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.AccessCustomCheckAttribute.value">
+            <summary>
+            Тип класса, который реализует "специальную" проверку. Должен наследоваться от класса <see cref="T:ICSSoft.STORMNET.AccessCustomCheck"/> и перегружать метод <see cref="M:ICSSoft.STORMNET.AccessCustomCheck.AccessCheck(System.Object,System.String)"/>.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.AccessCustomCheckAttribute.#ctor(System.Type)">
+            <summary>
+            Проверять полномочия для класса или метода "специальным" образом.
+            </summary>
+            <param name="val">Тип класса, который реализует "специальную" проверку. Должен наследоваться от класса <see cref="T:ICSSoft.STORMNET.AccessCustomCheck"/> и перегружать метод <see cref="M:ICSSoft.STORMNET.AccessCustomCheck.AccessCheck(System.Object,System.String)"/>.</param>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Web.CheckingLibraryMembershipProvider">
+            <summary>
+            Первый Membership-провайдер для сайтов, который работает ещё через AzMan.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Web.CheckingLibraryMembershipProvider.ValidateUser(System.String,System.String)">
+            <summary>
+            Проверить пользователя
+            </summary>
+            <param name="username">логин</param>
+            <param name="password">пароль</param>
+            <returns>есть такой или нет</returns>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.IUser">
+            <summary>
+            Интерфейс для представления информации о пользователе, которая требуется для системы полномочий.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.IUser.Email">
+            <summary>
+            Адрес электронной почты пользователя.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.IUser.AgentKey">
+            <summary>
+            Ключ агента.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.DefaultSecurityManager">
+            <summary>
+            Реализация по умолчанию менеджера полномочий. Используется вместо устаревшего <see cref="T:ICSSoft.STORMNET.RightManager"/>.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.DefaultSecurityManager.#ctor">
+            <summary>
+            Создаётся сервис полномочий, в котором проверка полномочий включена.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.DefaultSecurityManager.#ctor(System.Boolean)">
+            <summary>
+            Указать будут ли полномочия включены.
+            </summary>
+            <param name="enabled">Полномочия будут проверяться, если <c>true</c>.</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.DefaultSecurityManager.#ctor(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Конструктор менеджера полномочий.
+            </summary>
+            <param name="enabled">Полномочия будут проверяться, если <c>true</c>.</param>
+            <param name="useRightsOnObjects">Полномочия над объектами будут проверяться, если <c>true</c>.</param>
+            <param name="useRightsOnAttribute">Полномочия над атрибутами будут проверяться, если <c>true</c>.</param>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.DefaultSecurityManager._enabled">
+            <summary>
+            Приватное поле для флага включенных полномочий <see cref="P:ICSSoft.STORMNET.Security.DefaultSecurityManager.Enabled"/>.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.DefaultSecurityManager._useRightsOnObjects">
+            <summary>
+            Приватное поле для флага включенных полномочий над объектами <see cref="P:ICSSoft.STORMNET.Security.DefaultSecurityManager.UseRightsOnObjects"/>.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.DefaultSecurityManager._useRightsOnAttribute">
+            <summary>
+            Приватное поле для флага включенных полномочий над атрибутами <see cref="P:ICSSoft.STORMNET.Security.DefaultSecurityManager.UseRightsOnAttribute"/>.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.DefaultSecurityManager.Enabled">
+            <summary>
+            Полномочия включены.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.DefaultSecurityManager.UseRightsOnObjects">
+            <summary>
+            Используется ли режим проверки вплоть до объектов (а не для всего типа сразу).
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.DefaultSecurityManager.UseRightsOnAttribute">
+            <summary>
+            Используется ли режим проверки атрибутов объектов. 
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.DefaultSecurityManager.AttributeCheckExpressionPattern">
+            <summary>
+            Регулярное выражение для извлечения информации о контроле прав на атрибуты из <see cref="T:ICSSoft.STORMNET.DataServiceExpressionAttribute"/>.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.DefaultSecurityManager.AccessCheck(System.Int32)">
+            <summary>
+            Упрощённая проверка полномочий (на одну числовую операцию).
+            Если полномочия выключены, вернётся <c>true</c>.
+            </summary>
+            <param name="operation">Идентификатор операции (такой, как указан для операции в AzMan или в имени операции).</param>
+            <returns>
+            Если у текущего пользователя есть доступ, то <c>true</c>.
+            </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.DefaultSecurityManager.AccessObjectCheck(System.Type,ICSSoft.STORMNET.Security.tTypeAccess,System.Boolean)">
+            <summary> 
+            Проверка операций с объектом.
+            Если полномочия выключены, вернётся <c>true</c>.
+            </summary>
+            <param name="type">Тип объекта данных.</param>
+            <param name="operation">Тип операции.</param>
+            <param name="throwException">Генерировать ли исключение.</param>
+            <returns>Если у текущего пользователя есть доступ, то <c>true</c>.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.DefaultSecurityManager.AccessObjectCheck(System.Object,ICSSoft.STORMNET.Security.tTypeAccess,System.Boolean)">
+            <summary>
+            Проверка операций с объектом.
+            Если полномочия выключены, вернётся <c>true</c>.
+            </summary>
+            <param name="type">Объект данных.</param>
+            <param name="operation">Тип операции.</param>
+            <param name="throwException">Генерировать ли исключение.</param>
+            <returns> Если у текущего пользователя есть доступ, то <c>true</c>. </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.DefaultSecurityManager.GetLimitForAccess(System.Type,ICSSoft.STORMNET.Security.tTypeAccess,System.Object@,System.Boolean@)">
+            <summary>
+            Получить ограничение для текущего пользователя.
+            Если полномочия выключены (<see cref="P:ICSSoft.STORMNET.Security.DefaultSecurityManager.Enabled"/>) или не используются ограничения на строки 
+            (<see cref="P:ICSSoft.STORMNET.Security.DefaultSecurityManager.UseRightsOnObjects"/>), вернётся <see cref="F:ICSSoft.STORMNET.Security.OperationResult.Успешно"/>, 
+            <paramref name="limit"/> будет иметь значение <c>null</c>, <paramref name="canAccess"/> - <c>true</c>.
+            </summary>
+            <param name="subjectType">Тип объекта.</param>
+            <param name="operation">Тип операции.</param>
+            <param name="limit">Ограничение, которое есть для текущего пользователя.</param>
+            <param name="canAccess">Есть ли доступ к этому типу у пользователя.</param>
+            <returns> Результат выполнения операции. </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.DefaultSecurityManager.GetLimitStrForRoles(System.Type,System.Collections.Generic.List{ICSSoft.STORMNET.Security.RoleWithAccesses}@)">
+            <summary>
+            Получить роли с заданными ограничениями, которые реализуют функцию разграничения по объектам.
+            Если полномочия выключены (<see cref="P:ICSSoft.STORMNET.Security.DefaultSecurityManager.Enabled"/>) или не используются ограничения на строки 
+            (<see cref="P:ICSSoft.STORMNET.Security.DefaultSecurityManager.UseRightsOnObjects"/>), вернётся <see cref="F:ICSSoft.STORMNET.Security.OperationResult.Успешно"/>, 
+            <paramref name="rolesWithAccesses"/> будет иметь значение <c>null</c>.
+            </summary>
+            <param name="subjectType">Класс, для которого получаем ограничения.</param>
+            <param name="rolesWithAccesses">Роли с заданными ограничениями для этих ролей.</param>
+            <returns> Результат выполнения операции. </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.DefaultSecurityManager.SetLimitStrForRole(System.Type,ICSSoft.STORMNET.Security.tTypeAccess,System.String,System.String)">
+            <summary>
+            Задать ограничение для указанной роли.
+            Если полномочия выключены, вернётся <see cref="F:ICSSoft.STORMNET.Security.OperationResult.Успешно"/>.
+            </summary>
+            <param name="typeName">Тип объектов данных, для которых будет применяться данный фильтр.</param>
+            <param name="operation">Тип доступа, для которого применяется этот фильтр.</param>
+            <param name="roleName">Название роли.</param>
+            <param name="filter">Сериализованный фильтр, который будет применяться для указанной роли.</param>
+            <returns> Результат выполнения операции. </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.DefaultSecurityManager.CheckAccessToAttribute(System.String,System.String@)">
+            <summary>
+            Метод проверки прав на доступ текущего пользователя к операции, 
+            заданной в <see cref="T:ICSSoft.STORMNET.DataServiceExpressionAttribute"/> атрибута.
+            Если полномочия выключены (<see cref="P:ICSSoft.STORMNET.Security.DefaultSecurityManager.Enabled"/>) или выключен режим проверки доступа к атрибутам 
+            (<see cref="P:ICSSoft.STORMNET.Security.DefaultSecurityManager.UseRightsOnAttribute"/>), вернётся <c>true</c>,
+            <paramref name="deniedAccessValue"/> будет иметь значение <c>string.Empty</c>.
+            </summary>
+            <param name="expression">Строка <see cref="T:ICSSoft.STORMNET.DataServiceExpressionAttribute"/>.</param>
+            <param name="deniedAccessValue">Значение, которое должен получить атрибут при отсутствии прав.</param>
+            <returns> Если у текущего пользователя есть доступ, то <c>true</c>. </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.DefaultSecurityManager.CheckExistLogin(System.String)">
+            <summary>
+            Проверить наличие в системе логина (чувствительность к регистру зависит от настроек источника данных). 
+            Уникальность проверяется без контроля доменов, то есть гарантируется уникальность в рамках всей таблицы. 
+            Отключенные пользователи тоже учитываются, как занимающие логин.
+            </summary>
+            <param name="login">Логин, который проверяем.</param>
+            <returns>
+            Если полномочия выключены, вернётся <see cref="F:ICSSoft.STORMNET.Security.OperationResult.ЛогинСвободен"/>.
+            Если логин свободен, то <see cref="F:ICSSoft.STORMNET.Security.OperationResult.ЛогинСвободен"/>, если занят, то <see cref="F:ICSSoft.STORMNET.Security.OperationResult.ЛогинЗанят"/>, если произошла ошибка, то <see cref="F:ICSSoft.STORMNET.Security.OperationResult.ОшибкаВыполненияОперации"/>, если переданы неправильные аргументы, то <see cref="F:ICSSoft.STORMNET.Security.OperationResult.ОшибочныеАргументы"/>.
+            </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.DefaultSecurityManager.ConvertTypeAccess(ICSSoft.STORMNET.Security.tTypeAccess)">
+            <summary>
+            Отконвертировать значение перечисления в вызов параметр, требуемый <see cref="T:ICSSoft.STORMNET.RightManager"/>.
+            </summary>
+            <param name="typeAccess">Тип доступа, задаваемый перечислением.</param>
+            <returns>Строковое значение, которое требуется передавать в <see cref="T:ICSSoft.STORMNET.RightManager"/>.</returns>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.User">
+            <summary>
+            Информация о пользователе, которая требуется для системы полномочий.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.User.Login">
+            <summary>
+            Логин пользователя.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.User.Domain">
+            <summary>
+            Домен пользователя.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.User.FriendlyName">
+            <summary>
+            Дружественное имя пользователя.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.User.Email">
+            <summary>
+            Адрес электронной почты пользователя.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.User.AgentKey">
+            <summary>
+            Ключ агента.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.RightManager">
+            <summary>
+            Менеджер полномочий.
+            </summary>
+            <summary>
+            Менеджер полномочий.
+            </summary>
+            <summary>
+            Менеджер полномочий.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.RightManager.CanAccessAndFunction">
+            <summary>
+            Служебный класс для кеша ограничивающих функций.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager.CanAccessAndFunction.Func">
+            <summary>
+            Ограничивающая функция.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager.CanAccessAndFunction.CanAccess">
+            <summary>
+            Разрешён ли доступ.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.CanAccessAndFunction.#ctor(ICSSoft.STORMNET.FunctionalLanguage.Function,System.Boolean)">
+            <summary>
+            Конструктор для создания экземпляра с передачей параметров.
+            </summary>
+            <param name="func">Ограничивающая функция.</param>
+            <param name="canAccess">Разрешён ли доступ.</param>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager.AttributeCheckExpressionPattern">
+            <summary>
+            Регулярное выражение для извлечения информации о контроле прав на атрибуты из <see cref="T:ICSSoft.STORMNET.DataServiceExpressionAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager.CacheAccessTypeAttributes">
+            <summary>
+            Кэш атрибутов доступа.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager.CacheAccessCustomCheckAttributes">
+            <summary>
+            Кэш атрибутов кастом-проверки.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager.CacheObjectChecks">
+            <summary>
+            Кэш проверок объектов.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager.CacheAgentKeys">
+            <summary>
+            Кеш ключей пользователей.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager.CacheLimits">
+            <summary>
+            Кэш ограничивающих функций.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.#cctor">
+            <summary>
+            Статический конструктор, который по умолчанию задаёт настройку, отключающую работу с полномочиями на отдельные атрибуты.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.#ctor">
+            <summary>
+            Конструктор класса реализован приватным, поскольку 
+            все публичные методы класса должны быть статическими.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager.ObjNull">
+            <summary>
+            Объект, используемый для блокировки в критических секциях.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager._dontCheckRights">
+            <summary>
+            Приватное поле, в котором фиксируется факт отключенных полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager._objSessionKey">
+            <summary>
+            Ключ сессии пользователя. Применяется только для win-приложений, работающих с AzManBridge.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager._objAgentKey">
+            <summary>
+            Ключ пользователя. Применяется только для win-приложений, работающих с AzManBridge.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.RightManager.AgentKey">
+            <summary>
+            Ключ агента для проведения синхронизации с сервисом полномочий. Применяется только для win-приложений, работающих с AzManBridge.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.RightManager.NeedLogInEventHandler">
+            <summary>
+            Делегат, применяемый в том, случае, когда необходимо выполнить проверку полномочий, а пользователь ещё не был авторизован.
+            </summary>
+            <param name="e">Аргументы, которые будут переданы в обработчик события.</param>
+        </member>
+        <member name="E:ICSSoft.STORMNET.RightManager.NeedLogIn">
+            <summary>
+            Событие, когда необходимо выполнить проверку полномочий, а пользователь ещё не был авторизован.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.OnNeedLogIn">
+            <summary>
+            Вызвать событие необходимости логина.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.DisableAllRightChecks">
+            <summary>
+            Отключить все проверки полномочий. Выполняется только в самом крайнем случае, т.к. действует на всё приложение.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.EnableAllRightChecks">
+            <summary>
+            Включить все проверки полномочий.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.SetAdditionalAccessTypes(System.Collections.Generic.Dictionary{System.Type,ICSSoft.STORMNET.AccessType})">
+            <summary>
+            Установить дополнительные соответствия типов и типов проверки прав.
+            </summary>
+            <param name="accessTypes">Типы доступа для указанных типов.</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.ValidateUser(System.String,System.String,System.String)">
+            <summary>
+            Проверить логин/пароль пользователя. Применяется только для приложения, работающего через AzManBridgeService.
+            </summary>
+            <param name="appname">Имя приложения.</param>
+            <param name="username">Логин пользователя.</param>
+            <param name="password">Пароль пользователя.</param>
+            <returns>Пользователь авторизован (true).</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.UpdateUser(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Обновить пользователя в SimpleMode-приложении либо в режиме локального сервиса для веб-приложений. Если пользователь не был найден, то будет создан новый пользователь, поэтому рекомендуется использовать метод  для проверки свободного логина.
+            </summary>
+            <param name="appname">Имя приложения.</param>
+            <param name="login">Логин пользователя.</param>
+            <param name="name">Имя пользователя.</param>
+            <param name="pwd">Пароль пользователя.</param>
+            <param name="enabled">Активирован ли профиль пользователя.</param>
+            <returns>Успешно или нет выполнилась операция.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.UpdateUser(System.String,System.String)">
+            <summary>
+            Обновить пароль пользователя для приложения в режиме SessionMode либо в режиме локального сервиса для веб-приложений. 
+            </summary>
+            <param name="myCurrentPwd">Текущий пароль пользователя.</param>
+            <param name="pwd">Пароль, который надо поставить (если передать <c>null</c> или пустую строку, то будет эксепшн при попытке захешировать).</param>
+            <returns>Успешно ли выполнена данная операция.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.UpdateUser(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Обновить пользователя для приложения в режиме SessionMode.
+            </summary>
+            <param name="myCurrentPwd">Текущий пароль пользователя.</param>
+            <param name="name">Имя, которое будет поставлено (если передать <c>null</c>, то <c>null</c> и установится).</param>
+            <param name="pwd">Пароль, который надо поставить (если передать <c>null</c> или пустую строку, то будет эксепшн при попытке захешировать).</param>
+            <param name="enabled">Активна ли учётная запись.</param>
+            <returns>Успешно ли выполнена данная операция.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.CheckExistLogin(System.String)">
+            <summary>
+            Проверить наличие в системе логина (чувствительность к регистру зависит от настроек источника данных). 
+            Уникальность проверяется без контроля доменов, то есть гарантируется уникальность в рамках всей таблицы. Отключенные пользователи тоже учитываются, как занимающие логин.
+            Поддерживается только вариант с <see cref="P:ICSSoft.STORMNET.RightManager.IsLocalService"/>, в противном случае метод возбудит исключение <see cref="T:System.NotSupportedException"/>.
+            </summary>
+            <param name="login">Логин, который проверяем.</param>
+            <returns>Если логин свободен, то <see cref="F:ICSSoft.STORMNET.Security.OperationResult.ЛогинСвободен"/>, если занят, то <see cref="F:ICSSoft.STORMNET.Security.OperationResult.ЛогинЗанят"/>, если произошла ошибка, то <see cref="F:ICSSoft.STORMNET.Security.OperationResult.ОшибкаВыполненияОперации"/>, если переданы неправильные аргументы, то <see cref="F:ICSSoft.STORMNET.Security.OperationResult.ОшибочныеАргументы"/></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.GetAllPermitions(System.Collections.Generic.List{System.String}@)">
+            <summary>
+            Получить все полномочия для указанного пользователя (SessionMode или в режиме локального сервиса полномочий).
+            </summary>
+            <param name="subjects">Список доступных полномочий.</param>
+            <returns>Результат выполнения операции (<see cref="F:ICSSoft.STORMNET.Security.OperationResult.ОшибочныеАргументы"/> если задано имя приложения, для которого режим работы отличается от <see cref="F:ICSSoft.STORMNET.AzManBridge.CheckingMode.SessionCheck"/>).</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.GetCheckingMode(System.String,ICSSoft.STORMNET.AzManBridge)">
+            <summary>
+            Получить режим работы сервиса полномочий для этого приложения. Не используется для веб-приложений.
+            </summary>
+            <param name="appName">Имя приложения.</param>
+            <param name="bridge">Прокси-класс сервиса полномочий.</param>
+            <returns>Режим работы.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.ClearCache">
+            <summary>
+            Очистить кэш полномочий.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.UsingAccessCheckForDataObjectType(System.Type)">
+            <summary>
+            Используется ли проверка полномочий для указанного типа.
+            </summary>
+            <param name="dataObjectType">Тип объекта данных.</param>
+            <returns><c>true</c> - если используется, иначе <c>false</c>.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.CacheInit">
+            <summary>
+            Выполнить кеширование всех полномочий для текущего пользователя. Метод применяется только при работе с AzManBriggeService.
+            </summary>
+            <returns>Результат выполнения операции.</returns>
+        </member>
+        <member name="P:ICSSoft.STORMNET.RightManager.UseRightsOnAttribute">
+            <summary>
+            Используется режим проверки атрибутов объектов. 
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.CheckAccessToAttribute(System.String,System.String@)">
+            <summary>
+            Метод проверки прав на доступ текущего пользователя к операции, заданной в <see cref="T:ICSSoft.STORMNET.DataServiceExpressionAttribute"/> атрибута.
+            </summary>
+            <param name="expression">Строка <see cref="T:ICSSoft.STORMNET.DataServiceExpressionAttribute"/>.</param>
+            <param name="deniedAccessValue">Значение, которое должен получить атрибут при отсутствии прав.</param>
+            <returns><c>true</c> - права есть, <c>false</c> - прав нет.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.ConvertOperations(System.String,System.String@)">
+            <summary>
+            Конвертировать операции из старого формата AzMan в новую систему полномочий.
+            </summary>
+            <param name="varOperation">ТипОбъекта_ТипДоступа или Операция.</param>
+            <param name="typeAccess">Тип доступа.</param>
+            <returns>Нужна проверка операции, а не типа доступа.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.GenerateSecurityException(System.Exception)">
+            <summary>
+            Единообразное описание исключений, сгенерированных подсистемой полномочий.
+            </summary>
+            <param name="exc">Исключение, которое будет вложенным.</param>
+            <returns>Исключение, которое на первом уровне сообщает о проблемах соединения с <see cref="T:ICSSoft.STORMNET.AzManBridge"/> или сообщает о запрещённом доступе (в режиме локального сервиса).</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.GetBridge">
+            <summary>
+            Сконструировать ремоутинг-объект AzManBridge.
+            </summary>
+            <returns>Ремоутинг-объект AzManBridge.</returns>
+        </member>
+        <member name="P:ICSSoft.STORMNET.RightManager.IsLocalService">
+            <summary>
+            Система полномочий выполняется в этом же приложении.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager._localSecurityService">
+            <summary>
+            Поле для хранения локального сервиса проверки полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager._localSecurityServiceConfigured">
+            <summary>
+            Поле, которое сигнализирует, было ли выполнено конфигурирование локального сервиса полномочий.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.RightManager.LocalSecurityService">
+            <summary>
+            Локальный сервис полномочий.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.AccessCheck(System.String,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            Проверить полномочия (вызов аналогичен прямому вызову AzMan).
+            </summary>
+            <param name="bstrObjectName"></param>
+            <param name="varScopeNames"></param>
+            <param name="varOperations">одномерный массив идентификаторов операций</param>
+            <param name="varParameterNames"></param>
+            <param name="varParameterValues"></param>
+            <param name="varInterfaceNames"></param>
+            <param name="varInterfaceFlags"></param>
+            <param name="varInterfaces"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.GetLimitForAccess(System.Type,System.String,ICSSoft.STORMNET.FunctionalLanguage.Function@,System.Boolean@)">
+            <summary>
+            Получить ограничение для текущего пользователя (CheckingMode.SessionCheck только поддерживается).
+            </summary>
+            <param name="subjectType">Тип объекта.</param>
+            <param name="operationName">Имя операции ("Full", "Read", "Update", "Insert", "Delete", "Execute").</param>
+            <param name="limit">Ограничение, которое есть для текущего пользователя.</param>
+            <param name="canAccess">Есть ли доступ к этому типу у пользователя.</param>
+            <returns>Результат выполнения операции.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.LogInAndGetNewSessionKey(System.String,System.String,System.String,System.String@)">
+            <summary>
+            Авторизоваться и получить ключ сессии (выход происходит автоматически при вызове этой функции)
+            </summary>
+            <param name="login">логин</param>
+            <param name="domain">домен</param>
+            <param name="pwd">пароль</param>
+            <param name="name">имя пользователя (для синхронизации)</param>
+            <returns>успешность операции</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.GetLastSecurityUpdateTime(System.Nullable{System.DateTime}@)">
+            <summary>
+            Получить дату последнего изменения полномочий.
+            </summary>
+            <param name="lastUpdated">Дата последнего обновления.</param>
+            <returns>Результат выполнения операции (<see cref="F:ICSSoft.STORMNET.Security.OperationResult.ОшибочныеАргументы"/>  если задано имя приложения, для которого режим работы отличается от <see cref="F:ICSSoft.STORMNET.AzManBridge.CheckingMode.SimpleCheck"/> или <see cref="F:ICSSoft.STORMNET.AzManBridge.CheckingMode.SessionCheck"/>).</returns>
+            <exception cref="T:System.ApplicationException">Если не сможет подключиться к сервису, то будет сгенерировано исключение.</exception>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.GetLimitStrForRoles(System.Type,System.Collections.Generic.List{ICSSoft.STORMNET.Security.RoleWithAccesses}@)">
+            <summary>
+            Получить роли с заданными ограничениями
+            </summary>
+            <param name="subjectType">Класс, для которого получаем ограничения</param>
+            <param name="rolesWithAccesses"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.SetLimitStrForRole(System.String,System.String,System.String,System.String)">
+            <summary>
+            Задать ограничение для указанной роли
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.GetUserInfo(System.String,System.String,System.String,System.Nullable{System.Guid}@,System.String@)">
+            <summary>
+            Для режима сессий. Получить информацию о пользователе по логину и паролю.
+            </summary>
+            <param name="login">Логин</param>
+            <param name="domain">Домен</param>
+            <param name="pwd">Пароль</param>
+            <param name="agent">Ключ агента (для синхронизации)</param>
+            <param name="name">Имя пользователя (для синхронизации)</param>
+            <returns>Успешность операции</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.LogOffSession">
+            <summary>
+            Закрыть сессию.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.AccessCheck(System.Int32)">
+            <summary>
+            Упрощённая проверка полномочий (на одну операцию)
+            </summary>
+            <param name="operation">идентификатор операции (такой, как указан для операции в AzMan)</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.AccessCheck(System.String)">
+            <summary>
+            Упрощённая проверка полномочий (на одну операцию)
+            </summary>
+            <param name="operation">Наименование операции (как указано в AzMan)</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.PrvGetAccessType(System.Type,System.String)">
+            <summary>
+            Получить тип доступа
+            </summary>
+            <param name="tp">тип</param>
+            <param name="stpkey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.PrvGetAccessCustomCheck(System.Type,System.String)">
+            <summary>
+            Получить значение атрибута AccessCustomCheck
+            </summary>
+            <param name="tp"></param>
+            <param name="stpkey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.PrvAccessObjectCheck(System.Object,System.Type,System.String,System.String,System.Boolean)">
+            <summary>
+            Проверить полномочия на тип по объекту
+            </summary>
+            <param name="obj"></param>
+            <param name="tp"></param>
+            <param name="sTypePseudo"></param>
+            <param name="operation"></param>
+            <param name="bThrowException"></param>
+            <returns></returns>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager.searchedType">
+            <summary>
+            Вспомогательный тип из сборки IIS.Validation.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager.validationManager">
+            <summary>
+            Вспомогательный объект из сборки IIS.Validation.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.CheckRightsToDataObject(ICSSoft.STORMNET.DataObject,System.Type,System.String)">
+            <summary>
+            Проверить права на объект
+            </summary>
+            <param name="dataObject">Объект данных</param>
+            <param name="type">Тип объекта</param>
+            <param name="operation">Операция</param>
+            <returns>Доступен ли объект</returns>
+        </member>
+        <member name="P:ICSSoft.STORMNET.RightManager.UsingNamespaceNotTypeName">
+            <summary>
+            Использовать неймспейсы вместе с именем типа для проверки полномочий.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.RightManager.AzManBridgeSrvURL">
+            <summary>
+            URL Сервиса полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager._securityApplicationName">
+            <summary>
+            Приватное поле для свойства, содержащего имя приложения.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.RightManager.SecurityApplicationName">
+            <summary>
+            Имя приложения, которое передаётся как идентификатор в систему полномочий
+            Задать в Winform-приложении можно через конфиг: AppNameForAzMan, (если не указывать берётся <code>System.IO.Path.GetFileNameWithoutExtension(Environment.GetCommandLineArgs()[0].ToString());)</code>
+            в вебе действует ключ: applicationName.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.RightManager.DoNotGetCheckingMode">
+            <summary>
+            Ключ для старых систем, чтобы не выполнять лишних операций.
+            С помощью этого свойства можно разделить старые и новые системы (если добавить специальный код в генератор)
+            Вообще вынести эту настройку в стадию бы
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.RightManager.DontCheckRights">
+            <summary>
+            Проверка прав отключена.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager._useRightsOnObjects">
+            <summary>
+            Пока не реализовано
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.RightManager.UseRightsOnObjects">
+            <summary>
+            Используется режим проверки вплоть до объектов (а не для всего типа сразу).
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.AccessObjectCheck(System.Object,System.String,System.Boolean)">
+            <summary>
+            проверка операций с объектом
+            </summary>
+            <param name="obj"></param>
+            <param name="operation"></param>
+            <param name="bThrowException"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.AccessObjectCheck(System.Object,System.String,System.String,System.Boolean)">
+            <summary> 
+            проверка операций с объектом
+            </summary>
+            <param name="obj"></param>
+            <param name="objName"></param>
+            <param name="operation"></param>
+            <param name="bThrowException"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.AccessObjectCheck(System.Type,System.String,System.Boolean)">
+            <summary> 
+            проверка операций с объектом
+            </summary>
+            <param name="tp"></param>
+            <param name="operation"></param>
+            <param name="bThrowException"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.PrvAccessMethodCheck(System.Object,System.Reflection.MethodInfo,System.Boolean)">
+            <summary>
+            Проверка доступа к методу.
+            </summary>
+            <param name="obj"></param>
+            <param name="mi"></param>
+            <param name="bThrowException"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.AccessMethodCheck(System.Object,System.Boolean)">
+            <summary>
+            Проверка доступа к методу
+            </summary>
+            <param name="sender"></param>
+            <param name="bThrowException"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.UpdateUserInfo(System.String,System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Метод обновления информации о пользователе. 
+            Доступен только для режима локального сервиса для веб-приложений. 
+            Если пользователь не будет найден, то в результате будет "Ошибка выполнения".
+            </summary>
+            <param name="login">Логин пользователя, для которого обновляем информацию.</param>
+            <param name="name">Имя пользователя. Если передать null, то обновляться не будет.</param>
+            <param name="enabled">Должна ли быть активной учётная запись пользователя. Если передать null, то обновляться не будет.</param>
+            <returns>Результат выполнения операции.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.GetAgentKey">
+            <summary>
+            Получить ключ пользователя на основе данных из профиля ASP.NET. Используется только для веб-приложений.
+            </summary>
+            <returns>Ключ пользователя.</returns>
+        </member>
+        <member name="F:ICSSoft.STORMNET.RightManager._isWebApp">
+            <summary>
+            Поле для хранения состояния проверки, выполняется ли код в контексте веб-приложения.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.RightManager.IsWebApp">
+            <summary>
+            Приложение является веб-приложением. Определяется наличием <see cref="P:System.Web.HttpContext.Current"/>.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.RightManager.Utils">
+            <summary>
+            Утилиты сервиса проверки полномочий.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.RightManager.Utils.ObjectToString(System.Object)">
+            <summary>
+            Сериализация объекта. Используется <see cref="T:System.Runtime.Serialization.Formatters.Soap.SoapFormatter"/>.
+            </summary>
+            <param name="o">Объект для сериализации.</param>
+            <returns>Сериализованный объект.</returns>
+        </member>
+    </members>
+</doc>
