@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "App_Themes/Default/Pages/MainPage/MainPage.css",
+    "inputFile": "App_Themes/Default/Pages/MainPage/MainPage.less"
+  },
+  {
+    "outputFile": "App_Themes/Default/BaseStyles.css",
+    "inputFile": "App_Themes/Default/BaseStyles.less"
+  }
+]
