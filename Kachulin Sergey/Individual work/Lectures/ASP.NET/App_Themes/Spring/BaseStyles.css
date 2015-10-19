@@ -9015,7 +9015,7 @@ body.M .page-header, body.M .page-navigation, body.M .page-footer {
 #game {
     position: relative;
     min-width: 420px;
-    height: 420px;
+    height: 320px;
     background: #fff;
     border: 1px solid #000;
     margin: 10px 0;
