@@ -9002,13 +9002,6 @@ body.M .page-header, body.M .page-navigation, body.M .page-footer {
     display: none;
 }
 
-.TreeView1_0 {
-    background-image: url(/App_Themes/Spring/Pages/MainPage/Images/book.png);
-    background-repeat: no-repeat;
-    background-size: 17px;
-    padding-left: 22px;
-}
-
 #counter {
     margin-top: 10px;
 }
@@ -9080,3 +9073,25 @@ div#bestTime {
         padding: 16px;
         background-color: #ffee88;
     }
+
+a[href="/forms/Tetrad/TetradL.aspx"]{
+    background-image: url(/App_Themes/Spring/Pages/MainPage/Images/book.png);
+    background-repeat: no-repeat;
+    background-size: 17px;
+    padding-left: 22px;
+}
+
+a[href="/forms/Predmet/PredmetL.aspx"]{
+    background-image: url(/App_Themes/Spring/Pages/MainPage/Images/book2.png);
+    background-repeat: no-repeat;
+    background-size: 17px;
+    padding-left: 22px;
+
+}
+
+a[href="/forms/Semestr/SemestrL.aspx"]{
+    background-image: url(/App_Themes/Spring/Pages/MainPage/Images/book3.png);
+    background-repeat: no-repeat;
+    background-size: 17px;
+    padding-left: 22px;
+}
