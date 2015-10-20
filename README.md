@@ -2,7 +2,7 @@
 Выполненные задания по курсу "Разработка Enterprise-приложений"
 
 ## Видео с занятий
-Записанные видео с занятий по курсу можно посмотреть на канале FlexberryPLATFORM на YouTube: [плейлист](http://www.youtube.com/playlist?list=PLlhqsC7hBaSdmDSFBfFFRJuDpkTRp_h9P)
+Записанные видео с занятий по курсу можно посмотреть на канале [FlexberryPLATFORM](http://www.youtube.com/user/FlexberryPLATFORM) на YouTube: [Плейлист c занятиями](http://www.youtube.com/playlist?list=PLlhqsC7hBaSdmDSFBfFFRJuDpkTRp_h9P)
 
 ## Номера вариантов для участников курса
 Распределение по вариантам участников курса находится в файле: [TaskVariants.txt](https://github.com/Flexberry/FlexberryStudy2015/blob/master/TaskVariants.txt)
