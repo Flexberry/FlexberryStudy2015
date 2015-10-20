@@ -1,0 +1,511 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ICSSoft.STORMNET.Business.Audit</name>
+    </assembly>
+    <members>
+        <member name="T:ICSSoft.STORMNET.Business.Audit.Audit">
+            <summary>
+            Аудит (основная логика)
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Business.Audit.Audit.ErrorMessageOnFields">
+            <summary>
+            Сообщение, которое возникнет, если на формирование полей выдана ошибочная операция
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.RatifyAuditOperation(ICSSoft.STORMNET.Business.Audit.RatificationAuditParameters)">
+            <summary>
+            Подверждение созданных ранее операций аудита.
+            </summary>
+            <param name="ratificationAuditParameters">
+            Параметры для утверждения внесённых ранее записей аудита.
+            </param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.WriteCustomAuditOperation(ICSSoft.STORMNET.Business.Audit.CheckedCustomAuditParameters)">
+            <summary>
+            Создание записи аудита о собственной операции или действии над собственным объектом.
+            </summary>
+            <param name="checkedCustomAuditParameters">
+            Параметры аудита.
+            </param>
+            <returns>
+            Id сформированной записи аудита.
+            </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.WriteCommonAuditOperation(ICSSoft.STORMNET.Business.Audit.CommonAuditParameters)">
+            <summary>
+            Создание записи аудита об операции удаления, создания и изменения объекта.
+            </summary>
+            <param name="commonAuditParameters">
+            Объект, содержащий данные для аудита.
+            </param>
+            <returns>
+            Id сформированной записи аудита.
+            </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.UpdateAuditEntityByFields(ICSSoft.STORMNET.Business.Audit.HelpStructures.AuditAdditionalInfo,ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity,System.Collections.Generic.Dictionary{System.String,ICSSoft.STORMNET.Business.Audit.HelpStructures.AuditAdditionalInfo.FieldValues})">
+            <summary>
+            Обновление сведений в аудите.
+            Поля, что имели атрибут DisableInsertPropertyAttribute дописывают своё значение, полученное после сохранения в БД.
+            Если проводится попытка изменить поле, которое не имело атрибут DisableInsertPropertyAttribute, то пройдёт исключение. 
+            </summary>
+            <param name="auditAdditionalInfo">Информация о новых значениях полей.</param>
+            <param name="auditEntity">Запись аудита, куда вносятся изменения.</param>
+            <param name="fieldChanges">Список изменений полей.</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.ConstructProperDataService(ICSSoft.STORMNET.Business.Audit.DatabaseAuditParameters)">
+            <summary>
+            Конструируем корректный сервис данных
+            </summary>
+            <param name="sendAuditSettings">
+            Полученные настройки аудита
+            </param>
+            <returns>
+            Сконструированный сервис данных
+            </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.GetAgentFromDb(ICSSoft.STORMNET.Business.IDataService,System.String,System.String)">
+            <summary>
+            Получаем пользователя из БД (либо создаём его).
+            </summary>
+            <param name="dataService">Сервис данных.</param>
+            <param name="fullUserLogin"> Полное полученное имя пользователя (домен + логин). </param>
+            <param name="userName"> Имя пользователя (не логин). </param>
+            <returns> Пользователь, на которого будем записывать аудируемую операцию. </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.GetObjectTypeFromDb(ICSSoft.STORMNET.Business.IDataService,System.String,System.Boolean@)">
+            <summary>
+            Получение элемента типа ObjectType из БД
+            </summary>
+            <param name="dataService">
+            The data service.
+            </param>
+            <param name="objectTypeName">
+            Содержимое ObjectType
+            </param>
+            <param name="wasCreated">
+            Объект был создан
+            </param>
+            <returns>
+            Найденный или сконструированный ObjectType
+            </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.GenerateFields(ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity,System.Collections.Generic.IEnumerable{ICSSoft.STORMNET.Business.Audit.CustomAuditField})">
+            <summary>
+            Генерация массива AuditField для AuditEntity на основе переданных пользователем показателей
+            </summary>
+            <param name="auditEntity">
+            Создаваемая запись аудита, куда добавляются AuditField
+            </param>
+            <param name="customAuditFieldList">
+            Переданные пользователем показатели
+            </param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.ProcessMasterOrDetail(System.String,ICSSoft.STORMNET.DataObject,ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity,ICSSoft.STORMNET.Business.Audit.Objects.tTypeOfAuditOperation,ICSSoft.STORMNET.View)">
+            <summary>
+            Обработка добавления/удаления мастера или детейла объекта.
+            </summary>
+            <param name="fieldName">Имя мастера или детейла.</param>
+            <param name="curDataObject">Объект мастера или детейла.</param>
+            <param name="auditEntity">Создаваемая запись аудита, куда добавляются AuditField.</param>
+            <param name="typeOfAuditOperation">Тип операции аудита (добавление или удаление).</param>
+            <param name="curSubView">Представление для детейла или мастера, по которому и происходит запись данных.</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.GenerateFields(ICSSoft.STORMNET.DataObject,ICSSoft.STORMNET.View,ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity,ICSSoft.STORMNET.Business.Audit.Objects.tTypeOfAuditOperation)">
+            <summary>
+            Генерация AuditField'ов для объекта
+            </summary>
+            <param name="operationedObject"> Удаляемый объект </param>
+            <param name="auditView"> Представление </param>
+            <param name="auditEntity"> Создаваемая запись аудита, куда добавляются AuditField </param>
+            <param name="typeOfAuditOperation"> Тип операции аудита </param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.ProcessMasterOrDetail(System.String,ICSSoft.STORMNET.DataObject,ICSSoft.STORMNET.DataObject,ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity,ICSSoft.STORMNET.View)">
+            <summary>
+            Обработка мастера/детейла объекта.
+            </summary>
+            <param name="fieldName">Имя мастера или детейла.</param>
+            <param name="operationedObjectOld">Старый объект.</param>
+            <param name="operationedObjectNew">Новый объект.</param>
+            <param name="auditEntity">Создаваемая запись аудита, куда добавляются AuditField.</param>
+            <param name="curSubView">Представление для детейла или мастера, по которому и происходит запись данных.</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.GenerateFields(ICSSoft.STORMNET.DataObject,ICSSoft.STORMNET.DataObject,ICSSoft.STORMNET.View,ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity,System.String[])">
+            <summary>
+            Генерация AuditField'ов для изменённого объекта
+            </summary>
+            <param name="operationedObjectOld"> Старый вариант объекта </param>
+            <param name="operationedObjectNew"> Новый вариант объекта </param>
+            <param name="auditView"> Представление, по которому ведётся аудит </param>
+            <param name="auditEntity"> Создаваемая запись аудита, куда добавляются AuditField </param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.GenerateOwnField(System.Object,System.Object,System.String)">
+            <summary>
+            Провести генерацию конструкции типа AuditField для собственного поля
+            </summary>
+            <param name="oldPropertyValue"> Старое значение поля </param>
+            <param name="newPropertyValue"> Новое значение поля </param>
+            <param name="propertyName"> Имя поля </param>
+            <returns> Сгенерированная конструкция типа AuditField для собственного поля </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.GenerateMasterField(System.Object,System.Object,System.String,ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity,ICSSoft.STORMNET.View)">
+            <summary>
+            Генерация для мастера объекта структуры типа AuditField
+            </summary>
+            <param name="oldPropertyValue"> Старое значение поля </param>
+            <param name="newPropertyValue"> Новое значение поля </param>
+            <param name="propertyName"> Имя поля </param>
+            <param name="auditEntity"> Сущность с данными аудита, куда будут добавляться AuditField'ы, генерируемые в ходе работы </param>
+            <param name="masterView"> Представление мастера, по которому ведётся аудит </param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.GenerateDetailFields(ICSSoft.STORMNET.DetailInView,System.Object,System.Object,ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity)">
+            <summary>
+            Генерация структуры типа AuditField для детейлов.
+            </summary>
+            <param name="objectDetail">Описание детейла из представления агрегатора.</param>
+            <param name="oldPropertyValue">Старое значение массива детейлов.</param>
+            <param name="newPropertyValue">Новое значение массива детейлов.</param>
+            <param name="auditEntity">Сущность с данными аудита, куда будут добавляться AuditField'ы, генерируемые в ходе работы.</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Audit.GenerateDetailFields(System.Collections.Generic.IEnumerable{ICSSoft.STORMNET.DataObject},ICSSoft.STORMNET.DetailInView,ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity,ICSSoft.STORMNET.Business.Audit.Objects.tTypeOfAuditOperation,System.Int32)">
+            <summary>
+            Генерация набора AuditField'ов для операции добавления или удаления набора детейлов.
+            </summary>
+            <param name="detailObjects">Набор детейлов.</param>
+            <param name="objectDetail">Настройка детейла.</param>
+            <param name="auditEntity">Создаваемая запись аудита, куда добавляются AuditField.</param>
+            <param name="typeOfAuditOperation">Тип операции аудита (добавление или удаление).</param>
+            <param name="initialCounter">Начальное значение для счётчика детейлов 
+            (будет использовано в имени поля для каждого детейла).</param>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Business.Audit.AuditSetter">
+            <summary>
+            Класс для проведения настройки <see cref="T:ICSSoft.STORMNET.Business.Audit.AuditService"/>.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Business.Audit.AuditSetter.AppNameSettingName">
+            <summary>
+            Имя настройки в конфиг-файле для имени приложения для аудита.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Business.Audit.AuditSetter.AuditEnabledSettingName">
+            <summary>
+            Имя настройки в конфиг-файле для определения, включён ли аудит в приложении.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Business.Audit.AuditSetter.IsDatabaseLocalSettingName">
+            <summary>
+            Имя настройки в конфиг-файле для определения, является ли база данных аудита локальной по отношению к приложению.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Business.Audit.AuditSetter.AuditConnectionStringNameSettingName">
+            <summary>
+            Имя настройки в конфиг-файле для имени строки соединения с БД аудита.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Business.Audit.AuditSetter.AuditWinServiceUrlSettingName">
+            <summary>
+            Имя настройки в конфиг-файле для адреса win-сервиса аудита.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Business.Audit.AuditSetter.WriteSessionsSettingName">
+            <summary>
+            Имя настройки в конфиг-файле для определения, писать ли сессии по пользователям.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Business.Audit.AuditSetter.DefaultWriteModeSettingName">
+            <summary>
+            Имя настройки в конфиг-файле для режима записи данных аудита по умолчанию.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.AuditSetter.InitAuditService(ICSSoft.STORMNET.Business.IDataService)">
+            <summary>
+            Провести инициализацию сервиса аудита.
+            </summary>
+            <param name="dataService">Основной сервис данных приложения (может быть <c>null</c>).</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.AuditSetter.GetConfigValue(System.String)">
+            <summary>
+            Получение настройки из конфиг-файла.
+            </summary>
+            <param name="configSetting"> Имя настройки. </param>
+            <returns> Значение настройки. </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.AuditSetter.ReadSettingsFromConfiguration">
+            <summary>
+            Чтение настроек аудита из конфига приложения.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity">
+            <summary>
+            AuditEntity
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity._lockDataService">
+            <summary>
+            Объект, по которому организуется критическая секция по обращению к сервису данных.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity._lockCreator">
+            <summary>
+            Объект, по которому организуется критическая секция по заполнению данных для создателя.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity._lockEditor">
+            <summary>
+            Объект, по которому организуется критическая секция по заполнению данных для редактора.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.GetSpecialAuditEntity(System.Boolean)">
+            <summary>
+            Получение значений вычислимых полей: 
+            дата создания (может отсутствовать) и дата последнего изменения (берётся последнее аудируемое действие).
+            </summary>
+            <param name="needCreationOnly">Нужна ли дата создания объекта или всё-таки дата последнего изменения.</param>
+            <returns>Запись в аудите, содержащая требуемые сведения.</returns>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.LockDataService">
+            <summary>
+            Объект, по которому организуется критическая секция по обращению к сервису данных.
+            После первого создания значение кэшируется.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.LockCreator">
+            <summary>
+            Объект, по которому организуется критическая секция по заполнению данных для создателя.
+            После первого создания значение кэшируется.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.LockEditor">
+            <summary>
+            Объект, по которому организуется критическая секция по заполнению данных для редактора.
+            После первого создания значение кэшируется.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.ObjectPrimaryKey">
+            <summary>
+            ObjectPrimaryKey
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.OperationTime">
+            <summary>
+            OperationTime
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.OperationType">
+            <summary>
+            OperationType
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.ExecutionResult">
+            <summary>
+            ExecutionResult
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.Source">
+            <summary>
+            Source
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.SerializedField">
+            <summary>
+            SerializedField
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.CreateTime">
+            <summary>
+            Дата создания объекта 
+            (среди записей AuditEntity по этому объекту ищется первая по AuditEntity.OperationTime, 
+            где AuditEntity.OperationType равно EnumCaption.GetCaptionFor(tTypeOfAuditOperation.INSERT), 
+            и выдаётся AuditEntity.OperationTime (такая запись может отсутствовать)).
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.Creator">
+            <summary>
+            Создатель объекта 
+            (среди записей AuditEntity по этому объекту ищется первая по AuditEntity.OperationTime, 
+            где AuditEntity.OperationType равно EnumCaption.GetCaptionFor(tTypeOfAuditOperation.INSERT), 
+            и выдаётся AuditEntity.User.Name (такая запись может отсутствовать))
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.EditTime">
+            <summary>
+            Дата последнего изменения 
+            (среди записей AuditEntity по этому объекту ищется последняя по AuditEntity.OperationTime, 
+            где AuditEntity.OperationType равно EnumCaption.GetCaptionFor(tTypeOfAuditOperation.UPDATE), 
+            и выдаётся AuditEntity.OperationTime (такая запись может отсутствовать))
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.Editor">
+            <summary>
+            Редактор объекта (последний) 
+            (среди записей AuditEntity по этому объекту ищется последняя по AuditEntity.OperationTime, 
+            где AuditEntity.OperationType равно EnumCaption.GetCaptionFor(tTypeOfAuditOperation.UPDATE), 
+            и выдаётся AuditEntity.User.Name (такая запись может отсутствовать)).
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.User">
+            <summary>
+            AuditEntity
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.ObjectType">
+            <summary>
+            AuditEntity
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.AuditFields">
+            <summary>
+            AuditEntity
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.Views">
+            <summary>
+            Class views container
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.Views.AuditEntityByObjectsE">
+            <summary>
+            Представление для просмотра записей аудита в аспекте объектов
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.Views.AuditEntityByObjectsL">
+            <summary>
+            Представление для списка просмотра в аспекте объектов
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.Views.AuditEntityE">
+            <summary>
+            Представление для организации формы просмотра конкретной записи аудита
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.Views.AuditEntityL">
+            <summary>
+            Представление для организации списковой формы по записям аудита
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.Views.AuditEntityUpdateView">
+            <summary>
+            Представление для обновления записи аудита полями, которые вычислялись после сохранения объекта
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity.Views.ConstructNotStoredAttr">
+            <summary>
+            Представление для конктруирование большей части нехранимых полей
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Business.Audit.Objects.AuditField">
+            <summary>
+            AuditField
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Objects.AuditField.GenerateLcsNotToShowPrimaryKeyRecords">
+            <summary>
+            Формирование lcs, которое отсеивает записи аудита, соответствующие смене мастера/детейла и содержащие только смену первичного ключа.
+            </summary>
+            <returns>Сформированное lcs.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Objects.AuditField.#ctor">
+            <summary>
+            Просто пустой конструктор
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Objects.AuditField.#ctor(ICSSoft.STORMNET.Business.Audit.CustomAuditField)">
+            <summary>
+            Конструтор класса AuditField
+            </summary>
+            <param name="customAuditField">Элемент аналогичной AuditField структуры</param>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditField.Field">
+            <summary>
+            Field
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditField.Caption">
+            <summary>
+            Caption
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditField.OldValue">
+            <summary>
+            OldValue
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditField.NewValue">
+            <summary>
+            NewValue
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditField.MainChange">
+            <summary>
+            AuditField
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditField.AuditEntity">
+            <summary>
+            мастеровая ссылка на шапку ICSSoft.STORMNET.Business.Audit.AuditEntity
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Business.Audit.Objects.AuditField.Views">
+            <summary>
+            Class views container
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditField.Views.AuditEntityUpdateView">
+            <summary>
+            Представление для обновления записи аудита полями, которые вычислялись после сохранения объекта
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditField.Views.AuditFieldByObjectsE">
+            <summary>
+            Представление для просмотра записей в аспекте объектов
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.AuditField.Views.AuditFieldE">
+            <summary>
+            Представление для отображения изменений по записи аудита
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Business.Audit.Objects.DetailArrayOfAuditField">
+            <summary>
+            Detail array of AuditField
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Objects.DetailArrayOfAuditField.#ctor(ICSSoft.STORMNET.Business.Audit.Objects.AuditEntity)">
+            <summary>
+            Construct detail array
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.Audit.Objects.DetailArrayOfAuditField.Add(ICSSoft.STORMNET.Business.Audit.Objects.AuditField)">
+            <summary>
+            Adds object with type AuditField
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.DetailArrayOfAuditField.Item(System.Int32)">
+            <summary>
+            Returns object with type AuditField by index
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Business.Audit.Objects.ObjectType">
+            <summary>
+            ObjectType
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.ObjectType.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Business.Audit.Objects.ObjectType.Views">
+            <summary>
+            Class views container
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.Audit.Objects.ObjectType.Views.SearchView">
+            <summary>
+            Представление для поиска уже существующего элемента
+            </summary>
+        </member>
+    </members>
+</doc>

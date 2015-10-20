@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IIS.Caseberry.Logging(Objects)</name>
+    </assembly>
+    <members>
+        <member name="T:IIS.Caseberry.Logging.Objects.ApplicationLog">
+            <summary>
+            Application Log.
+            </summary>
+        </member>
+        <member name="M:IIS.Caseberry.Logging.Objects.ApplicationLog.CreateException">
+            <summary>
+            Создать исключение, содержащее информацию по строке лога.
+            </summary>
+            <returns>Исключение</returns>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.Category">
+            <summary>
+            Category.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.EventId">
+            <summary>
+            EventId.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.Priority">
+            <summary>
+            Priority.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.Severity">
+            <summary>
+            Severity.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.Title">
+            <summary>
+            Title.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.Timestamp">
+            <summary>
+            Timestamp.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.MachineName">
+            <summary>
+            MachineName.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.AppDomainName">
+            <summary>
+            AppDomainName.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.ProcessId">
+            <summary>
+            ProcessId.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.ProcessName">
+            <summary>
+            ProcessName.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.ThreadName">
+            <summary>
+            ThreadName.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.Win32ThreadId">
+            <summary>
+            Win32ThreadId.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.Message">
+            <summary>
+            Message.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.FormattedMessage">
+            <summary>
+            FormattedMessage.
+            </summary>
+        </member>
+        <member name="T:IIS.Caseberry.Logging.Objects.ApplicationLog.Views">
+            <summary>
+            Class views container.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.Views.ApplicationLogE">
+            <summary>
+            "ApplicationLogE" view.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.Views.ApplicationLogL">
+            <summary>
+            "ApplicationLogL" view.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.Views.ApplicationLogRusL">
+            <summary>
+            "ApplicationLogRusL" view.
+            </summary>
+        </member>
+        <member name="P:IIS.Caseberry.Logging.Objects.ApplicationLog.Views.ShortL">
+            <summary>
+            "ShortL" view.
+            </summary>
+        </member>
+        <member name="T:IIS.Caseberry.Logging.Objects.ApplicationLogException">
+            <summary>
+            Исключение-обертка для строк лога
+            </summary>
+        </member>
+        <member name="M:IIS.Caseberry.Logging.Objects.ApplicationLogException.#ctor(System.Exception)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="innerException">Исключение</param>
+        </member>
+        <member name="M:IIS.Caseberry.Logging.Objects.ApplicationLogException.#ctor(System.String,System.Exception)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="message">Сообщение</param>
+            <param name="innerException">Исключение</param>
+        </member>
+    </members>
+</doc>
