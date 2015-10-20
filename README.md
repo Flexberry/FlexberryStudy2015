@@ -4,6 +4,9 @@
 ## Видео с занятий
 Записанные видео с занятий по курсу можно посмотреть на канале [FlexberryPLATFORM](http://www.youtube.com/user/FlexberryPLATFORM) на YouTube: [Плейлист c занятиями](http://www.youtube.com/playlist?list=PLlhqsC7hBaSdmDSFBfFFRJuDpkTRp_h9P)
 
+## Презентации с занятий
+Ссылки на презентации с занятий, а также инструкции по просмотру находятся в файле: [PRESENTATIONS.md](https://github.com/Flexberry/FlexberryStudy2015/blob/master/PRESENTATIONS.md)
+
 ## Номера вариантов для участников курса
 Распределение по вариантам участников курса находится в файле: [TaskVariants.txt](https://github.com/Flexberry/FlexberryStudy2015/blob/master/TaskVariants.txt)
 
