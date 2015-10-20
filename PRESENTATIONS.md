@@ -10,6 +10,7 @@
 
 ## Занятие №1
 Introduction: [просмотр](https://sway.com/BtSViRD4KqLbsLrj)
+
 Знакомство с платформой Flexberry: [просмотр](https://sway.com/RsP0BDBEXARrNBXW)
 
 ## Занятие №2
