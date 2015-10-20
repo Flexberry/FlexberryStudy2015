@@ -2,7 +2,7 @@
 Выполненные задания по курсу "Разработка Enterprise-приложений"
 
 ## Номера вариантов для участников курса
-Распределение по вариантам для участников курса находится в файле: https://github.com/Flexberry/FlexberryStudy2015/blob/master/TaskVariants.txt
+Распределение по вариантам участников курса находится в файле: https://github.com/Flexberry/FlexberryStudy2015/blob/master/TaskVariants.txt
 
 ## Описния предметных областей для заданий
 Описания предметных областей, на основании которых разрабатывается модель предметной области, а также последующая генерация и доработка приложения, находятся в файле: https://github.com/Flexberry/FlexberryStudy2015/blob/master/DomainVariants.txt
