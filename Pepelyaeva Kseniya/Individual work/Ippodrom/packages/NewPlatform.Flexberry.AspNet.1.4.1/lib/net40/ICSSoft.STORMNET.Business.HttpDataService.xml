@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ICSSoft.STORMNET.Business.HttpDataService</name>
+    </assembly>
+    <members>
+        <member name="T:ICSSoft.STORMNET.Business.HttpDataService">
+            <summary>
+            Summary description for Class1.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.HttpDataService.#ctor">
+            <summary>
+            Конструирование экземпляра класса. В качестве сервиса данных будет использоваться DataServiceProvider.DataService.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.HttpDataService.#ctor(ICSSoft.STORMNET.Business.IDataService)">
+            <summary>
+            Конструирование экземпляра класса. В качестве сервиса данных будет использоваться переданный сервис.
+            </summary>
+            <param name="dataService">Сервис данных.</param>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Business.HttpDataService.ObjService">
+            <summary>
+            Сервис данных.
+            </summary>
+        </member>
+    </members>
+</doc>

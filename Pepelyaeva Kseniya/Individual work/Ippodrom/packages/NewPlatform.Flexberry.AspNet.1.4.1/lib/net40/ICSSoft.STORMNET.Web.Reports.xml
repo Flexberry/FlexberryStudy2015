@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ICSSoft.STORMNET.Web.Reports</name>
+    </assembly>
+    <members>
+        <member name="T:ICSSoft.STORMNET.Web.Reports.InputParameterForm">
+            <summary>
+            Страница ввода значений параметров отчета.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Web.Reports.InputParameterForm.Head1">
+            <summary>
+            Заголовок страницы.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Web.Reports.InputParameterForm.form">
+            <summary>
+            Форма для размещения контролов ввода значений параметров.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Web.Reports.InputParameterForm.Editor">
+            <summary>
+            Контрол ввода значений параметров.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Web.Reports.InputParameterForm.#ctor">
+            <summary>
+            Конструктор страницы, инициализирующий контролы.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Web.Reports.InputParameterForm.Page_Load(System.Object,System.EventArgs)">
+            <summary>
+            Загрузка страницы.
+            </summary>
+            <param name="sender"> Инициатор события.</param>
+            <param name="e"> Параметры события.</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Web.Reports.InputParameterForm.StartReportGeneration(System.Guid,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Обращение к сервису генерации отчетов.
+            </summary>
+            <param name="reportTemplateGuid">Guid отчета.</param>
+            <param name="parameters">Параметры построения.</param>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Web.Reports.Forms.InputParameterFormHandlerFactory">
+            <summary>
+            PageHandlersFactory для формы ввода параметров отчета.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Web.Reports.Forms.StimulsoftReportTemplateEditor">
+            <summary>
+            SilverLight редактор отчетов Stimulsoft.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Web.Reports.Forms.StimulsoftReportTemplateEditor.Head">
+            <summary>
+            Заголовок страницы.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Web.Reports.Forms.StimulsoftReportTemplateEditor.form">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Web.Reports.Forms.StimulsoftReportTemplateEditor.stiWebDesignerSL">
+            <summary>
+            SilverLight редактор отчета Stimulsoft.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Web.Reports.Forms.StimulsoftReportTemplateEditor.txtReportTemplateID">
+            <summary>
+            Скрытое поле для хранения индентификатора редактируемого отчета.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Web.Reports.Forms.StimulsoftReportTemplateEditor.#ctor">
+            <summary>
+            Конструктор, создающий элементы управления формы. 
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Web.Reports.Forms.StimulsoftReportTemplateEditor.stiWebDesignerSL_SaveReport(System.Object,Stimulsoft.Report.WebDesignSL.StiWebDesignerSL.StiSaveReportEventArgs)">
+            <summary>
+            Обработчик события сохранения отчета Stimulsoft.
+            </summary>
+            <param name="sender">Инициатор события.</param>
+            <param name="e">Параметры события.</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Web.Reports.Forms.StimulsoftReportTemplateEditor.Page_Load(System.Object,System.EventArgs)">
+            <summary>
+            Метод загрузки страницы.
+            </summary>
+            <param name="sender">Инициатор события.</param>
+            <param name="e">Аргументы события.</param>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Web.Reports.Forms.StimulsoftReportTemplateEditorHandlerFactory">
+            <summary>
+            PageHandlersFactory для формы промотра документов Stimulsoft.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Web.Reports.Forms.StimulSoftReportViewHandlerFactory">
+            <summary>
+            PageHandlersFactory для формы промотра документов Stimulsoft.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Web.Reports.StimulSoftReportView">
+            <summary>
+            Страница просмотра построенного документа StimulSoft.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Web.Reports.StimulSoftReportView.Head1">
+            <summary>
+            Заголовок страницы.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Web.Reports.StimulSoftReportView.WebViewer">
+            <summary>
+            Компонент для отображения отчета на странице.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Web.Reports.StimulSoftReportView.form">
+            <summary>
+            Форма для размещения контролов ввода значений параметров.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Web.Reports.StimulSoftReportView.#ctor">
+            <summary>
+            Конструктор, создающий элементы управления формы.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Web.Reports.StimulSoftReportView.Page_Load(System.Object,System.EventArgs)">
+            <summary>
+            Метод загрузки страницы.
+            </summary>
+            <param name="sender">Инициатор события.</param>
+            <param name="e">Аргументы события.</param>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Web.Reports.ReportParameterAdapter">
+            <summary>
+            Класс-адаптер для использования <see cref="T:ICSSoft.STORMNET.Web.AjaxControls.DynamicEditor"/> для ввода
+            значенийй параметров отчётов.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Web.Reports.ReportParameterAdapter.parameter">
+            <summary>
+            Редактируемый параметр отчёта.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Web.Reports.ReportParameterAdapter.#ctor(IIS.Flexberry.Reports.Core.Objects.ReportParameter)">
+            <summary>
+            Конструктор класса.
+            Создает новый адаптер для указанного параметра отчета.
+            </summary>
+            <param name="parameter">Редактируемый параметр отчёта.</param>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Web.Reports.ReportParameterAdapter.Name">
+            <summary>
+            Имя редактируемого элемента.
+            Изменения влияют на связанный параметр отчётов.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Web.Reports.ReportParameterAdapter.Caption">
+            <summary>
+            Подпись к элементу.
+            Изменения влияют на связанный параметр отчётов.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Web.Reports.ReportParameterAdapter.Type">
+            <summary>
+            Тип данных редактируемого элемента.
+            Изменения влияют на связанный параметр отчётов.
+            </summary>
+        </member>
+    </members>
+</doc>

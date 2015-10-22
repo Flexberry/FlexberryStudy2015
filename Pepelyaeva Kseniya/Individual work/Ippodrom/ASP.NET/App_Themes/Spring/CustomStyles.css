@@ -1,0 +1,133 @@
+﻿body {
+font-family: helvetica;
+background-color: #f5f5f5;
+
+}
+
+.page-header {
+/*background-color:#37474f;*/
+background-color: #f5f5f5;
+
+}
+.page-header-image {
+    width: 64px;
+    height: 64px;
+    background-image:url(Images/app-logo.png);
+    margin:20px;
+    margin-left:50px;
+}
+
+.page-header-caption a{
+text-decoration:none;
+font-family:Century Gothic;
+color:#7D7D7D;
+font-weight:normal;
+}
+
+.page-navigation {
+border-top:none;
+border-bottom:none;
+/*background:#a9a9a9;*/
+background:#fcfcfc;
+border-top: 1px solid #ddd;
+border-bottom: 1px solid #ddd;
+color:#999;
+}
+
+.page-navigation .page-breadcrumbs a {    
+color:#333
+}
+
+.ics-button, .ics-wolv-toolbar-button {
+background:none;
+box-shadow:none;
+-webkit-box-shadow:none;
+}
+
+.ics-wolv-header {
+border: 1px solid #ddd;
+background-color: #fff;
+margin:25px;
+}
+
+#pageBlockTreeview .ics-treeview a.ics-treeview-node {
+color: rgba(255,255,255,0.75);
+}
+
+#pageBlockTreeview .ics-treeview span.ics-treeview-node {
+color: rgba(255,255,255,0.75);
+}
+
+#pageBlockTreeview {
+background-color: #37474f;
+}
+
+.treeview-wrapper {
+font-size: 13px;
+font-weight: bold;
+
+}
+
+.wolv-data-table>tbody>tr>td.WOLVSO, .wolv-data-table>tbody>tr .ObjectListViewAlternateCell>td.WOLVSO {
+    background: #26a69a;
+}
+
+.ics-wolv-content .wolv-data-wrapper > table {
+background:#fff;
+}
+
+.ics-button:active, .ics-wolv-toolbar-button:active {
+    color: #26a69a; 
+    background: none;
+    box-shadow: none;
+}
+
+.ics-button:hover, .ics-wolv-toolbar-button:hover {
+    background-color: #f0f0f0;
+    filter: none;
+    color: #12a1e5;
+}
+.ics-wolv-pager-page, .ics-wolv-pager-navigation-button, .ics-wolv-pager-pages > span {
+box-shadow:none;
+background-image:none;
+background:#fff;
+}
+
+.ics-wolv-pager-pages>span.ics-wolv-pager-current-page, .ics-wolv-pager-pages a:active, .ics-wolv-pager-navigation-button:active{
+    box-shadow:none;
+    background-image:none;
+    color:#37474f;
+
+}
+
+.ics-wolv-pager-page:focus, .ics-wolv-pager-navigation-button:focus{
+    border-color:#37474f;
+    color:#37474f;
+}
+
+.page-footer{
+    background: #fcfcfc;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.ics-form-toolbar-edit {
+    padding: 7px 24px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    margin: 25px;
+}
+
+.treeview-wrapper .ics-treeview-node-hover tr{
+    background:#26a69a;
+}
+
+#pageBlockContent {
+    font-family: Century Gothic;
+    color: #7D7D7D;
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+.home-page {
+font-size:21px;
+}
