@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stimulsoft.Report.WebDesignSL</name>
+    </assembly>
+    <members>
+        <member name="M:Stimulsoft.Report.WebDesignSL.StiWebDesignerSL.GetErrorListXml(Stimulsoft.Report.StiReport)">
+            <summary>
+            Create list of error for report designer.
+            </summary>
+        </member>
+    </members>
+</doc>

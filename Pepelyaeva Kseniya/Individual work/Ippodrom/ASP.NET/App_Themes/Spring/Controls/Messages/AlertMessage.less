@@ -1,0 +1,22 @@
+﻿@import '../../../BaseTheme/Controls/Messages/AlertMessage.less';
+
+/* Файл визуального оформления модальных окон с сообщениями. */
+
+/*#region Модальное окно.*/
+#@{alertContainerId} {
+    .border-radius(18px);
+    background-color: @modalWindowBackgroundColor;
+    -moz-box-shadow: 1px 1px 10px @modalWindowShadowColor;
+    -webkit-box-shadow: 1px 1px 10px @modalWindowShadowColor;
+    box-shadow: 1px 1px 10px @modalWindowShadowColor;
+    font-size: 12px;
+    /*#region Заголовок модального окна.*/
+    #@{alertTitleId} {        
+        padding: 0;
+        color: @modalWindowTitleColor;        
+    }
+    /*#endregion*/
+}
+/*#endregion*/
+
+@import '_Settings.less';

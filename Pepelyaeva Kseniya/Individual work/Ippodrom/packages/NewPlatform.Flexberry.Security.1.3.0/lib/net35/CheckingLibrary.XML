@@ -1,0 +1,1483 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CheckingLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:CheckingLibrary.AuthenticationAdapter">
+            <summary>
+            Класс, помогающий автоматически занести в БД полномочий пользователей, зашедших в приложение (используется при windows-аутентификации).
+            </summary>
+        </member>
+        <member name="F:CheckingLibrary.AuthenticationAdapter.DisableAuditFlag">
+            <summary>
+            Имя динамического свойства объекта полномочий, показывающего, что аудит данного объекта писать не нужно.
+            </summary>
+            <remarks>Используется в сборках аудита.</remarks>
+        </member>
+        <member name="F:CheckingLibrary.AuthenticationAdapter.DefaultRoles">
+            <summary>
+            Название настройки из конфигурационного файла, в которой указываются роли пользователя, назначаемые ему по умолчанию.
+            </summary>
+        </member>
+        <member name="M:CheckingLibrary.AuthenticationAdapter.GetDbUser">
+            <summary>
+            Получение объекта, соответствующего текущему пользователю в БД полномочий
+            (полное имя пользователя берётся как <code>HttpContext.Current.User.Identity.Name</code>).
+            </summary>
+            <returns>Объект или <c>null</c>, если ничего не было найдено.</returns>
+        </member>
+        <member name="M:CheckingLibrary.AuthenticationAdapter.GetDbUser(System.String)">
+            <summary>
+            Получение объекта, соответствующего текущему пользователю в БД полномочий.
+            </summary>
+            <param name="username">Полное имя пользователя.</param>
+            <returns>Объект или <c>null</c>, если ничего не было найдено.</returns>
+        </member>
+        <member name="M:CheckingLibrary.AuthenticationAdapter.GetDbUser(System.String,ICSSoft.STORMNET.Business.IDataService)">
+            <summary>
+            Получение объекта, соответствующего текущему пользователю в БД полномочий.
+            </summary>
+            <param name="username">Полное имя пользователя.</param>
+            <param name="dataService">Сервис данных (<c>null</c>, если нужно использовать стандартный).</param>
+            <exception cref="T:System.InvalidOperationException">Выбрасывается в том случае, если в системе полномочий произошла ошибка.</exception>
+            <returns>Объект или <c>null</c>, если ничего не было найдено.</returns>
+        </member>
+        <member name="M:CheckingLibrary.AuthenticationAdapter.IsUserExist(System.String)">
+            <summary>
+            Проверка существования в системе полномочий пользователя с указанным логином.
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <exception cref="T:System.InvalidOperationException">Выбрасывается в том случае, если в системе полномочий произошла ошибка.</exception>
+            <returns>Возвращает <c>true</c> если пользователь существует.</returns>
+        </member>
+        <member name="M:CheckingLibrary.AuthenticationAdapter.CreateDbUser(System.String,System.String)">
+            <summary>
+            Создание пользователя в БД подсистемы полномочий.
+            </summary>
+            <param name="username">Логин пользователя, возможно с доменом.</param>
+            <param name="friendlyUserName">Имя пользователя.</param>
+            <returns>Созданный пользователь.</returns>
+        </member>
+        <member name="M:CheckingLibrary.AuthenticationAdapter.CreateDbUser(System.String,System.String,System.Boolean,ICSSoft.STORMNET.Business.IDataService)">
+            <summary>
+            Создание пользователя в БД подсистемы полномочий.
+            </summary>
+            <param name="username">Логин пользователя, возможно с доменом.</param>
+            <param name="friendlyUserName">Имя пользователя.</param>
+            <param name="addDefaultRoles">Следует ли добавлять роли по умолчанию для создаваемого пользователя.</param>
+            <param name="dataService">Сервис данных (<c>null</c>, если нужно использовать стандартный).</param>
+            <returns>Созданный пользователь.</returns>
+        </member>
+        <member name="M:CheckingLibrary.AuthenticationAdapter.CreateDbUser(System.String)">
+            <summary>
+            Создание пользователя в БД подсистемы полномочий (имя пользователя берётся из домена).
+            </summary>
+            <param name="username">Логин пользователя, возможно с доменом.</param>
+            <returns>Созданный пользователь.</returns>
+            <exception cref="T:System.Exception">Если пользователь не будет найден в домене, произойдёт исключительная ситуация.</exception>
+        </member>
+        <member name="M:CheckingLibrary.AuthenticationAdapter.CreateDbAgentWithLinks(ICSSoft.STORMNET.Security.Agent,System.String,System.Boolean,ICSSoft.STORMNET.Business.IDataService)">
+            <summary>
+            Создать пользователя с настроенными связями.
+            </summary>
+            <param name="agent"> Пользователь, которого нужно создать. </param>
+            <param name="domain"> Домен пользователя. </param>
+            <param name="addDefaultRoles"> Следует ли добавлять роли по умолчанию. </param>
+            <param name="dataService"> Сервис данных (<c>null</c>, если нужно использовать стандартный). </param>
+        </member>
+        <member name="T:CheckingLibrary.DomainHelper">
+            <summary>
+            Класс по помощи в работе с доменом
+            </summary>
+        </member>
+        <member name="M:CheckingLibrary.DomainHelper.GetDomainFromFullName(System.String,System.String@)">
+            <summary>
+            Из полного имени пользователя вычленяется домен и имя пользователя
+            </summary>
+            <param name="fullUserName"></param>
+            <param name="login"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CheckingLibrary.DomainHelper.ExtractLoginAndDomain(System.String,System.String@)">
+            <summary>
+            Извлечь логин и домен из имени пользователя. Парсится строка вида: ICS_HOME\vpupkin.
+            </summary>
+            <param name="username">Имя пользователя. В формате vpupkin или ICS_HOME\vpupkin.</param>
+            <param name="domain">Домен. Для строки ICS_HOME\vpupkin вернём: ICS_HOME.</param>
+            <returns>Логин. Для строки ICS_HOME\vpupkin вернём: vpupkin.</returns>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.CreateUser(System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Object,System.Web.Security.MembershipCreateStatus@)">
+            <summary>
+            Добавляет нового пользователя членства в источник данных.
+            </summary>
+            <returns>
+            Объект <see cref="T:System.Web.Security.MembershipUser"/>, заполненный информацией для вновь созданного пользователя.
+            </returns>
+            <param name="username">Имя для нового пользователя. </param><param name="password">Пароль для нового пользователя. </param><param name="email">Адрес электронной почты для нового пользователя.</param><param name="passwordQuestion">Контрольный вопрос для пароля нового пользователя.</param><param name="passwordAnswer">Контрольный ответ для пароля нового пользователя.</param><param name="isApproved">Одобрена ли проверка нового пользователя.</param><param name="providerUserKey">Уникальный идентификатор из источника данных членства для пользователя.</param><param name="status">Значение перечисления <see cref="T:System.Web.Security.MembershipCreateStatus"/>, показывающее успешно ли создан пользователь.</param>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.ChangePasswordQuestionAndAnswer(System.String,System.String,System.String,System.String)">
+            <summary>
+            Обрабатывает запрос на обновление контрольного вопроса и ответа при вводе пароля для пользователя членства.
+            </summary>
+            <returns>
+            Значение true, если контрольный вопрос и ответ для пароля успешно обновлены; в противном случае — значение false.
+            </returns>
+            <param name="username">Пользователь, для которого изменяется контрольный вопрос и ответ. </param><param name="password">Пароль заданного пользователя. </param><param name="newPasswordQuestion">Новый контрольный вопрос заданного пользователя. </param><param name="newPasswordAnswer">Новый контрольный ответ заданного пользователя. </param>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.GetPassword(System.String,System.String)">
+            <summary>
+            Возвращает из источника данных пароль для указанного имени пользователя.
+            </summary>
+            <returns>
+            Пароль для заданного имени пользователя.
+            </returns>
+            <param name="username">Пользователь, для которого извлекается пароль. </param><param name="answer">Контрольный ответ для пароля пользователя. </param>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.ChangePassword(System.String,System.String,System.String)">
+            <summary>
+            Обрабатывает запрос на обновление пароля для пользователя членства.
+            </summary>
+            <returns>
+            Значение true, если пароль был успешно обновлен; в противном случае — false.
+            </returns>
+            <param name="username">Пользователь, для которого обновляется пароль. </param><param name="oldPassword">Текущий пароль заданного пользователя. </param><param name="newPassword">Новый пароль заданного пользователя. </param>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.ResetPassword(System.String,System.String)">
+            <summary>
+            Заменяет пароль пользователя на новый, автоматически сгенерированный пароль.
+            </summary>
+            <returns>
+            Новый пароль заданного пользователя.
+            </returns>
+            <param name="username">Пользователь, для которого сбрасывается пароль. </param><param name="answer">Контрольный ответ для пароля заданного пользователя. </param>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.UpdateUser(System.Web.Security.MembershipUser)">
+            <summary>
+            Обновляет информацию о пользователе в источнике данных.
+            </summary>
+            <param name="user">Объект <see cref="T:System.Web.Security.MembershipUser"/>, который представляет пользователя для обновления и обновленную информацию для пользователя. </param>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.ValidateUser(System.String,System.String)">
+            <summary>
+            Проверяет существование указанного имени пользователя и пароля в источнике данных.
+            </summary>
+            <returns>
+            Значение true, если указанные имя пользователя и пароль действительны; в противном случае — значение false.
+            </returns>
+            <param name="username">Имя пользователя для проверки. </param><param name="password">Пароль заданного пользователя. </param>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.UnlockUser(System.String)">
+            <summary>
+            Снимает блокировку так, что пользователь членства может быть проверен.
+            </summary>
+            <returns>
+            Значение true, если пользователь членства успешно разблокирован; в противном случае — значение false.
+            </returns>
+            <param name="userName">Пользователь членства, для которого нужно снять блокировку.</param>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.GetUser(System.Object,System.Boolean)">
+            <summary>
+            Возвращает информацию пользователя из источника данных, основываясь на уникальном идентификаторе для пользователя членства. Предоставляет параметр для обновления метки даты и времени последней операции пользователя.
+            </summary>
+            <returns>
+            Объект <see cref="T:System.Web.Security.MembershipUser"/>, заполненный информацией конкретного пользователя из источника данных.
+            </returns>
+            <param name="providerUserKey">Уникальный идентификатор пользователя членства, для которого необходимо получить информацию.</param><param name="userIsOnline">Значение true, чтобы обновить метку даты и времени последней операции пользователя. Значение false, чтобы вернуть информацию пользователя без обновления метки даты и времени последней операции пользователя.</param>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.GetUser(System.String,System.Boolean)">
+            <summary>
+            Возвращает информацию из источника данных для пользователя. Предоставляет параметр для обновления метки даты и времени последней операции пользователя.
+            </summary>
+            <returns>
+            Объект <see cref="T:System.Web.Security.MembershipUser"/>, заполненный информацией конкретного пользователя из источника данных.
+            </returns>
+            <param name="username">Имя пользователя, для которого нужно получить информацию. </param><param name="userIsOnline">Значение true, чтобы обновить метку даты и времени последней операции пользователя. Значение false, чтобы вернуть информацию пользователя без обновления метки даты и времени последней операции пользователя. </param>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.GetUserNameByEmail(System.String)">
+            <summary>
+            Возвращает имя пользователя, связанное с указанным адресом электронной почты.
+            </summary>
+            <returns>
+            Имя пользователя, связанное с указанным адресом электронной почты. Если совпадения не найдены, то возвращается значение null.
+            </returns>
+            <param name="email">Адрес электронной почты для поиска. </param>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.DeleteUser(System.String,System.Boolean)">
+            <summary>
+            Удаляет пользователя из источника данных членства. 
+            </summary>
+            <returns>
+            Значение true, если пользователь успешно удален; в противном случае — значение false.
+            </returns>
+            <param name="username">Имя пользователя для удаления.</param><param name="deleteAllRelatedData">Значение true, чтобы удалить связанные с пользователем данные из базы данных; значение false, чтобы оставить связанные с пользователем данные в базе данных.</param>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.GetAllUsers(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Возвращает коллекцию всех пользователей в источнике данных на страницах данных.
+            </summary>
+            <returns>
+            Коллекция <see cref="T:System.Web.Security.MembershipUserCollection"/>, содержащая страницу, которая включает определяемое параметром <paramref name="pageSize"/> количество объектов <see cref="T:System.Web.Security.MembershipUser"/>, начиная со страницы, заданной параметром <paramref name="pageIndex"/>.
+            </returns>
+            <param name="pageIndex">Отсчет индекса <paramref name="pageIndex"/> возвращаемой страницы результатов начинается с нуля.</param><param name="pageSize">Размер возвращаемой страницы результатов.</param><param name="totalRecords">Общее количество пользователей, для которых выявлены совпадения.</param>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.GetNumberOfUsersOnline">
+            <summary>
+            Получает количество пользователей, осуществляющих текущий доступ к приложению.
+            </summary>
+            <returns>
+            Количество пользователей, осуществляющих текущий доступ к приложению.
+            </returns>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.FindUsersByName(System.String,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Возвращает коллекцию пользователей членства, у которых часть имени совпадает с указанным значением.
+            </summary>
+            <returns>
+            Коллекция <see cref="T:System.Web.Security.MembershipUserCollection"/>, содержащая страницу, которая включает определяемое параметром <paramref name="pageSize"/> количество объектов <see cref="T:System.Web.Security.MembershipUser"/>, начиная со страницы, заданной параметром <paramref name="pageIndex"/>.
+            </returns>
+            <param name="usernameToMatch">Имя пользователя для поиска.</param><param name="pageIndex">Отсчет индекса <paramref name="pageIndex"/> возвращаемой страницы результатов начинается с нуля.</param><param name="pageSize">Размер возвращаемой страницы результатов.</param><param name="totalRecords">Общее количество пользователей, для которых выявлены совпадения.</param>
+        </member>
+        <member name="M:CheckingLibrary.Web.CaseberryDomainMembershipProvider.FindUsersByEmail(System.String,System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Возвращает коллекцию пользователей членства, адрес электронной почты которых содержит часть, совпадающую с указанным значением.
+            </summary>
+            <returns>
+            Коллекция <see cref="T:System.Web.Security.MembershipUserCollection"/>, содержащая страницу, которая включает определяемое параметром <paramref name="pageSize"/> количество объектов <see cref="T:System.Web.Security.MembershipUser"/>, начиная со страницы, заданной параметром <paramref name="pageIndex"/>.
+            </returns>
+            <param name="emailToMatch">Адрес электронной почты для поиска.</param><param name="pageIndex">Отсчет индекса <paramref name="pageIndex"/> возвращаемой страницы результатов начинается с нуля.</param><param name="pageSize">Размер возвращаемой страницы результатов.</param><param name="totalRecords">Общее количество пользователей, для которых выявлены совпадения.</param>
+        </member>
+        <member name="P:CheckingLibrary.Web.CaseberryDomainMembershipProvider.EnablePasswordRetrieval">
+            <summary>
+            Показывает, настроена ли в поставщике участия возможность извлечения пользователями собственных паролей.
+            </summary>
+            <returns>
+            Значение true, если в поставщике участия настроена возможность извлечения пароля, в противном случае — значение false. Значение по умолчанию — false.
+            </returns>
+        </member>
+        <member name="P:CheckingLibrary.Web.CaseberryDomainMembershipProvider.EnablePasswordReset">
+            <summary>
+            Показывает, настроена ли в поставщике участия возможность сброса пользователями собственных паролей.
+            </summary>
+            <returns>
+            Значение true, если поставщик участия поддерживает сброс пароля; в противном случае — значение false. Значение по умолчанию — true.
+            </returns>
+        </member>
+        <member name="P:CheckingLibrary.Web.CaseberryDomainMembershipProvider.RequiresQuestionAndAnswer">
+            <summary>
+            Возвращает значение, показывающее, настроен ли поставщик участия, чтобы запрашивать у пользователя ответ на контрольный вопрос для изменения или извлечения пароля.
+            </summary>
+            <returns>
+            Значение true, если требуется ответ на контрольный вопрос для изменения или извлечения пароля; в противном случае — значение false. Значение по умолчанию — true.
+            </returns>
+        </member>
+        <member name="P:CheckingLibrary.Web.CaseberryDomainMembershipProvider.ApplicationName">
+            <summary>
+            Имя приложения, использующего пользовательского поставщика участия.
+            </summary>
+            <returns>
+            Имя приложения, использующего пользовательского поставщика участия.
+            </returns>
+        </member>
+        <member name="P:CheckingLibrary.Web.CaseberryDomainMembershipProvider.MaxInvalidPasswordAttempts">
+            <summary>
+            Возвращает количество попыток ввода недопустимых пароля или контрольного ответа для пароля, после которых пользователь членства блокируется.
+            </summary>
+            <returns>
+            Количество попыток ввода недопустимых пароля или контрольного ответа для пароля, после которых пользователь членства блокируется.
+            </returns>
+        </member>
+        <member name="P:CheckingLibrary.Web.CaseberryDomainMembershipProvider.PasswordAttemptWindow">
+            <summary>
+            Возвращает количество минут, в пределах которого допускается ввод пароля или контрольного ответа для пароля. По истечение данного промежутка времени пользователь членства блокируется.
+            </summary>
+            <returns>
+            Количество минут, в пределах которого допускается ввод пароля или контрольного ответа для пароля. По истечение данного промежутка времени пользователь членства блокируется.
+            </returns>
+        </member>
+        <member name="P:CheckingLibrary.Web.CaseberryDomainMembershipProvider.RequiresUniqueEmail">
+            <summary>
+            Возвращает значение, показывающее, настроен ли поставщик участия, чтобы требовать уникальный адрес электронной почты для каждого имени пользователя.
+            </summary>
+            <returns>
+            Значение true, если поставщик участия требует уникального адреса электронной почты; в противном случае — значение false. Значение по умолчанию — true.
+            </returns>
+        </member>
+        <member name="P:CheckingLibrary.Web.CaseberryDomainMembershipProvider.PasswordFormat">
+            <summary>
+            Возвращает значение, показывающее формат хранения паролей в хранилище данных членства.
+            </summary>
+            <returns>
+            Одно из значений <see cref="T:System.Web.Security.MembershipPasswordFormat"/>, показывающее формат хранения паролей в хранилище данных.
+            </returns>
+        </member>
+        <member name="P:CheckingLibrary.Web.CaseberryDomainMembershipProvider.MinRequiredPasswordLength">
+            <summary>
+            Возвращает минимально допустимую длину пароля.
+            </summary>
+            <returns>
+            Минимально допустимая длина пароля. 
+            </returns>
+        </member>
+        <member name="P:CheckingLibrary.Web.CaseberryDomainMembershipProvider.MinRequiredNonAlphanumericCharacters">
+            <summary>
+            Возвращает минимальное количество специальных знаков, которые должны присутствовать в допустимом пароле.
+            </summary>
+            <returns>
+            Минимальное количество специальных знаков, которые должны присутствовать в допустимом пароле.
+            </returns>
+        </member>
+        <member name="P:CheckingLibrary.Web.CaseberryDomainMembershipProvider.PasswordStrengthRegularExpression">
+            <summary>
+            Возвращает регулярное выражение, используемое для оценки пароля.
+            </summary>
+            <returns>
+            Регулярное выражение, используемое для оценки пароля.
+            </returns>
+        </member>
+        <member name="T:CheckingLibrary.CaseberryDomainRoleProvider">
+            <summary>
+            Провайдер ролей, позволяет осуществлять проверку роли с учётом домена
+            (проверка осуществляется по сведениям из БД полномочий)
+            </summary>
+        </member>
+        <member name="M:CheckingLibrary.CaseberryDomainRoleProvider.GetRolesForUser(System.String)">
+            <summary>
+            Получить список ролей текущего пользователя
+            </summary>
+            <param name="username">Полное имя пользователя (с доменом)</param>
+            <returns>Набор ролей данного пользователя</returns>
+        </member>
+        <member name="M:CheckingLibrary.CaseberryDomainRoleProvider.IsUserInRole(System.String,System.String)">
+            <summary>
+            Проверить есть ли такая роль у пользователя
+            </summary>
+            <param name="username">Полное имя пользователя (с доменом)</param>
+            <param name="roleName">Имя роли</param>
+            <returns></returns>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.StandardOperations">
+            <summary>
+            константы для обозначения стандартных операций над объектами (дублируют значения перечисления tTypeAccess)
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.StandardOperations.Full">
+            <summary>
+            Полный доступ
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.StandardOperations.Read">
+            <summary>
+            Чтение
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.StandardOperations.Insert">
+            <summary>
+            Вставка
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.StandardOperations.Update">
+            <summary>
+            Обновление
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.StandardOperations.Delete">
+            <summary>
+            Удаление
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.StandardOperations.Execute">
+            <summary>
+            Запуск
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.CaseberryMembershipProvider">
+            <summary>
+            Провайдер членства пользователей.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.CaseberryMembershipProvider.ApplicationName">
+            <summary>
+            Имя приложения.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CaseberryMembershipProvider.ChangePassword(System.String,System.String,System.String)">
+            <summary>
+            Смена пароля.
+            </summary>
+            <param name="username">Имя пользователя, которому меняем пароль.</param>
+            <param name="oldPassword">Старый пароль пользователя (для проверки).</param>
+            <param name="newPassword">Новый устанавливаемый пароль пользователя.</param>
+            <returns>Результат изменения пароля.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CaseberryMembershipProvider.CreateUser(System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Object,System.Web.Security.MembershipCreateStatus@)">
+            <summary>
+            Создать пользователя.
+            </summary>
+            <param name="username">Логин пользователя.</param>
+            <param name="password">Пароль пользователя.</param>
+            <param name="email">Электронный адрес пользователя.</param>
+            <param name="passwordQuestion">Секретный вопрос.</param>
+            <param name="passwordAnswer">Секретный ответ.</param>
+            <param name="isApproved">Является ли пользователь утверждённым.</param>
+            <param name="providerUserKey">Ключ пользователя (в нашем случае - логин).</param>
+            <param name="status">Статус создания пользователя.</param>
+            <returns>Созданный пользователь.</returns>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.CaseberryMembershipProvider.EnablePasswordReset">
+            <summary>
+            Возможно обнулять пароль, <see cref="!:ResetPassword()"/>
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.CaseberryMembershipProvider.EnablePasswordRetrieval">
+            <summary>
+            Получить пароли в исходном виде невозможно
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CaseberryMembershipProvider.GetUser(System.String,System.Boolean)">
+            <summary>
+            Получаем пользователя по его имени.
+            </summary>
+            <param name="username">Имя пользователя.</param>
+            <param name="userIsOnline">Значение <c>true</c>, чтобы обновить метку даты и времени последней операции пользователя. Значение <c>false</c>, чтобы вернуть информацию пользователя без обновления метки даты и времени последней операции пользователя. </param>
+            <returns>Найденный пользователь или <c>null</c>.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CaseberryMembershipProvider.GetUser(System.Object,System.Boolean)">
+            <summary>
+            Получаем пользователя по его ключу (у нас в качестве ключа используется логин пользователя).
+            </summary>
+            <param name="providerUserKey">Ключ пользователя (у нас в качестве ключа используется логин пользователя).</param>
+            <param name="userIsOnline">Значение <c>true</c>, чтобы обновить метку даты и времени последней операции пользователя. Значение <c>false</c>, чтобы вернуть информацию пользователя без обновления метки даты и времени последней операции пользователя.</param>
+            <returns>Найденный пользователь или <c>null</c>.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CaseberryMembershipProvider.ResetPassword(System.String,System.String)">
+            <summary>
+            Сбрасываем пароль и возвращаем только что сгенеренный
+            </summary>
+            <param name="username"></param>
+            <param name="answer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CaseberryMembershipProvider.UpdateUser(System.Web.Security.MembershipUser)">
+            <summary>
+            Обновление пользователя.
+            </summary>
+            <param name="user">Информация о пользователе (пароля не содержит). </param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CaseberryMembershipProvider.ValidateUser(System.String,System.String)">
+            <summary>
+            Проверить пользователя по нашей БД с полномочиями
+            </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CaseberryMembershipProvider.Initialize(System.String,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Проведение инициализации провайдера по настройкам из файла конфигурации.
+            </summary>
+            <param name="name">Имя провайдера в файле конфигурации.</param>
+            <param name="config">Секция конфига, соответствующая настройкам провайдера.</param>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Checking">
+            <summary>
+            Класс для выполнения проверок в системе CASEBERRY.Rights.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Checking.EmailFieldName">
+            <summary>
+            Название поля с электронным адресом пользователя (сделано так для обратной совместимости).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Checking.ObjectsHasEmailField">
+            <summary>
+            Имеет ли сборка с объектами поле с электронным адресом пользователя (сделано так для обратной совместимости).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Checking.SecurityConnectionStringNameConfigKey">
+            <summary>
+            Ключ в конфигурационном файле, который указывает на строку соединения для системы полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Checking.DataService">
+            <summary>
+            Сервис данных.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Checking.AppName">
+            <summary>
+            Имя приложения, для которого создан текущий проверяльщик.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.#ctor">
+            <summary>
+            Конструктор класса Checking, проставляет пустое имя приложения, и оствляет сервис данных неозначенным.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.#ctor(System.String)">
+            <summary>
+            Конструктор класса Checking, означивает Имя приложения.
+            </summary>
+            <param name="sИмяПриложения">Имя приложения.</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.#ctor(System.String,ICSSoft.STORMNET.Business.IDataService)">
+            <summary>
+            Конструктор класса Checking, означивает Имя приложения, а также используемый Сервис данных.
+            </summary>
+            <param name="sИмяПриложения">Имя приложения.</param>
+            <param name="dataService">Сервис данных.</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetSecurityManagerWithoutRightsCheck">
+            <summary>
+            Осуществляет получение менеджер полномочий с выключенной проверкой прав.
+            <remarks>Получение идёт через Unity.</remarks>
+            </summary>
+            <returns>Найденный менеджер полномочий с выключенной проверкой прав.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetDataService(ICSSoft.STORMNET.Security.ISecurityManager)">
+            <summary>
+            Осуществляет получение сервиса данных.
+            Если в конструкторе не был указан сервис данных, то при вызове этого метода будет создан экземпляр.
+            В качестве параметра передается имя приложения, для которого создан этот экземпляр класса <see cref="T:ICSSoft.STORMNET.Security.Checking" /> (указанное в конструкторе).
+            </summary>
+            <param name="securityManager">
+            Менеджер полномочий, который будет применён для приложений с настроенной строкой соединения CaseberrySecurity, или указанной SecurityConnectionStringName.
+            Если сервис данных был ранее передан в конструктор этого класса, то переданный менеджер полномочий не будет применён.
+            </param>
+            <returns>
+            Сконструированный (или переданный в конструктор) сервис данных.
+            </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.CreateDataService(System.Configuration.ConnectionStringSettings,ICSSoft.STORMNET.Security.ISecurityManager)">
+            <summary>
+            Осуществляет конструирование сервиса данных.
+            </summary>
+            <param name="connectionStringSettings">Строка соединения из конфигурационного файла.</param>
+            <param name="securityManager">Менеджер полномочий.</param>
+            <returns>Сконструированный сервис данных.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.Decrypt(System.String,System.Boolean)">
+            <summary>
+            Осуществляет расшифровку заданной строки.
+            </summary>
+            <param name="cipherString">Строка, котороую треюуется расшифровать.</param>
+            <param name="useHashing">Флаг: использовать ли хэширование.</param>
+            <returns>Расшифрованная строка.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetProvider(System.Boolean)">
+            <summary>
+            Осуществляет получение провайдера службы шифрования.
+            </summary>
+            <param name="useHashing">Флаг: использовать ли хэширование.</param>
+            <returns>Экземпляр провайдера службы шифрования.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetHash(System.Boolean)">
+            <summary>
+            Осуществляет получение хэша для ключа статичного безопасности.
+            </summary>
+            <param name="useHashing">Флаг: нужно ли использовать хэширование.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetLimitArray(ICSSoft.STORMNET.FunctionalLanguage.ObjectType,System.String,System.Type,System.String,System.Object)">
+            <summary>
+            Производит загрузку объектов по ограничению.
+            </summary>
+            <param name="langdefobjecttype">Мета-описание типа объектов.</param>
+            <param name="objStringedView">Сериализованное представление.</param>
+            <param name="dataObjectType">Тип объектов.</param>
+            <param name="view">Имя представления для вычитки объектов.</param>
+            <param name="parameters">Параметры ограничения.</param>
+            <returns>Загруженные объекты.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetDomainGroupsbyLogin(System.Boolean,System.String,System.String,System.String)">
+            <summary>
+            Осуществляет получение доменных групп по логину пользователя.
+            </summary>
+            <param name="isInDomain">Флаг, показывающий наличие домена.</param>
+            <param name="domainName">Имя домена.</param>
+            <param name="workStationName">Имя рабочей станции.</param>
+            <param name="login">Логин пользователя.</param>
+            <returns>Полученные доменные группы.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetDomainGroupsbyName(System.Boolean,System.String,System.String,System.String)">
+            <summary>
+            Осуществляет получение доменных групп по имени пользователя.
+            </summary>
+            <param name="isInDomain">Флаг, показывающий наличие домена.</param>
+            <param name="domainName">Имя домена.</param>
+            <param name="workStationName">Имя рабочей станции.</param>
+            <param name="name">Имя пользователя.</param>
+            <returns>Полученные доменные группы.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetDomainGroups(System.Boolean,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Осуществляет получение доменных групп.
+            </summary>
+            <param name="isInDomain">Флаг, показывающий наличие домена.</param>
+            <param name="domainName">Имя домена.</param>
+            <param name="workStationName">Имя рабочей станции.</param>
+            <param name="userName">Имя или логин пользователя.</param>
+            <param name="isName">Флаг, показывающий, что <see cref="!:userName"/> это имя пользователя, а не логин.</param>
+            <returns>Полученные доменные группы.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetGroupsByLogin(System.Boolean,System.String,System.String,System.String)">
+            <summary>
+            Осуществляет получение групп пользователей по логину пользователя.
+            </summary>
+            <param name="isInDomain">Флаг: осуществляется ли поиск в домене.</param>
+            <param name="domainName">Имя домена.</param>
+            <param name="workStationName">Имя рабочей станции.</param>
+            <param name="login">Логин пользователя.</param>
+            <returns>Группы пользователей.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetGroupsByName(System.Boolean,System.String,System.String,System.String)">
+            <summary>
+            Осуществляет получение групп пользователей по имени пользователя.
+            </summary>
+            <param name="isInDomain">Флаг: осуществляется ли поиск в домене.</param>
+            <param name="domainName">Имя домена.</param>
+            <param name="workStationName">Имя рабочей станции.</param>
+            <param name="name">Имя пользователя.</param>
+            <returns>Группы пользователей.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetGroups(System.Boolean,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Осуществляет получение групп пользователей.
+            </summary>
+            <param name="isInDomain">Флаг: осуществляется ли поиск в домене.</param>
+            <param name="domainName">Имя домена.</param>
+            <param name="workStationName">Имя рабочей станции.</param>
+            <param name="userName">Имя пользователя или его логин.</param>
+            <param name="isName">Флаг, показывающий, что <see cref="!:userName"/> это имя, а не логин.</param>
+            <returns>Группы пользователей.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.RoleExists(System.String)">
+            <summary>
+            Осуществляет проверку на наличие роли с заданным именем.
+            </summary>
+            <param name="roleName">Имя роли.</param>
+            <returns>Возвращет <c>true</c>, если роль с заданным именем уже существует, <c>false</c> в противном случае.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.CreateRole(System.String)">
+            <summary>
+            Производит создание новой роли с заданным именем.
+            </summary>
+            <param name="roleName">Имя роли.</param>
+            <remarks>
+            Перед вызовом этого метода следует обязательно проверять, что роли с таким именем еще нет.
+            </remarks>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetRolesByName(System.String)">
+            <summary>
+            Осуществляет получение ролей для указанного пользователя.
+            </summary>
+            <param name="name">Имя пользователя, для которого требуется получить роли.</param>
+            <returns>Полученные роли.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetRolesByLogin(System.String)">
+            <summary>
+            Осуществляет получение ролей для указанного пользователя.
+            </summary>
+            <param name="login">Логин пользователя, для которого требуется получить роли.</param>
+            <returns>Полученные роли.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetRoles(System.String,System.Boolean)">
+            <summary>
+            Осуществляет получение ролей для указанного пользователя.
+            </summary>
+            <param name="agentName">Имя пользователя, для которого требуется получить роли, или его логин.</param>
+            <param name="isName">Флаг, показывающий является ли <see cref="!:agentName"/> именем, а не логином.</param>
+            <returns>Полученные роли.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetUsersInRole(System.String)">
+            <summary>
+            Осуществляет получение пользователей, принадлежащих к указанной роли.
+            </summary>
+            <param name="roleName">Имя роли.</param>
+            <returns>Логины пользователей, принадлежащих к указанной роли.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetAccessableClassesByName(System.String)">
+            <summary>
+            Осуществляет получение доступных классов по имени пользователя.
+            </summary>
+            <param name="name">Имя пользователя.</param>
+            <returns>Классы доступные пользователю с указанным именем.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetAccessableClassesByLogin(System.String)">
+            <summary>
+            Осуществляет получение доступных классов по логину пользователя.
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <returns>Классы доступные пользователю с указанным логином.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetAccessableClassesForLoginAndItsRoles(System.String,System.String)">
+            <summary>
+            Осуществляет получение доступных классов для логина пользователя.
+            Учитываются роли, к которым принадлежит пользователь, и иерархия ролей.
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <param name="viewName">Имя представления, по которому будут вычитывать разрешения.</param>
+            <returns>Доступные логину разрешения на классы.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetAccessableOperationsForLoginAndItsRoles(System.String,System.String)">
+            <summary>
+            Осуществляет получение доступных операций для логина пользователя.
+            Учитываются роли, к которым принадлежит пользователь, и иерархия ролей.
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <param name="viewName">Имя представления, по которому будут вычитывать разрешения.</param>
+            <returns>Доступные логину разрешения на операции.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetAccessableClassesOrOperationsForLoginAndItsRoles(System.String,System.String,System.Boolean)">
+            <summary>
+            Осуществляет получение доступных классов или операции для логина пользователя.
+            Учитываются роли, к которым принадлежит пользователь, и иерархия ролей.
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <param name="viewName">Имя представления, по которому будет осуществляться вычитка разрешений.</param>
+            <param name="classOrOperation"> Если <c>false</c>, то будут искаться классы, иначе - операции. </param>
+            <returns>Доступные логину разрешения на классы или операции.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetAccessableClassesByLoginOrName(System.String,System.String,System.Boolean)">
+            <summary>
+            Осуществляет получение разрешений на классы для пользователя.
+            </summary>
+            <param name="login">Логин или имя пользователя.</param>
+            <param name="viewName">Имя представления, по которому будут вычитывать разрешения.</param>
+            <param name="itIsName">Если <c>false</c>, то поиск осуществляется по логину, иначе - по имени.</param>
+            <returns>Разрешения на классы для пользователя.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetAccessableOperationsByLoginOrName(System.String,System.String,System.Boolean)">
+            <summary>
+            Осуществляет получение разрешений на операции для пользователя.
+            </summary>
+            <param name="login">Логин или имя пользователя.</param>
+            <param name="viewName">Имя представления, по которому будут вычитывать разрешения.</param>
+            <param name="itIsName">Если <c>false</c>, то поиск осуществляется по логину, иначе - по имени.</param>
+            <returns>Разрешения на операции для пользователя.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetAccessableClasses(System.String,System.Boolean)">
+            <summary>
+            Осуществляет получение классов, к которым у агента есть доступ.
+            </summary>
+            <param name="agentName">Имя агента или его логин.</param>
+            <param name="isName">Флаг, показывающий, что <see cref="!:agentName"/> это имя, а не логин.</param>
+            <returns>Классы, к которым у агента есть доступ.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetAccessableClasses(System.String,System.Boolean,System.String,System.Boolean)">
+            <summary>
+            Осуществляет получение разрешений на классы (или операции) для заданного пользователя.
+            </summary>
+            <param name="agentName">Имя или логин пользователя.</param>
+            <param name="isName">Если <c>false</c>, то поиск осуществляется по логину, иначе - по имени.</param>
+            <param name="viewName">Имя представления, по которому желательно прогрузить результирующие объекты.</param>
+            <param name="isOperation">Если <c>false</c>, то поиск осуществляется для классов, иначе - для операций.</param>
+            <returns>Разрешения на классы (или операции) для пользователя.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetAccessableOperationsByName(System.String)">
+            <summary>
+            Осуществляет получение доступных операций по имени.
+            </summary>
+            <param name="name">Имя агента.</param>
+            <returns>Полученные операции.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetAccessableOperationsByLogin(System.String)">
+            <summary>
+            Осуществляет получение доступных операций по логину.
+            </summary>
+            <param name="login">Логин агента.</param>
+            <returns>Полученные операции.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetAccessableOperations(System.String,System.Boolean)">
+            <summary>
+            Осуществляет получение доступных операций.
+            </summary>
+            <param name="agentName">Имя или логин агента.</param>
+            <param name="isName">Флаг, показывающий, что <see cref="!:agentName"/> это имя, а не логин.</param>
+            <returns>Операции доступные для агента.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetHashSHA1(System.String)">
+            <summary>
+            Производит получение SHA1-хэша.
+            </summary>
+            <param name="str">Строка, для которой требуется получить хэш.</param>
+            <returns>Полученный SHA1-хэш.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetHashPasswordForWin1251(System.String,System.String)">
+            <summary>
+            Производит получение хэша для заданного пароля.
+            </summary>
+            <param name="password">Пароль, для которого требуется получить хэш.</param>
+            <param name="passwordFormat">Формат хэша.</param>
+            <returns>Хэш в заданном формате.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.CheckLogin(System.String,System.String)">
+            <summary>
+            Осуществляет проверку на существование пользователя.
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <param name="pwd">Пароль пользователя.</param>
+            <returns>Возвращает <c>true </c>c>, если такой пользователь присутствует и <c>false</c> в противном случае.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.CheckLogin(System.String,System.String,ICSSoft.STORMNET.Business.IDataService)">
+            <summary>
+            Осуществляет проверку на существование пользователя.
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <param name="pwd">Пароль пользователя.</param>
+            <param name="ds">Сервис данных от системы полномочий.</param>
+            <returns>Возвращает <c>true </c>c>, если такой пользователь присутствует и <c>false</c> в противном случае.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.CheckLoginOnForm(System.String,System.String)">
+            <summary>
+            Осуществляет проверку на существование пользователя.
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <param name="pwd">Пароль пользователя.</param>
+            <returns>Возвращает <c>true</c>, если пользователь существует, и <c>false</c> в противном случае.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.CheckAccessClassByName(System.String,System.String,System.String,System.String)">
+            <summary>
+            Осуществляет проверку доступа к классу по имени агента.
+            </summary>
+            <param name="name">Имя агента.</param>
+            <param name="subjectName">Имя операции.</param>
+            <param name="typeAccess">Тип доступа.</param>
+            <param name="domainName">Имя домена.</param>
+            <returns>Возвращает <c>true</c>, если доступ есть, и <c>false</c> в противном случае.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.CheckAccessClassByLogin(System.String,System.String,System.String,System.String)">
+            <summary>
+            Осуществляет проверку доступа к классу по логину агента.
+            </summary>
+            <param name="login">Логин агента.</param>
+            <param name="subjectName">Имя операции.</param>
+            <param name="typeAccess">Тип доступа.</param>
+            <param name="domainName">Имя домена.</param>
+            <returns>Возвращает <c>true</c>, если доступ есть, и <c>false</c> в противном случае.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.CheckAccessClass(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Осуществляет проверку доступа к классу по имени или по логину.
+            </summary>
+            <param name="userName">Имя или логин агента.</param>
+            <param name="subjectName">Имя операции.</param>
+            <param name="typeAccess">Тип доступа.</param>
+            <param name="domainName">Имя домена.</param>
+            <param name="isName">Флаг, показыающий, что <see cref="!:userName"/> является именем, а не логином.</param>
+            <returns>Возвращает <c>true</c>, если доступ есть, и <c>false</c> в противном случае.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetSimpleAccessableOperations(System.String)">
+            <summary>
+            Осуществляет получение разрешенных операций (по логину пользователя), для которых указаны привелегии (<see cref="T:ICSSoft.STORMNET.Security.Permition" />).
+            </summary>
+            <param name="agentName">Имя или логин агента.</param>
+            <returns>Полученные операции.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetUserOperationsNames(System.String)">
+            <summary>
+            Осуществляет получение имен операций (по логину пользователя), для которых указаны привелегии (<see cref="T:ICSSoft.STORMNET.Security.Permition" />).
+            </summary>
+            <param name="agentName">Логин пользователя.</param>
+            <returns>Полученные имена операций.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.SimpleCheckAccessOperationByName(System.String,System.String,System.String)">
+            <summary>
+            Осуществляет простую проверку доступа к операции (по имени пользователя).
+            </summary>
+            <param name="name">Логин пользователя.</param>
+            <param name="operationName">Имя операции.</param>
+            <param name="domainName">Имя домена.</param>
+            <returns>Возвращает <c>true</c>, если у пользователя есть разрешение на выполнение операции.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.SimpleCheckAccessOperationByLogin(System.String,System.String,System.String)">
+            <summary>
+            Осуществляет простую проверку доступа к операции (по логину пользователя).
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <param name="operationName">Имя операции.</param>
+            <param name="domainName">Имя домена.</param>
+            <returns>Возвращает <c>true</c>, если у пользователя есть разрешение на выполнение операции.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.SimpleCheckAccessOperation(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Осуществляет простую проверку доступа к операции.
+            </summary>
+            <param name="userName">Имя пользователя или его логин.</param>
+            <param name="operationName">Имя операции.</param>
+            <param name="domainName">Имя домена.</param>
+            <param name="isName">Флаг, показывающий, что <see cref="!:userName"/> это имя, а не логин.</param>
+            <returns>Возвращает <c>true</c>, если у пользователя есть разрешение на выполнение операции.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.CheckAccessOperationByName(System.String,System.String,System.String)">
+            <summary>
+            Осуществляет проверку наличия доступа к операции.
+            </summary>
+            <param name="name">Имя пользователя.</param>
+            <param name="operationName">Имя операции.</param>
+            <param name="domainName">Имя домена.</param>
+            <returns>Возвращает <c>true</c>, если у пользователя есть разрешение на выполнение операции.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.CheckAccessOperationByLogin(System.String,System.String,System.String)">
+            <summary>
+            Осуществляет проверку наличия доступа к операции.
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <param name="operationName">Имя операции.</param>
+            <param name="domainName">Имя домена.</param>
+            <returns>Возвращает <c>true</c>, если у пользователя есть разрешение на выполнение операции.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.CheckAccessOperation(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Осуществляет проверку наличия доступа к операции.
+            </summary>
+            <param name="userName">Имя пользователя или его логин.</param>
+            <param name="operationName">Имя операции.</param>
+            <param name="domainName">Имя домена.</param>
+            <param name="isName">Флаг, показывающий, что <see cref="!:userName"/> это имя, а не логин.</param>
+            <returns>Возвращает <c>true</c>, если у пользователя есть разрешение на выполнение операции.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.UpdateUser(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Обновить информацию о пользователе.
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <param name="name">Имя пользователя (обязательно должно быть).</param>
+            <param name="pwd">Пароль пользователя.</param>
+            <param name="enabled">Является ли запись пользователя активной.</param>
+            <returns>Результат обновления пользователя.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.UpdateUser(System.String,System.String,System.String,System.Boolean,System.String,System.Boolean)">
+            <summary>
+            Обновить информацию о пользователе.
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <param name="name">Имя пользователя (обязательно должно быть).</param>
+            <param name="pwd">Пароль пользователя.</param>
+            <param name="enabled">Является ли запись пользователя активной.</param>
+            <param name="email">Электронный адрес пользователя (для обратной совместимости он сохраняется, только если в объектах есть соответствующиие инструкции).</param>
+            <param name="passwordUpdate">Следует ли обновлять пароль (если передано <c>false</c>, но при этом пользователь не найден, то пройдёт исключение).</param>
+            <returns>Результат обновления пользователя.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.UserEnable(System.String,System.Boolean)">
+            <summary>
+            Отключить/Включить аккаунт пользователя.
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <param name="enable">Флаг, показывающий нужно ли включить аккаунт пользователя.</param>
+            <returns>
+            Возвращает <see cref="T:ICSSoft.STORMNET.Security.UpdateResult"/>,
+            <see cref="F:ICSSoft.STORMNET.Security.UpdateResult.ОшибкаВыполнения"/> означает, что такой пользователь не найден,
+            либо произошло исключение при выполнении.
+            </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetAllNamesOfRoles">
+            <summary>
+            Получить список имён всех ролей.
+            </summary>
+            <returns>
+            Список имён ролей.
+            </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetAllRoles">
+            <summary>
+            Получить все роли.
+            </summary>
+            <returns>
+            Список ролей.
+            </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetNamesOfRolesByLogin(System.String)">
+            <summary>
+            Получить список имён ролей для указанного логина (с учётом родительских ролей).
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <returns>Список имён ролей, к которым принадлежит пользователь.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetNamesOfRolesWithParentOnes(System.Collections.Generic.List{ICSSoft.STORMNET.Security.Agent})">
+            <summary>
+            Получение имён всех ролей, включая родительские, на базе списка ролей.
+            </summary>
+            <param name="roles">Роли, чьи родительские роли нужно найти.</param>
+            <returns>Имена найденных ролей (включая исходные).</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetRolesWithParentOnes(System.Collections.Generic.List{ICSSoft.STORMNET.Security.Agent})">
+            <summary>
+            Получение всех ролей, включая родительские, на базе списка ролей.
+            </summary>
+            <param name="roles">Роли, чьи родительские роли нужно найти.</param>
+            <returns>Все найденные роли (включая исходные).</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.AddUsersToRoles(System.String[],System.String[])">
+            <summary>
+            Добавить роли для пользователей
+            </summary>
+            <param name="userNames">Имена пользователей</param>
+            <param name="roleNames">Названия ролей</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.SetUserRoles(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Указать все роли для указанного логина
+            (старые роли пользователя, не указанные тут будут отменены)
+            </summary>
+            <param name="login">логин</param>
+            <param name="roles">роли</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Checking.GetLastSecurityUpdateTime(System.Nullable{System.DateTime}@)">
+            <summary>
+            Получить дату последнего изменения полномочий.
+            </summary>
+            <param name="lastUpdated">Дата последнего изменения полномочий.</param>
+            <returns>Результат выполнения операции.</returns>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.CheckingInSessionMode">
+            <summary>
+            Проверка полномочий в режиме сессий.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.#ctor">
+            <summary>
+            Конструктор по умолчанию.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.#ctor(System.String)">
+            <summary>
+            Конструктор с указанием имени приложения.
+            </summary>
+            <param name="sИмяПриложения">Имя приложения, которое используется для выбора нужной строки соединения.</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.#ctor(System.String,ICSSoft.STORMNET.Business.IDataService)">
+            <summary>
+            Конструктор с указанием имени приложения и сервиса данных.
+            </summary>
+            <param name="sИмяПриложения">Имя приложения, которое используется для выбора нужной строки соединения.</param>
+            <param name="dataService">Сервис данных, который будет использоваться заместо обычного.</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.GetProfileInfo(System.String,System.Nullable{System.Guid}@,System.String@)">
+            <summary>
+            Получить информацию о пользователе (ключ агента и имя в базе полномочий).
+            Возвращаются только активные пользователи.
+            </summary>
+            <param name="login">
+            Логин, по которому ищем. Может быть вместе с Доменом (Группой) в формате DOMAIN\Login.
+            </param>
+            <param name="agentKey">
+            Ключ агента.
+            </param>
+            <param name="name">
+            Дружественное имя, которое присутствует в системе полномочий.
+            </param>
+            <returns>
+            Результат операции.
+            </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.GetProfileInfo(System.String,System.Nullable{System.Guid}@,System.String@,ICSSoft.STORMNET.Business.IDataService)">
+            <summary>
+            Получить информацию о пользователе (ключ агента и имя в базе полномочий).
+            Возвращаются только активные пользователи. Данный метод не использует полномочия на доступ к данным БД если не передан <see cref="T:ICSSoft.STORMNET.Business.IDataService"/>, т.к. применяется при первой авторизации пользователя.
+            </summary>
+            <param name="login">
+            Логин, по которому ищем. Может быть вместе с Доменом (Группой) в формате DOMAIN\Login.
+            </param>
+            <param name="agentKey">
+            Ключ агента.
+            </param>
+            <param name="name">
+            Дружественное имя, которое присутствует в системе полномочий.
+            </param>
+            <param name="dataService">
+            Сервис данных (null, если нужно использовать стандартный).
+            </param>
+            <returns>
+            Результат операции.
+            </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.GetEmailByLogin(System.String,ICSSoft.STORMNET.Business.IDataService)">
+            <summary>
+            Получение электронного адреса пользователя по его логину.
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <param name="dataService">Сервис данных, через который необходимо проводить запрос.</param>
+            <returns>Электронный адрес пользователя.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.GetUserByUsername(System.String,System.Nullable{System.Boolean},ICSSoft.STORMNET.Business.IDataService)">
+            <summary>
+            Метод для получения пользователя по его логину. Логин, по которому ищем может быть вместе с Доменом (Группой) в формате DOMAIN\Login.
+            </summary>
+            <param name="username">Логин, по которому ищем. Может быть вместе с Доменом (Группой) в формате DOMAIN\Login.</param>
+            <param name="enabled">Нужны ли только неотключенные пользователи? true - включенные, false - отключенные, null - все. По умолчанию true.</param>
+            <param name="dataService">Сервис данных (опционально).</param>
+            <returns>
+            Массив пользователей, удовлетворяющих данному критерию. Ожидается, что будет возвращён только один пользователь.
+            В любом случае применяется ограничение TOP 2.
+            </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.CheckLogin(System.String,System.String,System.String,System.Nullable{System.Guid}@,System.String@)">
+            <summary>
+            Проверить логин/пароль пользователя.
+            Проверка полномочий для данной операции отключена.
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <param name="domain">
+            Домен (если пустое значение, то будут выбраны только пользователи, у которых не указан ни один домен).
+            Сравнение регистронезависимое.
+            </param>
+            <param name="pwd">Хеш пароля.</param>
+            <param name="agentKey">Ключ агента.</param>
+            <param name="name">Имя пользователя.</param>
+            <returns>Успешность проверки.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.CheckLogin(System.Guid,System.String)">
+            <summary>
+            Проверка пароля для указанного по ключу пользователя.
+            </summary>
+            <param name="agentKey">Ключ агента.</param>
+            <param name="pwd">Хэш пароля.</param>
+            <returns>Успешность проверки.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.GetGroupsNameByUserKey(System.Object)">
+            <summary>
+            Получить имена групп, в которых участвует юзер (работает без рекурсии, только по собственным группам).
+            </summary>
+            <param name="agentKey">Первичный ключ пользователя.</param>
+            <returns>Список названий групп.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.ChangePassword(System.Guid,System.String,System.String)">
+            <summary>
+            Проверить наличие в системе логина (чувствительность к регистру зависит от настроек источника данных).
+            Уникальность проверяется без контроля доменов, то есть гарантируется уникальность в рамках всей таблицы.
+            Отключенные пользователи тоже учитываются, как занимающие логин.
+            </summary>
+            <param name="agentKey">Ключ пользователя</param>
+            <param name="oldPassword">Старый пароль в чистом виде (не хэш)</param>
+            <param name="newPassword">Новый пароль в чистом виде (не хэш)</param>
+            <returns>
+            OperationResult.ЛогинСвободен, OperationResult.ЛогинЗанят, OperationResult.ОшибкаВыполненияОперации, OperationResult.ОшибочныеАргументы
+            </returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.CheckAccessClass(System.Guid,System.String,System.String)">
+            <summary>
+            Проверить полномочия на доступ к классу (проверяется как сам класс, так и все его роли и группы)
+            ВАЖНО: Проверка на актуальность пользователя не производится, т.к. считается,
+            что заблокированный пользователь отсекается на этапе логирования.
+            Нужно будет сделать отключение сессии пользователя при его отключении в БД.
+            </summary>
+            <param name="userKey">Ключ пользователя.</param>
+            <param name="subjectName">Имя объект.а</param>
+            <param name="typeAccess">Запрашиваемый тип доступа.</param>
+            <returns>Наличие данных полномочий.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.GetLimitStrForRoles(System.Guid,System.String,System.Collections.Generic.List{ICSSoft.STORMNET.Security.RoleWithAccesses}@)">
+            <summary>
+            Получить роли с заданными разрешениями.
+            </summary>
+            <param name="userKey">Ключ агента.</param>
+            <param name="subjectName">Имя предмета (класса или операции).</param>
+            <param name="rolesWithAccesses">Полученные роли.</param>
+            <returns>Результат выполнения операции <see cref="T:ICSSoft.STORMNET.Security.OperationResult" />.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.SetLimitStrForRole(System.Guid,ICSSoft.STORMNET.Security.RoleWithAccesses)">
+            <summary>
+            Задать разрешения для указанной ролию
+            </summary>
+            <param name="userKey">Ключ пользователя.</param>
+            <param name="roleWithAccesses">Роль с доступными для нее правами доступа.</param>
+            <returns>Результат выполнения операции <see cref="T:ICSSoft.STORMNET.Security.OperationResult"/>.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.CheckAccessOperation(System.Guid,System.String)">
+            <summary>
+            Проверить операцию.
+            </summary>
+            <param name="userKey">Ключ пользователя.</param>
+            <param name="operationName">Имя операции.</param>
+            <returns>Наличие данных полномочий.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.GetAllPermitions(System.Guid,System.Collections.Generic.List{System.String}@)">
+            <summary>
+            Получить все субъекты, на которые есть права у заданного пользователя.
+            </summary>
+            <param name="userKey">Пользователь, для которого требуется получение доступных субъъектов.</param>
+            <param name="subjects">Список доступных субъектов.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.UpdateProfileInfo(System.String,System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Обновить информацию о профиле пользователя.
+            Можно обновить имя пользователя, а также управлять его активностью.
+            Поиск ведется только среди пользователей, у которых нет домена.
+            </summary>
+            <param name="login">Логин пользователя.</param>
+            <param name="name">Имя пользователя в человеческом варианте.</param>
+            <param name="enabled">Активна ли учётная запись.</param>
+            <returns>Успешность выполнения операции <see cref="T:ICSSoft.STORMNET.Security.UpdateResult" />.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.CacheInit(System.Guid,System.Collections.Generic.List{System.String}@)">
+            <summary>
+            Получить все разрешения для пользователя для прогрузки кеша.
+            </summary>
+            <param name="userKey">Ключ пользователя.</param>
+            <param name="subjects">Список ключей кеша, по которым есть доступ.</param>
+            <returns>Результат выполнения операции <see cref="T:ICSSoft.STORMNET.Security.OperationResult"/>.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.ConvertToOldTypeAccessFormat(System.String)">
+            <summary>
+            Осуществляет онвернтацию типа доступа к старому формату для кеширования полномочий.
+            </summary>
+            <param name="typeAccess">Тип доступа.</param>
+            <returns>Тип доступа в старом формате.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.GetLimitForAccess(System.Guid,System.String,System.String,System.String[]@,System.Boolean@)">
+            <summary>
+            Получить все субъекты, на которые есть права у данного пользователя.
+            </summary>
+            <param name="userKey">Пользователь.</param>
+            <param name="subjectName">Объект, для которого получаем ограничение.</param>
+            <param name="operationName">Имя операции, которое должно соответствовать одному из значений tTypeAccess, иначе будет OperationResult.ОшибочныеАргументы.</param>
+            <param name="limits">Ограничения (от всех унаследованных ролей).</param>
+            <param name="canAccess">Есть ли разрешения у пользователя на этот объект.</param>
+            <returns>Результат выполнения операции.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.PrvAddLinkedAgents(System.Guid,System.Collections.Generic.List{System.Guid}@)">
+            <summary>
+            Осуществляет добавление к пользователю прилинкованных агентов.
+            </summary>
+            <param name="userKey">Ключ пользователя.</param>
+            <param name="agentPKs">Ключи агентов.</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.UpdateUser(System.Guid,System.String)">
+            <summary>
+            Обновить информацию о пользователе.
+            </summary>
+            <param name="agentKey">Ключ пользователя.</param>
+            <param name="pwd">Хэш пароля.</param>
+            <returns>Результат выполнения операции: OperationResult.ПользовательНеНайден, OperationResult.Успешно, OperationResult.ОшибкаВыполненияОперации.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.UpdateUser(System.Guid,System.String,System.String,System.Nullable{System.Boolean})">
+            <summary>
+            Обновить информацию о пользователе.
+            </summary>
+            <param name="agentKey">Ключ пользователя.</param>
+            <param name="name">Имя пользователя (если null, то не изменится).</param>
+            <param name="pwd">Хэш пароля.</param>
+            <param name="enabled">Актуальность учётной записи (если null, то не изменится).</param>
+            <returns>Результат выполнения операции: OperationResult.ПользовательНеНайден, OperationResult.Успешно, OperationResult.ОшибкаВыполненияОперации.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.CheckExistLogin(System.String,System.String)">
+            <summary>
+            Проверить наличие в системе логина (чувствительность к регистру зависит от настроек источника данных).
+            Уникальность проверяется в рамках указанного домена, то есть не гарантируется уникальность самого логина в рамках всей таблицы.
+            (Но обязательно уникальным остаётся пара логин+домен).
+            Отключенные пользователи тоже учитываются, как занимающие логин.
+            Отключенный домен проверяется как действующий.
+            Если указан домен, которого нет, вернётся сообщение, что логин свободен.
+            </summary>
+            <param name="login">Логин, который требуется проверить.</param>
+            <param name="domain">
+            Домен.
+            Пустое значение или <c>null</c> означает, что проверяем среди пользователей, которые не находятся ни в одном домене.</param>
+            <returns>OperationResult.ОшибочныеАргументы, OperationResult.ОшибкаВыполненияОперации, OperationResult.ЛогинСвободен, OperationResult.ЛогинЗанят.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.CheckExistLogin(System.String)">
+            <summary>
+            Проверить наличие в системе логина (чувствительность к регистру зависит от настроек источника данных).
+            Уникальность проверяется без контроля доменов, то есть гарантируется уникальность в рамках всей таблицы.
+            Отключенные пользователи тоже учитываются, как занимающие логин.
+            </summary>
+            <param name="login">Логин, который проверяем.</param>
+            <returns>OperationResult.ЛогинСвободен, OperationResult.ЛогинЗанят, OperationResult.ОшибкаВыполненияОперации, OperationResult.ОшибочныеАргументы.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.BackUpSessions(ICSSoft.STORMNET.Security.Session[])">
+            <summary>
+            Сохранить сессии пользователей в БД.
+            </summary>
+            <param name="sessions">Сессии, которые надо сохранить.</param>
+            <returns>OperationResult.Успешно, OperationResult.ОшибкаВыполненияОперации.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.RestoreSessions(ICSSoft.STORMNET.Security.Session[]@)">
+            <summary>
+            Восстановить сессии пользователей из БД
+            </summary>
+            <param name="Sessions">Восстановленные сессии</param>
+            <returns>OperationResult.Успешно, OperationResult.ОшибкаВыполненияОперации</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.GetNamesOfRolesByLoginWithDomain(System.String)">
+            <summary>
+            Получить роли для логина с доменом (учитывается иерархия ролей).
+            </summary>
+            <param name="username">Полное имя пользователя.</param>
+            <returns>Список ролей (с учётом родительских ролей).</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.GetNamesOfRolesByAgentKey(System.Guid)">
+            <summary>
+            Получить имена ролей по ключу агента (возвращаются в том числе родительские роли).
+            </summary>
+            <param name="agentKey">Ключ агента.</param>
+            <returns>Список имён ролей.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.GetRolesByAgentKey(System.Guid)">
+            <summary>
+            Получить роли по ключу агента (возвращаются только роли ближайшие, без родительских ролей).
+            </summary>
+            <param name="agentKey">Ключ агента.</param>
+            <returns>Список ролей.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CheckingInSessionMode.ExtractLoginAndDomain(System.String,System.String@)">
+            <summary>
+            Извлечь логин и домен из имени пользователя. Парсится строка вида: ICS_HOME\vpupkin.
+            </summary>
+            <param name="username">Имя пользователя. В формате vpupkin или ICS_HOME\vpupkin.</param>
+            <param name="domain">Домен. Для строки ICS_HOME\vpupkin вернём: ICS_HOME.</param>
+            <returns>Логин. Для строки ICS_HOME\vpupkin вернём: vpupkin.</returns>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.CaseberryProfileProvider">
+            <summary>
+            Провайдер профиля пользователя
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CaseberryProfileProvider.GetPropertyValues(System.Configuration.SettingsContext,System.Configuration.SettingsPropertyCollection)">
+            <summary>
+            Получить значения свойств
+            </summary>
+            <param name="context"></param>
+            <param name="collection"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.CaseberryRoleProvider">
+            <summary>
+            Провайдер ролей.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CaseberryRoleProvider.AddUsersToRoles(System.String[],System.String[])">
+            <summary>
+            Добавить роли для пользователей
+            </summary>
+            <param name="usernames"></param>
+            <param name="roleNames"></param>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.CaseberryRoleProvider.ApplicationName">
+            <summary>
+            Имя приложения.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CaseberryRoleProvider.GetRolesForUser(System.String)">
+            <summary>
+            Получить список ролей текущего пользователя
+            </summary>
+            <param name="username"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CaseberryRoleProvider.GetUsersInRole(System.String)">
+            <summary>
+            Получить пользователей, принадлежащих роли
+            </summary>
+            <param name="roleName">Имя роли</param>
+            <returns>Массив логинов</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CaseberryRoleProvider.IsUserInRole(System.String,System.String)">
+            <summary>
+            Проверить есть ли такая роль у пользователя
+            </summary>
+            <param name="username">логин пользователя</param>
+            <param name="roleName">имя роли</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CaseberryRoleProvider.RoleExists(System.String)">
+            <summary>
+            Проверка на существование роли
+            </summary>
+            <param name="roleName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.CaseberryRoleProvider.Initialize(System.String,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Проведение инициализации провайдера по настройкам из файла конфигурации.
+            </summary>
+            <param name="name">Имя провайдера в файле конфигурации.</param>
+            <param name="config">Секция конфига, соответствующая настройкам провайдера.</param>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.IInitializingProvider">
+            <summary>
+            Интерфейс для удобной инициализации провайдеров разных типов.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.IInitializingProvider.ApplicationName">
+            <summary>
+            Имя приложения.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.ProviderHelper">
+            <summary>
+            Класс, содержащий вспомогательные методы для провайдеров.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.ProviderHelper.InitializeProvider(System.Collections.Specialized.NameValueCollection,ICSSoft.STORMNET.Security.IInitializingProvider)">
+            <summary>
+            Проведение инициализации провайдера по настройкам из конфигурации.
+            </summary>
+            <param name="config">Секция конфига, соответствующая настройкам провайдера.</param>
+            <param name="provider">Провайдер, настройки которого меняем по значениям из конфига.</param>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LoginForm">
+            <summary>
+            Данная форма позволяет проверить логин-пароль пользователя.
+            (Работает только если таблицы с полномочиями расположены в БД приложения.)
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LoginForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.LoginForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.LoginForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.SimpleLogInForm">
+            <summary>
+            Данная форма позволяет спросить логин-пароль пользователя.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.SimpleLogInForm.GetDomainAndUsername(System.String,System.String@,System.String@)">
+            <summary>
+            Вычленить имя домена и логин из строки, указанной пользователем
+            Пожжерживаются такие форматы:
+            ICS_HOME\bratchikov
+            bratchikov@ics.perm.ru
+            </summary>
+            <param name="domainAndUsername">Входная строка, содержащая логин и домен</param>
+            <param name="domain">Имя домена</param>
+            <param name="username">Имя пользователя</param>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.SimpleLogInForm.Login">
+            <summary>
+            Логин
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.SimpleLogInForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.SimpleLogInForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.SimpleLogInForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

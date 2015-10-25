@@ -1,0 +1,705 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NewPlatform.Flexberry.Web.LimitEditor</name>
+    </assembly>
+    <members>
+        <member name="T:NewPlatform.Flexberry.Web.Controls.WebLimitEditor">
+            <summary>
+            Расширенный редактор ограничений.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.Controls.WebLimitEditor.View">
+            <summary>
+            Представление для редактора ограничений.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.Controls.WebLimitEditor.Expression">
+            <summary>
+            Ограничение в виде выражения.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.Controls.WebLimitEditor.LimitName">
+            <summary>
+            Имя редактируемого ограничения.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.Controls.WebLimitEditor.Published">
+            <summary>
+            Опубликовано ли ограничение (для использования другими пользователями).
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.Controls.WebLimitEditor.Parameters">
+            <summary>
+            Параметры редактируемого ограничения.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.Controls.WebLimitEditor.ResolvingViews">
+            <summary>
+            Дополнительные представления для linq преобразований.
+            </summary>
+        </member>
+        <member name="F:NewPlatform.Flexberry.Web.Controls.WebLimitEditor._ribbon">
+            <summary>
+            Риббон, на котором располагаются элементы меню.
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.Controls.WebLimitEditor.InitRibbon">
+            <summary>
+            Инициализация риббона: настройка вкладок и зон, добавление кнопок.
+            </summary>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.Controls.LinqConverter.DefaultValueHelper">
+            <summary>
+            Вспомогательный класс, позволяющий отделить, в каких случаях структуру вида A == null нужно преобразовывать в IsNull(A), а в каких - оставить без изменения.
+            </summary>
+        </member>
+        <member name="F:NewPlatform.Flexberry.Web.Controls.LinqConverter.DefaultValueHelper.NullMethodName">
+            <summary>
+            Имя метода, возвращающего null.
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.Controls.LinqConverter.DefaultValueHelper.NullValue">
+            <summary>
+            Метод, возращающий значение по умолчанию (null) для типов, у которых Type.IsValueType возвращает false.
+            </summary>
+            <returns>Null (значение по умолчанию для типов, у которых Type.IsValueType возвращает false).</returns>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.Controls.Services.LimitEditorAjaxService">
+            <summary>
+            Сервис для Ajax запросов LimitEditor'а.
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.Controls.Services.LimitEditorAjaxService.ReturnLimit(System.String,System.Collections.Generic.List{ICSSoft.STORMNET.Web.Tools.Limitation.ParameterDefModel})">
+            <summary>
+            Записывает ограничение из html в сессию.
+            </summary>
+            <param name="htmlEpression">Ограничение в виде html, которое преобразуется в xml, а потом десереализуется.</param>
+            <param name="parameters">Параметры ограничения.
+            </param>
+            <returns>The <see cref="T:System.String"/>.</returns>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.Controls.QueryService">
+            <summary>
+            Веб-сервис редактора ограничений.
+            </summary>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.Controls.QueryService.RightManagerService">
+            <summary>
+            Класс сервиса взаимодействия с <see cref="T:ICSSoft.STORMNET.RightManager"/>.
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.Controls.QueryService.RightManagerService.CheckReadPermission(System.Type)">
+            <summary>
+            Метод для проверки прав доступа на чтение типа при помощи <see cref="M:ICSSoft.STORMNET.RightManager.AccessObjectCheck(System.Object,System.String,System.Boolean)"/>.
+            </summary>
+            <param name="type">Тип, для которого нужно проверить права доступа.</param>
+            <returns>
+            Результат проверки. Возвращает <c>true</c>, если текущему пользователю можно
+            читать указанный тип данных.
+            </returns>
+        </member>
+        <member name="F:NewPlatform.Flexberry.Web.Controls.QueryService._rightManagerService">
+            <summary>
+            Текущий сервис взаимодействия с <see cref="T:ICSSoft.STORMNET.RightManager"/>.
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.Controls.QueryService.#ctor(NewPlatform.Flexberry.Web.Controls.QueryService.RightManagerService)">
+            <summary>
+            Конструкторк класса сервиса с возможностью задания конкретной реализации 
+            сервиса взаимодействия с <see cref="T:ICSSoft.STORMNET.RightManager"/> для DI.
+            </summary>
+            <param name="rightManagerService">Сервис взаимодействия с <see cref="T:ICSSoft.STORMNET.RightManager"/>.</param>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.Controls.QueryService.#ctor">
+            <summary>
+            Конструкторк класса сервиса с возможностью задания конкретной реализации 
+            сервиса взаимодействия с <see cref="T:ICSSoft.STORMNET.RightManager"/> для DI.
+            Без этого "пустого" конструктора asp становится грустно и оно не работает.
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.Controls.QueryService.GetExistedValues(System.String,System.String[],System.String,System.String)">
+            <summary>
+            Веб-метод для получения списка существующих значений свойства в БД.
+            </summary>
+            <param name="typeName">Наименование типа.</param>
+            <param name="properties">Цепочка наименований свойств.</param>
+            <param name="viewName">Название представления для загрузки данных.</param>
+            <param name="filter">Поисковая строка (нужно выбрать только те строки, что содержат такую подстроку).</param>
+            <returns>Список существующих значений свойства БД.</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.Controls.QueryService.CheckAccess(System.Type,System.String[])">
+            <summary>
+            Метод для проверки прав доступа для цепочки свойств в объекте данных.
+            Используется для проверки прав доступа при загрузке в редакторе ограничений
+            существующих значений произвольного свойства объекта данных.
+            </summary>
+            <param name="type">Тип объекта данных, у которого загружаются значения.</param>
+            <param name="properties">Цепочка наименований свойств.</param>
+            <returns>Возвращает <c>true</c>, если пользователь имеет права на чтение указанного свойства.</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.Controls.QueryService.TestFilter(System.String,System.String,System.String,System.String)">
+            <summary>
+            Проверить ограничение: получить количество записей, которое она возвращает.
+            Подсчёт не учитывает фильтры, наложенные в волв.
+            </summary>
+            <param name="filterString">Текущее ограничение в формате html.</param>
+            <param name="viewName">Имя представления, по которому производить вычитку.</param>
+            <param name="typeName">Имя объекта данных, для которого и проверяется ограничение.</param>
+            <param name="resolvingViews">Представления, которые в некоторых местах используются для восполнения недостающих свойств в представлении.</param>
+            <returns>Количество записей, которые вернёт ограничение.</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.Controls.QueryService.SaveFilter(System.String,System.String,System.Boolean,System.String,System.String,System.String,System.Boolean,System.String,System.Collections.Generic.List{ICSSoft.STORMNET.Web.Tools.Limitation.ParameterDefModel})">
+            <summary>
+            Сохранение ограничения.
+            </summary>
+            <param name="filterString">Текущее ограничение в формате html.</param>
+            <param name="filterName">Имя для ограничение.</param>
+            <param name="published">Должно ли оно быть публичным (доступным другим пользователям).</param>
+            <param name="module">Имя модуля (wolv), на котором будет доступно сохранённое ограничение.</param>
+            <param name="typeName">Тип элементов, для которых сформировано ограничение.</param>
+            <param name="viewName">Имя представления, по которому должно вычитываться ограничение.</param>
+            <param name="overrideFilter">
+            Следует ли переписать фильтр с таким именем.
+            Обычно идёт запрос с переписыванием, если было открыто ограничение на редактирование. И без переписывания - если на создание.
+            </param>
+            <param name="resolvingViews">Представления, которые в некоторых местах используются для восполнения недостающих свойств в представлении.</param>
+            <param name="parameters">Параметры ограничения.</param>
+            <returns>Результат сохранения ограничения. Возможные варианты: "Ограничение успешно сохранено", "Ограничение с таким именем в данном контексте уже существует".</returns>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.Page.LimitEditor">
+            <summary>
+            Форма для отображения редактора ограничений.
+            </summary>
+        </member>
+        <member name="F:NewPlatform.Flexberry.Web.Page.LimitEditor._limitEditor">
+            <summary>
+            Редактор ограничений.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.Page.LimitEditor.EnableTheming">
+            <summary>
+            Темы отключены для формы редактора.
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.Page.LimitEditor.OnInit(System.EventArgs)">
+            <summary>
+            Обработчик события инициализации формы.
+            Создает контролы формы с редактором ограничений.
+            </summary>
+            <param name="e">Параметры события.</param>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.Page.LimitEditor.OnLoad(System.EventArgs)">
+            <summary>
+            Обработчик события загрузки формы.
+            Получает ограничение и завершает построения редактора на его основе.
+            </summary>
+            <param name="e">Параметры события.</param>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.Page.LimitEditorViewGenerator">
+            <summary>
+            Класс для генерации динамического представления для детейла.
+            Вызывается через Unity.
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.Page.LimitEditorViewGenerator.GenerateView(System.String,System.Type)">
+            <summary>
+            Метод, который, если представление определено как динамическое, создаёт его.
+            Вызывается, когда традиционным способом получить представление не удалось.
+            </summary>
+            <param name="viewName">Предполагаемое имя для представления.</param>
+            <param name="dataObjectType">Предполагаемый тип для представления.</param>
+            <returns>Сформированное представление или null (если это не динамическое представление).</returns>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.Http.LimitEditorAjaxServiceHandlerFactory">
+            <summary>
+            Фабрика для создания <see cref="T:NewPlatform.Flexberry.Web.Controls.Services.LimitEditorAjaxService"/>.
+            </summary>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.Http.LimitEditorHandlerFactory">
+            <summary>
+            Фабрика для создания <see cref="T:NewPlatform.Flexberry.Web.Page.LimitEditor"/>.
+            </summary>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.Http.WebLimitEditorHandlerFactory">
+            <summary>
+            TODO: Update summary.
+            </summary>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.LimitEditor.LinqConverter">
+            <summary>
+            Класс реализует конвертацию из LINQ в HTML и обратно.
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.LinqConverter.LinqToHtml(System.Linq.Expressions.Expression)">
+            <summary>
+            Преобразование из Linq в html.
+            </summary>
+            <param name="query"> Linq-выражение. </param>
+            <returns> Сформированное html. </returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.LinqConverter.ExprToTypeMap(System.Collections.Generic.List{System.Linq.Expressions.LambdaExpression})">
+            <summary>
+            Заполнение карты преобразования типов.
+            Берутся все используемые типы, после чего проверяется, какие типы в какие можно преобразовать.
+            Все эти преобразования преобразуются в html особого вида, откуда потом их будет забирать javascript.
+            </summary>
+            <param name="lambdas"> Используемые в данном ограничении лямбды: обращения к свойствам текущего типа, допустимые операции с пустыми параметрами и пр. </param>
+            <returns> Html, содержащий карту преобразования типов. </returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.LinqConverter.RegUnaryExpressionMap(System.Text.StringBuilder,System.Type)">
+            <summary>
+            Определяем доступные типы для конструируемых унарных выражений.
+            Отсекаются типы object и наследники DetailArray.
+            Также для каждого типа записывается, можно ли его сравнивать с null без дополнительных конвертаций.
+            </summary>
+            <param name="sb">Текущая конструкция для записи в html, куда будут дописаны параметры для унврных выражений.</param>
+            <param name="type">Текущий тип.</param>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.LinqConverter.RegIsMatchFunction(System.Text.StringBuilder)">
+            <summary>
+            Формирование карты преобразования для функции IsMatch (ПоМаске).
+            Определяется LambdaExpression, которая содержит информацию о том, с какими операндами работает метод IsMatch (ПоМаске) и пр.
+            </summary>
+            <param name="sb">Строка, содержащая текущую сформированную карту преобразований. </param>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.LinqConverter.AddCompareExpressionReg(System.Text.StringBuilder,System.Linq.Expressions.ExpressionType,System.Type,System.Type)">
+            <summary>
+            Добавление записи в формируемую карту преобразования типов о том, какие типы с чем можно сравнивать.
+            </summary>
+            <param name="sb"> Текущий сформированный html, соответствующий сформированной карте. </param>
+            <param name="expressionType"> Тип допустимой операции для типов. </param>
+            <param name="left"> Тип, находящийся слева от оператора. </param>
+            <param name="right"> Тип, находящийся справа от оператора.  </param>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.LinqConverter.DeserealizeHtml(System.String,System.Type)">
+            <summary>
+            HTML -> SerealizedExpression.
+            </summary>
+            <param name="htmlString">Само html.</param>
+            <param name="t">Тип элементов, которые должно возвращать выражение (фактически здесь не используется).</param>
+            <returns>Сериализованное LINQ.</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.LinqConverter.DeserealizeExpression(System.String,System.Type)">
+            <summary>
+            Десериалиуем выражение с HTML в LINQ.
+            </summary>
+            <param name="htmlString">Само HTML.</param>
+            <param name="t">Тип элементов, которые должно возвращать выражение (фактически используется для получения сборки, где этот тип находится).</param>
+            <returns>Полученное LINQ.</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.LinqConverter.HtmlToLinq(System.String,ICSSoft.STORMNET.Business.SQLDataService,System.String,System.Type,System.Collections.Generic.IEnumerable{ICSSoft.STORMNET.View})">
+            <summary>
+            Данный метод по html, соответствующему ограничению, получает количество элементов, которое вернёт ограничение.
+            </summary>
+            <param name="htmlString">HTML, соответствующее ограничению.</param>
+            <param name="ds">Сервис данных, через который осуществляется запрос.</param>
+            <param name="viewName">Имя представления (не используется, поскольку нужно динамическое представление).</param>
+            <param name="t">Тип объектов, к которым идёт запрос.</param>
+            <param name="resolvingViews">
+            Представления, которые в некоторых местах используются для восполнения недостающих свойств в представлении.
+            (не используется, поскольку нужно динамическое представление).
+            </param>
+            <returns>Число элементов, которое вернёт ограничение.</returns>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplate">
+            <summary>
+            Шаблон для пустого ограничения.
+            </summary>
+            <summary>
+            Class to produce the template output
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplate.TypeName">
+            <summary>
+            Название типа (с неймспейсом), которое вставляется в шаблон.
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplate.TransformText">
+            <summary>
+            Create the template output
+            </summary>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase">
+            <summary>
+            Base class for this transformation
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.GenerationEnvironment">
+            <summary>
+            The string builder that generation-time code is using to assemble generated output
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.Errors">
+            <summary>
+            The error collection for the generation process
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.indentLengths">
+            <summary>
+            A list of the lengths of each indent that was added with PushIndent
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.CurrentIndent">
+            <summary>
+            Gets the current indent we use when adding lines to the output
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.Session">
+            <summary>
+            Current transformation session
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.Write(System.String)">
+            <summary>
+            Write text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.WriteLine(System.String)">
+            <summary>
+            Write text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.Write(System.String,System.Object[])">
+            <summary>
+            Write formatted text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.WriteLine(System.String,System.Object[])">
+            <summary>
+            Write formatted text directly into the generated output
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.Error(System.String)">
+            <summary>
+            Raise an error
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.Warning(System.String)">
+            <summary>
+            Raise a warning
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.PushIndent(System.String)">
+            <summary>
+            Increase the indent
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.PopIndent">
+            <summary>
+            Remove the last indent that was added with PushIndent
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.ClearIndent">
+            <summary>
+            Remove any indentation
+            </summary>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.ToStringInstanceHelper">
+            <summary>
+            Utility class to produce culture-oriented representation of an object as a string.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.ToStringInstanceHelper.FormatProvider">
+            <summary>
+            Gets or sets format provider to be used by ToStringWithCulture method.
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.ToStringInstanceHelper.ToStringWithCulture(System.Object)">
+            <summary>
+            This is called from the compile/run appdomain to convert objects within an expression block to a string
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.LimitEditor.Templates.EmptyLimitTemplateBase.ToStringHelper">
+            <summary>
+            Helper to produce culture-oriented representation of an object as a string
+            </summary>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.LimitEditor.Utils">
+            <summary>
+            Вспомогательные методы для расширенного редактора ограничений (в основном помогают формировать его первоначальный вид).
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.RegStdExpressions(System.Type,System.Type,OfficeWebUI.OfficeRibbon,System.Collections.Generic.List{System.Linq.Expressions.LambdaExpression},System.String)">
+            <summary>
+            Формирование выражений для стандартных операций и заполнение ими риббона в верхней части расширенного редактора ограничений.
+            </summary>
+            <param name="classType"> Тип, на объекты которого и накладывается формируемое ограничение. </param>
+            <param name="controlType"> Тип контрола, для которое формируется риббон (с помощью него идёт доступ к картинкам из ресурсов). </param>
+            <param name="ribbon"> Сам риббон, который будет заполняться операциями. </param>
+            <param name="lambdas"> Сформированные лямбды (видимо сюда записываются все доступные лямбды для всех элементов и операций). </param>
+            <param name="limitEditorId"> Id контрола редактора ограничений (используется, чтобы на кнопку "применить" навесить логику получения нужного сформированного фильтра). </param>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.GetRibbonItemLambda(System.Linq.Expressions.Expression,System.Linq.Expressions.ParameterExpression)">
+            <summary>
+            Получение для элемента ribbon необходимую люмбды.
+            </summary>
+            <param name="expression">Выражение, которое необходимо поместить в лямбду.</param>
+            <param name="param">Параметр, на основе которого формируется лямбда.</param>
+            <returns>Сформированная лямбда.</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.CreateDetailGroupOnRibbon(System.Collections.Generic.List{System.Linq.Expressions.LambdaExpression},System.String,System.Linq.Expressions.ParameterExpression)">
+            <summary>
+            Создание группы на риббоне, которая будет содержать операции для детейлов.
+            </summary>
+            <param name="reg"> Набор лямбд, ассоциированных с различными выражениями. </param>
+            <param name="cssClass"> Имя класса для создаваемых элементов на риббоне. </param>
+            <returns> Сформированная группа. </returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.CreateDetailRibbonItem(System.String,System.String,System.String,System.String)">
+            <summary>
+            Создать элемент для обработки детейлов, который будет помещён на риббон.
+            </summary>
+            <param name="caption"> Заголовок формируемого элемента. </param>
+            <param name="cssClass"> Имя класса для формируемого элемента. </param>
+            <param name="reg"> Номер лямбды в списке лямбд, которой соответствует данная операция. </param>
+            <param name="detailMethod"> Имя детейловой операции, которой данный элемент соответствует. </param>
+            <returns> Сформированный для риббона элемент. </returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.CreateRibbonItem(System.String,System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Создать элемент, который будет помещён на риббон.
+            </summary>
+            <param name="caption"> Заголовок формируемого элемента. </param>
+            <param name="сssClass"> Имя класса  для формируемого элемента. </param>
+            <param name="reg"> Номер лямбды в списке лямбд, которой соответствует данная операция. </param>
+            <param name="replace"> Тип формируемого элемента (если true, то это заменяющие операторы, а если false - добавляющие. </param>
+            <param name="nodeType"> Определяет тип BinaryExpression. </param>
+            <returns> Сформированный для риббона элемент. </returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.CreateNode(System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Быдлокод создания ноды
+            </summary>
+            <param name="id"></param>
+            <param name="parentId"></param>
+            <param name="state"></param>
+            <param name="syn"></param>
+            <param name="type"></param>
+            <param name="strData"></param>
+            <param name="isDetail"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.GetParentId(System.Collections.ArrayList,ICSSoft.STORMNET.PropertyInView,System.String)">
+            <summary>
+            Получение ParentId PropertyInView во View.
+            </summary>
+            <param name="viewPropertiesOrderedList">Структура, аналогичная представлению, из которой необходимо выцепить родительский элемент.</param>
+            <param name="piv">Текущее свойство, для которого ищется родительское.</param>
+            <param name="prefix">Префикс. Например, Id детейла.</param>
+            <returns>Идентификатор ближайшей родительской вершины в структуре.</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.RegObjPropertyInView(ICSSoft.STORMNET.PropertyInView,System.Collections.Generic.List{System.Linq.Expressions.LambdaExpression},System.Linq.Expressions.ParameterExpression,System.Type,System.String,System.Collections.Generic.List{System.Xml.Linq.XElement},System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}},System.Type,System.Collections.ArrayList)">
+            <summary>
+            Формируем вершину в дереве для собственного свойства или мастера.
+            </summary>
+            <param name="propertyInView"> Само свойство из представления. </param>
+            <param name="lambdas"> Список сформированных LambdaExpression. </param>
+            <param name="param"> Параметр, от которого как раз и будет браться свойство. </param>
+            <param name="classType"> Тип свойства. </param>
+            <param name="strClassType"> Строковое представление типа свойства. </param>
+            <param name="elements"> Уже существующие в дереве вершинки. </param>
+            <param name="relations"> Сформированные доступные отношения между объектами. </param>
+            <param name="currentObjectType"> Тип объекта, для которого конструируется ограничение. </param>
+            <param name="viewPropertiesOrderedList"> Текущая структура, содержащая элементы для отображения в редакторе ограничения в дереве. </param>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.RegObjDetailInView(ICSSoft.STORMNET.DetailInView,System.Collections.Generic.List{System.Linq.Expressions.LambdaExpression},System.Linq.Expressions.ParameterExpression,System.Type,System.String,System.Collections.Generic.List{System.Xml.Linq.XElement},System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}},System.Int32)">
+            <summary>
+            Формируем вершину в дереве для детейла и его свойств.
+            </summary>
+            <param name="detail"> Детейл из представления. </param>
+            <param name="lambdas"> Список сформированных LambdaExpression.  </param>
+            <param name="param"> Параметр, от которого как раз и будет браться свойство.  </param>
+            <param name="classType"> Тип объекта, для которого берём свойство.  </param>
+            <param name="strClassType"> Строковое представление типа свойства.  </param>
+            <param name="elements"> Уже существующие в дереве вершинки.  </param>
+            <param name="relations"> Сформированные доступные отношения между объектами.  </param>
+            <param name="detailIndex"> Номер детейла в представлении. </param>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.CreateDetailExistsLambda(System.Linq.Expressions.Expression,System.Type,System.Type,System.Linq.Expressions.ParameterExpression)">
+            <summary>
+            Формирование условия на существование детейла.
+            </summary>
+            <param name="castMethodLevelExpression">Сформированная структура вида "x.МассивДетейлов.Cast_Детейл_()".</param>
+            <param name="agregatorType">Тип агрегатора (фактически тип, на элементы которого накладывается ограничение).</param>
+            <param name="detailType">Тип детейла.</param>
+            <param name="param">Параметр, с которого формировалась структура для ограничения. Например, "х".</param>
+            <returns>Сформированное в терминах лямбда ограничение на существование детейла. Например, "x.МассивДетейлов.Cast_Детейл_().Any(o => o.Свойство1 == "Значение1")".</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.RegObjPseudoDetailInView(ICSSoft.STORMNET.PseudoDetailInExtendedView,System.String,System.Collections.Generic.List{System.Xml.Linq.XElement},System.Int32,System.Linq.Expressions.ParameterExpression,System.Type,System.Collections.Generic.List{System.Linq.Expressions.LambdaExpression},System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Формируем вершину в дереве для собственного свойства или мастера.
+            </summary>
+            <param name="detail"> Псевдодетейл.  </param>
+            <param name="strClassType"> Строковое представление типа свойства. </param>
+            <param name="elements"> Уже существующие в дереве вершинки. </param>
+            <param name="detailIndex"> Номер детейла в представлении. </param>
+            <param name="param"> Параметр, от которого как раз и будет браться свойство.  </param>
+            <param name="classType"> Тип объекта, для которого берём свойство.  </param>
+            <param name="lambdas"> Список сформированных LambdaExpression.  </param>
+            <param name="relations"> Сформированные доступные отношения между объектами.  </param>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.CreatePseudoDetailPropertyLambda(ICSSoft.STORMNET.PseudoDetailInExtendedView,System.Linq.Expressions.ParameterExpression,System.Type,ICSSoft.STORMNET.PropertyInView,ICSSoft.STORMNET.View,System.Linq.Expressions.ParameterExpression,System.Type,System.Collections.Generic.List{System.Linq.Expressions.LambdaExpression},System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}},System.Collections.Generic.List{System.Xml.Linq.XElement},System.String)">
+            <summary>
+            Создаём необходимые лямбды для свойства от псевдодетейла (обращение к свойству + равенство значению по умолчанию).
+            </summary>
+            <param name="detail"> Информация о псевдодетейле. </param>
+            <param name="param"> Параметр, на основании которого будет формироваться выражение. </param>
+            <param name="classType"> Тип агрегатора псевдодетейла. </param>
+            <param name="propertyInView"> Свойство, для которого формируем необходимые лямбды. </param>
+            <param name="pseudoDetailView"> Представление, по которому зачитываются псевдодетейлы. </param>
+            <param name="pseudoDetailParameter"> Параметр для задания ограничения на псевдодетейл. </param>
+            <param name="detailType"> Тип детейла. </param>
+            <param name="lambdas"> Список сформированных лямбда-выражений. </param>
+            <param name="relations"> Сформированные доступные отношения между объектами. </param>
+            <param name="elements"> Уже существующие в дереве вершинки. </param>
+            <param name="prefix"> Основной префикс для создаваемых вершин в дереве. </param>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.CreatePseudoDetailLambda(System.Type,System.Type,System.Linq.Expressions.ParameterExpression,ICSSoft.STORMNET.View,ICSSoft.STORMNET.PseudoDetailInExtendedView,System.Linq.Expressions.ParameterExpression,System.Linq.Expressions.LambdaExpression,System.Type)">
+            <summary>
+            Формирование условия на существование детейла.
+            </summary>
+            <param name="agregatorType">Тип агрегатора (фактически тип, на элементы которого накладывается ограничение). </param>
+            <param name="detailType">Тип детейла.</param>
+            <param name="param"> Параметр, от которого как раз и будет браться свойство. </param>
+            <param name="pseudoDetailView"> Представление, по которому зачитываются псевдодетейлы. </param>
+            <param name="detail"> Информация о псевдодетейле.  </param>
+            <param name="pseudoDetailParameter"> Параметр для задания ограничения на псевдодетейл.  </param>
+            <param name="propertyCondition"> Условие, наложенное на псевдодетейл. Если <c>null</c>, то используется Expression.Constant(true). </param>
+            <param name="conditionType"> Тип внутреннего условия на псевдодетейл у лямбда-выражения. </param>
+            <returns>Сформированное в терминах лямбда ограничение на существование детейла. Например, "creditCollection => creditCollection.Any(currentCredit => true)".</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.RegObjTree(ICSSoft.STORMNET.ExtendedView,System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Перевод представления структуры объекта в древовидную xml для treeview.
+            </summary>
+            <param name="extendedView">Представление, свойства которого должны быть доступны для пользователя в редакторе ограничений.</param>
+            <param name="relations">Соответствие элементов дерева выражениям.</param>
+            <returns>Сформированная Xml.</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.CreateMemberEqualLambda(System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            Создаётся выражение типа "x.Свойство1 = ___" в терминах лямбды (в правой части стоит значение по умолчанию для типа).
+            Данная конструкция используется, например, когда щёлкаем на свойство в дереве свойств в редакторе ограничений и появляется аналогичная структура в выражении.
+            </summary>
+            <param name="memberLambda"> Сформированное выражение типа "x.Свойство1".  </param>
+            <returns> Сформированное выражение с равенством. </returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.RegObjTreeElement(System.Collections.Generic.ICollection{System.Linq.Expressions.LambdaExpression},System.Collections.Generic.ICollection{System.Xml.Linq.XElement},System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}},System.Collections.Generic.IEnumerable{System.Linq.Expressions.LambdaExpression},System.Type,ICSSoft.STORMNET.PropertyInView,System.String,System.Collections.ArrayList)">
+            <summary>
+            Формируем элемент для дерева.
+            </summary>
+            <param name="lambdaReg">Текущий реестр сформированных лямбда-выражений по текущей вершине.</param>
+            <param name="elements">Текущие сформированные для дерева вершины.</param>
+            <param name="relations">Сформированные на текущий момент отношения между вершинами.</param>
+            <param name="lambdas">Текущий реестр сформированных лямбда-выражений.</param>
+            <param name="currentObjectType">Тип объекта, чьё свойство мы записываем в дерево.</param>
+            <param name="piv">Само свойство, что пишем в дерево.</param>
+            <param name="prefix">Текущий префикс для свойства (по нему потом находится соответствие между родительскими и дочерними вершинами).</param>
+            <param name="viewPropertiesOrderedList">Структура, заменяющая представление.</param>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.CreateMemberLambda(System.String,System.Linq.Expressions.ParameterExpression,System.Type)">
+            <summary>
+            Создаём лямбду, которая возвращает свойство от переменной (то есть формируется конструкция вида "x.Свойство1" в терминах лямбда-выражений).
+            </summary>
+            <param name="propName"> Имя свойства (например, "Свойство1"). </param>
+            <param name="param"> Параметр, от которого и будем брать свойство (например, "х"). </param>
+            <param name="classType"> Тип объекта, для которого берём свойство. </param>
+            <returns> Сформированная лямбда. </returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.GetStdConstEditors">
+            <summary>
+            Полчение соответствия типа данных и html-разметки контрола для редактирования.
+            </summary>
+            <returns>
+            Dictionary: тип данных значния - разметка контрола.
+            </returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.GetEnumEditors(ICSSoft.STORMNET.ExtendedView)">
+            <summary>
+            Получение соответствия перечислимого типа и html-разметки контрола для его редактирования.
+            </summary>
+            <returns>
+            Dictionary: тип данных значния - разметка контрола.
+            </returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.ConstEditorsToText(System.Collections.Generic.IDictionary{System.Type,System.String},System.Collections.Generic.List{System.Linq.Expressions.LambdaExpression})">
+            <summary>
+            Получение html, в котором идет соответствие типа и используемого контрола для редактирования
+            </summary>
+            <param name="editors">Dictionary: тип данных значния - разметка контрола.</param>
+            <param name="lambdas">Список лямбд, в конторые добавятся лямбды с константными выражениями</param>
+            <returns>Html со контролами для редактирования по типу</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Utils.GetGenericAnyFunction(System.Type)">
+            <summary>
+            Получение generic-функции Any для встраивания в выражение.
+            </summary>
+            <param name="collectionType"> Тип объекта, на который будет наложена функция Any. </param>
+            <returns> Generic-функция Any. </returns>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.LimitEditor.Settings">
+            <summary>
+            Настройки для работы редактора ограничений (например, что именно и как должно отображаться).
+            </summary>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.LimitEditor.Settings.WebLimitEditorSetting">
+            <summary>
+            Объект для сериализации настроек редактора ограничений.
+            </summary>
+        </member>
+        <member name="F:NewPlatform.Flexberry.Web.LimitEditor.Settings.WebLimitEditorSetting.ShowParameterPanel">
+            <summary>
+            Следует ли пользователям показывать панель работы с параметрами.
+            </summary>
+        </member>
+        <member name="F:NewPlatform.Flexberry.Web.LimitEditor.Settings._javaScriptSerializer">
+            <summary>
+            Сериализатор для представления настроек в формате json.
+            </summary>
+        </member>
+        <member name="F:NewPlatform.Flexberry.Web.LimitEditor.Settings._currentSettings">
+            <summary>
+            Объект с настройками редактора ограничений.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.LimitEditor.Settings.ShowParameterPanel">
+            <summary>
+            Следует ли пользователям показывать панель работы с параметрами.
+            По умолчанию <c>true</c>.
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Web.LimitEditor.Settings.GenerateJsonObjectWithSettings">
+            <summary>
+            Получение сериализованного в формат JSON объекта с настройками.
+            </summary>
+            <returns>Строка, содержащая объект в формате JSON.</returns>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Web.Resources.LimitEditor">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.Resources.LimitEditor.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.Resources.LimitEditor.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Web.Resources.LimitEditor.LimitEditorTitle">
+            <summary>
+              Looks up a localized string similar to Редактирование ограничения.
+            </summary>
+        </member>
+        <member name="T:OfficeWebUI.Ribbon.RibbonTabWithReturnButton">
+            <summary>
+            RibbonTab с добавленной кнопкой "Применить".
+            </summary>
+        </member>
+    </members>
+</doc>

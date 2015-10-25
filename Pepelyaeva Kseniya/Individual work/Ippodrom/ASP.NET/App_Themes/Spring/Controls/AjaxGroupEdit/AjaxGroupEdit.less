@@ -1,0 +1,61 @@
+﻿@import '../../../BaseTheme/Controls/AjaxGroupEdit/AjaxGroupEdit.less';
+
+/**
+ * Файл визуального оформления AjaxGroupEdit.
+ */
+
+
+/* Основной тулбар.*/
+.@{wgeToolbar} {
+    border-top: 1px solid @wgeToolbarBorderColor;
+    border-bottom: 1px solid @wgeToolbarBorderColor;
+    background-color: @wgeToolbarBackgroundColor;
+    z-index: 100;
+}
+
+.@{wgeWrapperClass} {
+    .@{wgeTableParentClass} {
+        .@{wgeTableClass} {
+            /* Шапка таблицы.*/
+            .@{wgeTableCaptionClass} > td {                
+                background: @wgeTableCaptionBackgroundColor;
+            }
+
+            .@{wgeTableCaptionItemClass} td {
+                background: @wgeCaptionTextBackgroundColor;
+                color: @wgeCaptionTextColor;
+                font-weight: normal;
+                font-size: 13px;
+            }
+
+            .@{wgeTableWrapperCellDataClass} {
+                .lookup span {
+                    line-height: 30px;
+                }
+            }
+
+            tr {
+                > td {
+                    border-color: @wgeTableDataRowBorderColor;                    
+                }
+
+                &:hover td {                    
+                    background: @wgeTableDataRowHoveredBackgroundColor;                    
+                }
+            }
+
+            > td {
+                tr.@{wgeTableDataRowClass} & {
+                    background: @wgeTableDataRowBackgroundColor;
+                }
+
+                tr.@{wgeTableDataAlternateRowClass} & {
+                    background: @wgeTableDataAlternativeRowBackgroundColor;
+                }
+            }
+
+        }
+    }
+}
+
+@import '_Settings.less';

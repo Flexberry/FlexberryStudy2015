@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+
+  <!--Удаление маппинга на DefaultSecurityManager.-->
+  <register xdt:Locator="XPath(/configuration/*[local-name()=&quot;unity&quot;]/*[local-name()=&quot;container&quot;]
+                               /*[local-name()=&quot;register&quot; and contains(@mapTo,&quot;ICSSoft.STORMNET.Security.DefaultSecurityManager&quot;)])" xdt:Transform="RemoveAll" />
+
+  <!--Удаление маппинга с именем securityManagerWithoutRightsCheck, если в нем остался тип по умолчанию.-->
+  <register xdt:Locator="XPath(/configuration/*[local-name()=&quot;unity&quot;]/*[local-name()=&quot;container&quot;]
+                               /*[local-name()=&quot;register&quot; and @name=&quot;securityManagerWithoutRightsCheck&quot; and contains(@mapTo,&quot;ICSSoft.STORMNET.Security.DefaultSecurityManager&quot;)])" xdt:Transform="RemoveAll" />
+
+  <!--Удаляем контейнер, если в нем больше нет маппингов.-->
+  <container xdt:Locator="XPath(/configuration/*[local-name()=&quot;unity&quot;]/*[local-name()=&quot;container&quot; and not(*)])" xdt:Transform="RemoveAll" />
+
+  <!--Удаляем секцию unity, если она пустая.-->
+  <unity xdt:Locator="XPath(/configuration/*[local-name()=&quot;unity&quot; and not(*[local-name()!=&quot;alias&quot;])])" xdt:Transform="RemoveAll" />
+
+  <!--Удаляем регистрацию секции unity, если самой секции больше нет.-->
+  <section xdt:Locator="XPath(/configuration/configSections/section[@name=&quot;unity&quot; and not(/configuration/*[local-name()=&quot;unity&quot;])])" xdt:Transform="RemoveAll" />
+
+  <!-- ===================================================== -->
+  <!-- ===================================================== -->
+  <!-- ===================================================== -->
+  <!--Восстановление конфигурации Flexberry ORM по умолчанию, 
+  если это требуется. Скопировано из файла config.install.xdt 
+  пакета Flexberry ORM. Необходимо, чтобы восстановление 
+  происходило при любом исходном состоянии конфигурационного файла. 
+  Поэтому преобразование полностью копируется из установочного Flexberry ORM.-->
+  <!-- ===================================================== -->
+  <!-- ===================================================== -->
+  <!-- ===================================================== -->
+
+  <ormInstallationTempNode xdt:Transform="Insert" />
+  <configSections xdt:Transform="InsertBefore(/configuration/*[name()!=&quot;configSections&quot;])" />
+
+  <ormInstallationTempNode xdt:Transform="RemoveAll" />
+  <configSections xdt:Locator="Condition(not(section[@name=&quot;unity&quot;]))">
+    <section name="unity"
+             type="Microsoft.Practices.Unity.Configuration.UnityConfigurationSection, Microsoft.Practices.Unity.Configuration"
+             xdt:Transform="Insert" />
+  </configSections>
+<configSections xdt:Locator="Condition(position()&gt;1 and not(section[@name!=&quot;unity&quot;]))" xdt:Transform="RemoveAll" />
+  <unity xmlns="http://schemas.microsoft.com/practices/2010/unity" xdt:Transform="Insert" />
+  <unity
+    xdt:Locator="XPath(/configuration/*[local-name()=&quot;unity&quot; and not(*[local-name()=&quot;container&quot; and not(@name)])])">
+    <container xmlns="http://schemas.microsoft.com/practices/2010/unity" xdt:Transform="Insert" />
+  </unity>
+  <container
+    xdt:Locator="XPath(/configuration/*[local-name()=&quot;unity&quot;]
+                       /*[local-name()=&quot;container&quot; and not(*[local-name()=&quot;register&quot; and @type=&quot;ICSSoft.STORMNET.Security.ISecurityManager, ICSSoft.STORMNET.DataObject&quot;])])">
+    <register xmlns="http://schemas.microsoft.com/practices/2010/unity"
+              type="ICSSoft.STORMNET.Security.ISecurityManager, ICSSoft.STORMNET.DataObject"
+              mapTo="ICSSoft.STORMNET.Security.EmptySecurityManager, ICSSoft.STORMNET.DataObject"
+              xdt:Transform="Insert">
+      <!--Flexberry security setting. Used by Flexberry ORM.-->
+    </register>
+  </container>
+  <unity xdt:Locator="XPath(/configuration/*[local-name()=&quot;unity&quot;][2])" xdt:Transform="RemoveAll"/>
+
+  <!-- ===================================================== -->
+  <!-- ===================================================== -->
+  <!-- ===================================================== -->
+  <!--Конец восстановление конфигурации Flexberry ORM.-->
+  <!-- ===================================================== -->
+  <!-- ===================================================== -->
+  <!-- ===================================================== -->
+
+</configuration>

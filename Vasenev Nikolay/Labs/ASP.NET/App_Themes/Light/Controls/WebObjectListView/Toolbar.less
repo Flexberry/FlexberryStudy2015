@@ -1,0 +1,62 @@
+﻿/**
+ * Файл визуального оформления основного тулбара.
+ */
+
+
+/* Основной тулбар. */
+.@{wolvHeaderClass} {
+    background: @wolvToolbarBackgroundColor;
+    padding: 5px 15px;
+}
+
+.@{wolvToolbarCaptionClass},
+.@{wolvToolbarSeparatorClass} {
+    display: none;
+}
+
+// Кнопка удаления.
+// Отключенная.
+.@{wolvToolbarDeleteBtnClass}.ics-wolv-toolbar-button-delete-disabled,
+.@{wolvToolbarDeleteBtnClass}.ics-wolv-toolbar-button-delete-disabled:active {
+    background: #cecece;
+}
+
+
+/* WOLV панель поиска. */
+.@{wolvToolbarSearchPanelClass} {
+    margin: 8px 0;
+
+    br {
+        display: none;
+    }
+    /* Кнопка поиска. */
+    .@{wolvSearchPanelsearchBtnClass} {
+        .background-image(white,#cecece);
+        border: 1px solid @wolvToolbarBtnBorderColor;
+        .border-radius(4px);
+        -webkit-box-shadow: inset 0 0 1px 1px @wolvToolbarBoxShadowColor;
+        -moz-box-shadow: inset 0 0 1px 1px @wolvToolbarBoxShadowColor;
+        box-shadow: inset 0 0 1px 1px @wolvToolbarBoxShadowColor;
+        -webkit-text-shadow: 0 1px 1px @wolvToolbarTextShadowColor;
+        text-shadow: 0 1px 1px @wolvToolbarTextShadowColor;
+        padding: 7px;
+        line-height: 0;
+        height: 30px;
+        vertical-align: inherit;
+
+        &:hover {
+            background: white;
+            cursor: pointer;
+        }
+
+        &:active,
+        &:focus {
+            .background-image(#cecece,white);
+            -webkit-box-shadow: inset 1px 1px 1px @wolvToolbarBtnActiveBoxShadowColor;
+            box-shadow: inset 1px 1px 1px @wolvToolbarBtnActiveBoxShadowColor;
+        }
+    }
+}
+
+
+@import (reference) "_Settings.less";

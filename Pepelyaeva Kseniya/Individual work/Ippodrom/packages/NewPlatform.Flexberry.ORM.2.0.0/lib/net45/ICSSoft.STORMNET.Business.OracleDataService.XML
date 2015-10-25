@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ICSSoft.STORMNET.Business.OracleDataService</name>
+    </assembly>
+    <members>
+        <member name="T:ICSSoft.STORMNET.Business.OracleDataService">
+            <summary>
+            Сервис данных для доступа к данным Oracle
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.OracleDataService.Clone">
+            <summary>
+            Создание копии экземпляра сервиса данных.
+            </summary>
+            <returns>Копии экземпляра сервиса данных.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.OracleDataService.GetIdentifierHashCode(System.String)">
+            <summary>
+            Получить хэш-код идентификатора. 
+            </summary>
+            <param name="identifier">идентификатор</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.OracleDataService.GenerateShortName(System.String)">
+            <summary>
+            Получить идентификатор, обработанный с учётом требований ORACLE на длину в 30 байт
+            </summary>
+            <param name="identifier">идентификатор</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.OracleDataService.PrepareIdentifier(System.String)">
+            <summary>
+            Получить идентификатор, заключенный в кавычки, с учётом требований ORACLE на длину
+            </summary>
+            <param name="identifier">идентификатор</param>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.OracleDataService.PutIdentifierIntoBrackets(System.String)">
+            <summary>
+            Получить идентификатор, заключенный в кавычки, с учётом требований ORACLE на длину
+            </summary>
+            <param name="identifier">идентификатор</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.OracleDataService.GetIfNullExpression(System.String[])">
+            <summary>
+            Вернуть ifnull выражение (для ORACLE используется ф-я NVL)
+            </summary>
+            <param name="identifiers">идентификаторы</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.OracleDataService.ReadFirst(System.String,System.Object@,System.Int32)">
+            <summary>
+            Reading data from database: read first part.
+            </summary>
+            <param name="query">The SQL query.</param>
+            <param name="state">The reading state.</param>
+            <param name="loadingBufferSize">The loading buffer size.</param>
+            <returns>The readed objects from database.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Business.OracleDataService.GenerateSQLSelect(ICSSoft.STORMNET.Business.LoadingCustomizationStruct,System.Boolean,ICSSoft.STORMNET.Business.StorageStructForView[]@,System.Boolean)">
+            <summary>
+            Перегрузка GenerateSQLSelect, связанная с необходимостью в ORACLE заменить TOP на ограничение rownum.
+            </summary>
+            <returns>Текст запроса на вычитку данных, модифицированный с учётом особенностей ORACLE</returns>
+        </member>
+    </members>
+</doc>
