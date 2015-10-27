@@ -1,0 +1,2213 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Security(Objects)</name>
+    </assembly>
+    <members>
+        <member name="M:ICSSoft.STORMNET.Security.BaseTypeStorage.op_Explicit(ICSSoft.STORMNET.Security.BaseTypeStorage)~System.String">
+            <summary>
+             Приведение к строке
+            </summary>
+            <param name="typ">что приводим</param>
+            <returns>строка</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.BaseTypeStorage.op_Explicit(System.String)~ICSSoft.STORMNET.Security.BaseTypeStorage">
+            <summary>
+             Приведение из строки в BaseTypeStorage
+            </summary>
+            <param name="s">строка</param>
+            <returns>BaseTypeStorage</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.BaseTypeStorage.GetCurrentType">
+            <summary>
+            Получить текущий тип
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.BaseTypeStorage.type">
+            <summary>
+            имя типа
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.BaseTypeStorage.Text">
+            <summary>
+            представление для юзера
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.BaseTypeStorage.GetFindBaseType">
+            <summary>
+            получить  базовый тип для фильтрации
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.BaseTypeStorage.FillByUser">
+            <summary>
+            запросить у пользователя заполнить данный тип
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.SecurityHelper">
+            <summary>
+            Вспомогательный класс, содержащий общие методы для объектов системы полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.SecurityHelper.SecurityAuditClassServiceUnityName">
+            <summary>
+            Имя получаемого через Unity определения сервиса аудита, который будет работать с системой полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.SecurityHelper.SecurityAuditClassConnectionStringNameConfigSetting">
+            <summary>
+            Имя настройки в файле конфигурации с именем строки подключения к БД, куда будет писаться аудит объектов полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.SecurityHelper.LockSecurityClassAuditObject">
+            <summary>
+            Объект для создания критической секции по получению значения сервиса аудита.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.SecurityHelper.LockSecurityClassAuditConnectionStringName">
+            <summary>
+            Объект для создания критической секции по получению значения строки подключения к БД.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.SecurityHelper._securityAudit">
+            <summary>
+            Закэшированное значение сервиса аудита, который будет работать с системой полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.SecurityHelper._isSecurityAuditCaсhed">
+            <summary>
+            Закэшировано ли значение сервиса аудита, который будет работать с системой полномочий.
+            Используется, поскольку не всегда значение может быть определено.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.SecurityHelper._securityClassAuditConnectionStringName">
+            <summary>
+            Закэшированное значение имени строки подключения к БД, куда будет писаться аудит объектов полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.SecurityHelper._isSecurityClassAuditConnectionStringNameCaсhed">
+            <summary>
+            Закэшировано ли значение имени строки подключения к БД, куда будет писаться аудит объектов полномочий.
+            Используется, поскольку не всегда значение может быть определено.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.SecurityHelper.GetSecurityClassAudit">
+            <summary>
+            Получаем через Unity определение сервиса аудита, который будет работать с системой полномочий.
+            Вычитка производится только один раз, потом кэшируется.
+            </summary>
+            <returns>Найденное определение сервиса аудита.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.SecurityHelper.GetSecurityClassAuditConnectionStringName">
+            <summary>
+            Имя строки подключения к БД, куда будет писаться аудит объектов полномочий.
+            Вычитка производится только один раз, потом кэшируется.
+            </summary>
+            <returns>Найденное имя строки подключения к БД.</returns>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.IBusinessServerPlugin">
+            <summary>
+            Интерфейс для добавления плагинов к бизнес-серверу объектов полномочий.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.IBusinessServerPlugin.DataObjectType">
+            <summary>
+            Тип объекта, для БС которого предназначен.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.IBusinessServerPlugin.BeforeUpdate(ICSSoft.STORMNET.Business.SQLDataService,System.Collections.Generic.IList{ICSSoft.STORMNET.DataObject},System.String@)">
+            <summary>
+            Проверка объекта перед сохранением и выполнение необходимых действий.
+            </summary>
+            <param name="dataService">DataService для доступа к БД консоли безопасности.</param>
+            <param name="updatedObjects">Объекты данных, которые идут на обновление.</param>
+            <param name="error">Строка с ошибкой. Если пустая, то ошибок нет - можно сохранять.</param>
+            <returns>Массив объектов данных, которые должны быть обновлены в той же самой транзакции. Не надо добавлять в этот массив updatedObject.</returns>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.IDesktopMenuPlugin">
+            <summary>
+            Плагин консоли полномочий, который добавляет пункт меню на рабочий стол консоли.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.IDesktopMenuPlugin.MenuItemTitle">
+            <summary>
+            Название пункта меню, которое будет добавлено для этого плагина.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.IDesktopMenuPlugin.MenuItemClick(ICSSoft.STORMNET.Business.IDataService)">
+            <summary>
+            Обработчик клика по кнопке меню.
+            </summary>
+            <param name="dataService">Сервис данных, на который настроена эта консоль полномочий.</param>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.ISecurityPlugin">
+            <summary>
+            Общий интерфейс для плагинов консоли полномочий.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.IUserEditFormControl">
+            <summary>
+            Интерфейс для добавления вкладок на форму редактирования Пользователя.
+            Элементы, реализующие данный интерфейс также должны быть наследниками от <see cref="T:System.Windows.Forms.Control"/>.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.IUserEditFormControl.Init(ICSSoft.STORMNET.Security.Agent)">
+            <summary>
+            Инициализация контрола.
+            </summary>
+            <param name="agent">Редактируемый пользователь.</param>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.IUserEditFormControl.TabName">
+            <summary>
+            Имя для вкладки, которая будет появляться на форме при подключении плагина.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LinkGroup">
+            <summary>
+            LinkGroup.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkGroup.CreateTime">
+            <summary>
+            Время создания объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkGroup.Creator">
+            <summary>
+            Создатель объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkGroup.EditTime">
+            <summary>
+            Время последнего редактирования объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkGroup.Editor">
+            <summary>
+            Последний редактор объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkGroup.Group">
+            <summary>
+            LinkGroup.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkGroup.User">
+            <summary>
+            LinkGroup.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LinkGroup.Views">
+            <summary>
+            Class views container.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkGroup.Views.AuditView">
+            <summary>
+            "AuditView" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkGroup.Views.GetGroupsNameByUserKey">
+            <summary>
+            "GetGroupsNameByUserKey" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkGroup.Views.GetUserByUsername">
+            <summary>
+            "GetUserByUsername" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkGroup.Views.LinkedAgents">
+            <summary>
+            "LinkedAgents" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkGroup.Views.SearchLinkGroup">
+            <summary>
+            Представление для поиска связи между группой и ролью или пользователем.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkGroup.Views.Sec_LinkGroupE">
+            <summary>
+            "Sec_LinkGroupE" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkGroup.Views.Sec_LinkGroupL">
+            <summary>
+            "Sec_LinkGroupL" view.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings">
+            <summary>
+            Audit class settings.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.AuditEnabled">
+            <summary>
+            Включён ли аудит для класса.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.UseDefaultView">
+            <summary>
+            Использовать имя представления для аудита по умолчанию.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.SelectAudit">
+            <summary>
+            Включён ли аудит операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.SelectAuditViewName">
+            <summary>
+            Имя представления для аудирования операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.InsertAudit">
+            <summary>
+            Включён ли аудит операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.InsertAuditViewName">
+            <summary>
+            Имя представления для аудирования операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.UpdateAudit">
+            <summary>
+            Включён ли аудит операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.UpdateAuditViewName">
+            <summary>
+            Имя представления для аудирования операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.DeleteAudit">
+            <summary>
+            Включён ли аудит операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.DeleteAuditViewName">
+            <summary>
+            Имя представления для аудирования операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.FormUrl">
+            <summary>
+            Путь к форме просмотра результатов аудита.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.WriteMode">
+            <summary>
+            Режим записи данных аудита (синхронный или асинхронный).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.PrunningLength">
+            <summary>
+            Максимальная длина сохраняемого значения поля (если 0, то строка обрезаться не будет).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.ShowPrimaryKey">
+            <summary>
+            Показывать ли пользователям в изменениях первичные ключи.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.KeepOldValue">
+            <summary>
+            Сохранять ли старое значение.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.Compress">
+            <summary>
+            Сжимать ли сохраняемые значения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.KeepAllValues">
+            <summary>
+            Сохранять ли все значения атрибутов, а не только изменяемые.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.AuditClassService">
+            <summary>
+            Cервис аудита, который будет писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkGroup.AuditSettings.AuditClassConnectionStringName">
+            <summary>
+            Имя строки соединения с БД, куда необходимо писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LinkRole">
+            <summary>
+            LinkRole.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkRole.StartDate">
+            <summary>
+            StartDate.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkRole.EndDate">
+            <summary>
+            EndDate.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkRole.CreateTime">
+            <summary>
+            Время создания объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkRole.Creator">
+            <summary>
+            Создатель объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkRole.EditTime">
+            <summary>
+            Время последнего редактирования объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkRole.Editor">
+            <summary>
+            Последний редактор объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkRole.Role">
+            <summary>
+            LinkRole.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkRole.Agent">
+            <summary>
+            LinkRole.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LinkRole.Views">
+            <summary>
+            Class views container.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkRole.Views.AuditView">
+            <summary>
+            "AuditView" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkRole.Views.GetParentRoles">
+            <summary>
+            "GetParentRoles" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkRole.Views.LinkedAgents">
+            <summary>
+            "LinkedAgents" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkRole.Views.SearchLinkRole">
+            <summary>
+            Представления для поиска связи между ролью и пользователем.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkRole.Views.Sec_GetRoles">
+            <summary>
+            "Sec_GetRoles" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkRole.Views.Sec_LinkRoleE">
+            <summary>
+            "Sec_LinkRoleE" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkRole.Views.Sec_LinkRoleL">
+            <summary>
+            "Sec_LinkRoleL" view.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LinkRole.AuditSettings">
+            <summary>
+            Audit class settings.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.AuditEnabled">
+            <summary>
+            Включён ли аудит для класса.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.UseDefaultView">
+            <summary>
+            Использовать имя представления для аудита по умолчанию.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.SelectAudit">
+            <summary>
+            Включён ли аудит операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.SelectAuditViewName">
+            <summary>
+            Имя представления для аудирования операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.InsertAudit">
+            <summary>
+            Включён ли аудит операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.InsertAuditViewName">
+            <summary>
+            Имя представления для аудирования операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.UpdateAudit">
+            <summary>
+            Включён ли аудит операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.UpdateAuditViewName">
+            <summary>
+            Имя представления для аудирования операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.DeleteAudit">
+            <summary>
+            Включён ли аудит операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.DeleteAuditViewName">
+            <summary>
+            Имя представления для аудирования операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.FormUrl">
+            <summary>
+            Путь к форме просмотра результатов аудита.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.WriteMode">
+            <summary>
+            Режим записи данных аудита (синхронный или асинхронный).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.PrunningLength">
+            <summary>
+            Максимальная длина сохраняемого значения поля (если 0, то строка обрезаться не будет).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.ShowPrimaryKey">
+            <summary>
+            Показывать ли пользователям в изменениях первичные ключи.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.KeepOldValue">
+            <summary>
+            Сохранять ли старое значение.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.Compress">
+            <summary>
+            Сжимать ли сохраняемые значения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.KeepAllValues">
+            <summary>
+            Сохранять ли все значения атрибутов, а не только изменяемые.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.AuditClassService">
+            <summary>
+            Cервис аудита, который будет писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkRole.AuditSettings.AuditClassConnectionStringName">
+            <summary>
+            Имя строки соединения с БД, куда необходимо писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Agent">
+            <summary>
+            Agent.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.AllUsersRoleGuid">
+            <summary>
+            Роль, отвечающая за всех пользователей
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Login">
+            <summary>
+            Login.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Pwd">
+            <summary>
+            Pwd.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.IsUser">
+            <summary>
+            IsUser.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.IsGroup">
+            <summary>
+            IsGroup.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.IsRole">
+            <summary>
+            IsRole.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.ConnString">
+            <summary>
+            ConnString.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Enabled">
+            <summary>
+            Enabled.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Email">
+            <summary>
+            Email.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Full">
+            <summary>
+            Full.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Read">
+            <summary>
+            Read.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Insert">
+            <summary>
+            Insert.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Update">
+            <summary>
+            Update.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Delete">
+            <summary>
+            Delete.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Execute">
+            <summary>
+            Execute.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.CreateTime">
+            <summary>
+            Время создания объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Creator">
+            <summary>
+            Создатель объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.EditTime">
+            <summary>
+            Время последнего редактирования объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Editor">
+            <summary>
+            Последний редактор объекта.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Agent.Views">
+            <summary>
+            Class views container.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Views.AuditView">
+            <summary>
+            "AuditView" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Views.CheckExistLogin">
+            <summary>
+            "CheckExistLogin" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Views.CheckLoginPwd">
+            <summary>
+            "CheckLoginPwd" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Views.OwnProperties">
+            <summary>
+            "OwnProperties" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Views.Sec_AgentE">
+            <summary>
+            "Sec_AgentE" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Views.Sec_AgentL">
+            <summary>
+            "Sec_AgentL" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Views.Sec_AgentTypeAccess">
+            <summary>
+            "Sec_AgentTypeAccess" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Views.Sec_GetRoles">
+            <summary>
+            "Sec_GetRoles" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Views.Sec_NotUserL">
+            <summary>
+            "Sec_NotUserL" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Views.Sec_OpAgentRolesE">
+            <summary>
+            "Sec_OpAgentRolesE" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Agent.Views.Sec_RolesL">
+            <summary>
+            "Sec_RolesL" view.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Agent.AuditSettings">
+            <summary>
+            Audit class settings.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.AuditEnabled">
+            <summary>
+            Включён ли аудит для класса.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.UseDefaultView">
+            <summary>
+            Использовать имя представления для аудита по умолчанию.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.SelectAudit">
+            <summary>
+            Включён ли аудит операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.SelectAuditViewName">
+            <summary>
+            Имя представления для аудирования операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.InsertAudit">
+            <summary>
+            Включён ли аудит операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.InsertAuditViewName">
+            <summary>
+            Имя представления для аудирования операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.UpdateAudit">
+            <summary>
+            Включён ли аудит операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.UpdateAuditViewName">
+            <summary>
+            Имя представления для аудирования операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.DeleteAudit">
+            <summary>
+            Включён ли аудит операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.DeleteAuditViewName">
+            <summary>
+            Имя представления для аудирования операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.FormUrl">
+            <summary>
+            Путь к форме просмотра результатов аудита.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.WriteMode">
+            <summary>
+            Режим записи данных аудита (синхронный или асинхронный).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.PrunningLength">
+            <summary>
+            Максимальная длина сохраняемого значения поля (если 0, то строка обрезаться не будет).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.ShowPrimaryKey">
+            <summary>
+            Показывать ли пользователям в изменениях первичные ключи.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.KeepOldValue">
+            <summary>
+            Сохранять ли старое значение.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.Compress">
+            <summary>
+            Сжимать ли сохраняемые значения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.KeepAllValues">
+            <summary>
+            Сохранять ли все значения атрибутов, а не только изменяемые.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.AuditClassService">
+            <summary>
+            Cервис аудита, который будет писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Agent.AuditSettings.AuditClassConnectionStringName">
+            <summary>
+            Имя строки соединения с БД, куда необходимо писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Access">
+            <summary>
+            Access.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Access.TypeAccess">
+            <summary>
+            TypeAccess.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Access.CreateTime">
+            <summary>
+            Время создания объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Access.Creator">
+            <summary>
+            Создатель объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Access.EditTime">
+            <summary>
+            Время последнего редактирования объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Access.Editor">
+            <summary>
+            Последний редактор объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Access.Filter">
+            <summary>
+            Access.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Access.Permition">
+            <summary>
+            мастеровая ссылка на шапку ICSSoft.STORMNET.Security.Permition.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Access.Views">
+            <summary>
+            Class views container.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Access.Views.AuditView">
+            <summary>
+            "AuditView" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Access.Views.CheckAccessClass">
+            <summary>
+            "CheckAccessClass" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Access.Views.Sec_AccessD">
+            <summary>
+            "Sec_AccessD" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Access.Views.Sec_AccessE">
+            <summary>
+            "Sec_AccessE" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Access.Views.Sec_AccessL">
+            <summary>
+            "Sec_AccessL" view.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Access.AuditSettings">
+            <summary>
+            Audit class settings.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.AuditEnabled">
+            <summary>
+            Включён ли аудит для класса.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.UseDefaultView">
+            <summary>
+            Использовать имя представления для аудита по умолчанию.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.SelectAudit">
+            <summary>
+            Включён ли аудит операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.SelectAuditViewName">
+            <summary>
+            Имя представления для аудирования операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.InsertAudit">
+            <summary>
+            Включён ли аудит операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.InsertAuditViewName">
+            <summary>
+            Имя представления для аудирования операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.UpdateAudit">
+            <summary>
+            Включён ли аудит операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.UpdateAuditViewName">
+            <summary>
+            Имя представления для аудирования операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.DeleteAudit">
+            <summary>
+            Включён ли аудит операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.DeleteAuditViewName">
+            <summary>
+            Имя представления для аудирования операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.FormUrl">
+            <summary>
+            Путь к форме просмотра результатов аудита.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.WriteMode">
+            <summary>
+            Режим записи данных аудита (синхронный или асинхронный).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.PrunningLength">
+            <summary>
+            Максимальная длина сохраняемого значения поля (если 0, то строка обрезаться не будет).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.ShowPrimaryKey">
+            <summary>
+            Показывать ли пользователям в изменениях первичные ключи.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.KeepOldValue">
+            <summary>
+            Сохранять ли старое значение.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.Compress">
+            <summary>
+            Сжимать ли сохраняемые значения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.KeepAllValues">
+            <summary>
+            Сохранять ли все значения атрибутов, а не только изменяемые.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.AuditClassService">
+            <summary>
+            Cервис аудита, который будет писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Access.AuditSettings.AuditClassConnectionStringName">
+            <summary>
+            Имя строки соединения с БД, куда необходимо писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.DetailArrayOfAccess">
+            <summary>
+            Detail array of Access.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.DetailArrayOfAccess.#ctor(ICSSoft.STORMNET.Security.Permition)">
+            <summary>
+            Construct detail array.
+            </summary>
+            <summary>
+            Returns object with type Access by index.
+            </summary>
+            <summary>
+            Adds object with type Access.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.PluginsFramework">
+            <summary>
+            Каркас для работы с плагинами консоли полномочий.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.PluginsFramework.GetSecurityPlugins``1">
+            <summary>
+            Поиск в сборках, указанных в настройке PluginFileNames, классов,
+            где реализован интерфейс.
+            </summary>
+            <returns>
+            Список инстанций плагинов указанного типа.
+            </returns>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Subject">
+            <summary>
+            Subject.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Type">
+            <summary>
+            Type.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.IsAttribute">
+            <summary>
+            IsAttribute.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.IsOperation">
+            <summary>
+            IsOperation.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.IsView">
+            <summary>
+            IsView.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.IsClass">
+            <summary>
+            IsClass.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.SharedOper">
+            <summary>
+            SharedOper.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Full">
+            <summary>
+            Full.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Read">
+            <summary>
+            Read.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Insert">
+            <summary>
+            Insert.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Update">
+            <summary>
+            Update.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Delete">
+            <summary>
+            Delete.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Execute">
+            <summary>
+            Execute.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Permitted">
+            <summary>
+            Permitted.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.CreateTime">
+            <summary>
+            Время создания объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Creator">
+            <summary>
+            Создатель объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.EditTime">
+            <summary>
+            Время последнего редактирования объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Editor">
+            <summary>
+            Последний редактор объекта.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Subject.Views">
+            <summary>
+            Class views container.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Views.AuditView">
+            <summary>
+            "AuditView" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Views.Sec_OperationLE">
+            <summary>
+            "Sec_OperationLE" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Views.Sec_SubjectE">
+            <summary>
+            "Sec_SubjectE" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Views.Sec_SubjectL">
+            <summary>
+            "Sec_SubjectL" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Subject.Views.Sec_SubjectTypeAccess">
+            <summary>
+            "Sec_SubjectTypeAccess" view.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Subject.AuditSettings">
+            <summary>
+            Audit class settings.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.AuditEnabled">
+            <summary>
+            Включён ли аудит для класса.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.UseDefaultView">
+            <summary>
+            Использовать имя представления для аудита по умолчанию.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.SelectAudit">
+            <summary>
+            Включён ли аудит операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.SelectAuditViewName">
+            <summary>
+            Имя представления для аудирования операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.InsertAudit">
+            <summary>
+            Включён ли аудит операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.InsertAuditViewName">
+            <summary>
+            Имя представления для аудирования операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.UpdateAudit">
+            <summary>
+            Включён ли аудит операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.UpdateAuditViewName">
+            <summary>
+            Имя представления для аудирования операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.DeleteAudit">
+            <summary>
+            Включён ли аудит операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.DeleteAuditViewName">
+            <summary>
+            Имя представления для аудирования операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.FormUrl">
+            <summary>
+            Путь к форме просмотра результатов аудита.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.WriteMode">
+            <summary>
+            Режим записи данных аудита (синхронный или асинхронный).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.PrunningLength">
+            <summary>
+            Максимальная длина сохраняемого значения поля (если 0, то строка обрезаться не будет).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.ShowPrimaryKey">
+            <summary>
+            Показывать ли пользователям в изменениях первичные ключи.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.KeepOldValue">
+            <summary>
+            Сохранять ли старое значение.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.Compress">
+            <summary>
+            Сжимать ли сохраняемые значения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.KeepAllValues">
+            <summary>
+            Сохранять ли все значения атрибутов, а не только изменяемые.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.AuditClassService">
+            <summary>
+            Cервис аудита, который будет писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Subject.AuditSettings.AuditClassConnectionStringName">
+            <summary>
+            Имя строки соединения с БД, куда необходимо писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Impersonalization">
+            <summary>
+            Impersonalization.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Impersonalization.CreateTime">
+            <summary>
+            Время создания объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Impersonalization.Creator">
+            <summary>
+            Создатель объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Impersonalization.EditTime">
+            <summary>
+            Время последнего редактирования объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Impersonalization.Editor">
+            <summary>
+            Последний редактор объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Impersonalization.Agent">
+            <summary>
+            Impersonalization.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Impersonalization.User">
+            <summary>
+            Impersonalization.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Impersonalization.Views">
+            <summary>
+            Class views container.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Impersonalization.Views.AuditView">
+            <summary>
+            "AuditView" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Impersonalization.Views.Sec_ImpersonalizationE">
+            <summary>
+            "Sec_ImpersonalizationE" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Impersonalization.Views.Sec_ImpersonalizationL">
+            <summary>
+            "Sec_ImpersonalizationL" view.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings">
+            <summary>
+            Audit class settings.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.AuditEnabled">
+            <summary>
+            Включён ли аудит для класса.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.UseDefaultView">
+            <summary>
+            Использовать имя представления для аудита по умолчанию.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.SelectAudit">
+            <summary>
+            Включён ли аудит операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.SelectAuditViewName">
+            <summary>
+            Имя представления для аудирования операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.InsertAudit">
+            <summary>
+            Включён ли аудит операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.InsertAuditViewName">
+            <summary>
+            Имя представления для аудирования операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.UpdateAudit">
+            <summary>
+            Включён ли аудит операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.UpdateAuditViewName">
+            <summary>
+            Имя представления для аудирования операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.DeleteAudit">
+            <summary>
+            Включён ли аудит операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.DeleteAuditViewName">
+            <summary>
+            Имя представления для аудирования операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.FormUrl">
+            <summary>
+            Путь к форме просмотра результатов аудита.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.WriteMode">
+            <summary>
+            Режим записи данных аудита (синхронный или асинхронный).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.PrunningLength">
+            <summary>
+            Максимальная длина сохраняемого значения поля (если 0, то строка обрезаться не будет).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.ShowPrimaryKey">
+            <summary>
+            Показывать ли пользователям в изменениях первичные ключи.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.KeepOldValue">
+            <summary>
+            Сохранять ли старое значение.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.Compress">
+            <summary>
+            Сжимать ли сохраняемые значения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.KeepAllValues">
+            <summary>
+            Сохранять ли все значения атрибутов, а не только изменяемые.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.AuditClassService">
+            <summary>
+            Cервис аудита, который будет писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Impersonalization.AuditSettings.AuditClassConnectionStringName">
+            <summary>
+            Имя строки соединения с БД, куда необходимо писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Filter">
+            <summary>
+            Filter.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Filter.FilterText">
+            <summary>
+            FilterText.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Filter.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Filter.FilterTypeNView">
+            <summary>
+            FilterTypeNView.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Filter.CreateTime">
+            <summary>
+            Время создания объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Filter.Creator">
+            <summary>
+            Создатель объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Filter.EditTime">
+            <summary>
+            Время последнего редактирования объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Filter.Editor">
+            <summary>
+            Последний редактор объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Filter.Subject">
+            <summary>
+            Filter.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Filter.Views">
+            <summary>
+            Class views container.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Filter.Views.AuditView">
+            <summary>
+            "AuditView" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Filter.Views.Sec_FilterE">
+            <summary>
+            "Sec_FilterE" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Filter.Views.Sec_FilterL">
+            <summary>
+            "Sec_FilterL" view.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Filter.AuditSettings">
+            <summary>
+            Audit class settings.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.AuditEnabled">
+            <summary>
+            Включён ли аудит для класса.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.UseDefaultView">
+            <summary>
+            Использовать имя представления для аудита по умолчанию.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.SelectAudit">
+            <summary>
+            Включён ли аудит операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.SelectAuditViewName">
+            <summary>
+            Имя представления для аудирования операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.InsertAudit">
+            <summary>
+            Включён ли аудит операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.InsertAuditViewName">
+            <summary>
+            Имя представления для аудирования операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.UpdateAudit">
+            <summary>
+            Включён ли аудит операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.UpdateAuditViewName">
+            <summary>
+            Имя представления для аудирования операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.DeleteAudit">
+            <summary>
+            Включён ли аудит операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.DeleteAuditViewName">
+            <summary>
+            Имя представления для аудирования операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.FormUrl">
+            <summary>
+            Путь к форме просмотра результатов аудита.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.WriteMode">
+            <summary>
+            Режим записи данных аудита (синхронный или асинхронный).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.PrunningLength">
+            <summary>
+            Максимальная длина сохраняемого значения поля (если 0, то строка обрезаться не будет).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.ShowPrimaryKey">
+            <summary>
+            Показывать ли пользователям в изменениях первичные ключи.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.KeepOldValue">
+            <summary>
+            Сохранять ли старое значение.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.Compress">
+            <summary>
+            Сжимать ли сохраняемые значения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.KeepAllValues">
+            <summary>
+            Сохранять ли все значения атрибутов, а не только изменяемые.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.AuditClassService">
+            <summary>
+            Cервис аудита, который будет писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Filter.AuditSettings.AuditClassConnectionStringName">
+            <summary>
+            Имя строки соединения с БД, куда необходимо писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LinkAttribute">
+            <summary>
+            LinkAttribute.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkAttribute.CreateTime">
+            <summary>
+            Время создания объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkAttribute.Creator">
+            <summary>
+            Создатель объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkAttribute.EditTime">
+            <summary>
+            Время последнего редактирования объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkAttribute.Editor">
+            <summary>
+            Последний редактор объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkAttribute.View">
+            <summary>
+            LinkAttribute.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkAttribute.Attribute">
+            <summary>
+            LinkAttribute.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LinkAttribute.Views">
+            <summary>
+            Class views container.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkAttribute.Views.AuditView">
+            <summary>
+            "AuditView" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkAttribute.Views.Sec_LinkAttributeE">
+            <summary>
+            "Sec_LinkAttributeE" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkAttribute.Views.Sec_LinkAttributeL">
+            <summary>
+            "Sec_LinkAttributeL" view.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings">
+            <summary>
+            Audit class settings.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.AuditEnabled">
+            <summary>
+            Включён ли аудит для класса.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.UseDefaultView">
+            <summary>
+            Использовать имя представления для аудита по умолчанию.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.SelectAudit">
+            <summary>
+            Включён ли аудит операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.SelectAuditViewName">
+            <summary>
+            Имя представления для аудирования операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.InsertAudit">
+            <summary>
+            Включён ли аудит операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.InsertAuditViewName">
+            <summary>
+            Имя представления для аудирования операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.UpdateAudit">
+            <summary>
+            Включён ли аудит операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.UpdateAuditViewName">
+            <summary>
+            Имя представления для аудирования операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.DeleteAudit">
+            <summary>
+            Включён ли аудит операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.DeleteAuditViewName">
+            <summary>
+            Имя представления для аудирования операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.FormUrl">
+            <summary>
+            Путь к форме просмотра результатов аудита.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.WriteMode">
+            <summary>
+            Режим записи данных аудита (синхронный или асинхронный).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.PrunningLength">
+            <summary>
+            Максимальная длина сохраняемого значения поля (если 0, то строка обрезаться не будет).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.ShowPrimaryKey">
+            <summary>
+            Показывать ли пользователям в изменениях первичные ключи.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.KeepOldValue">
+            <summary>
+            Сохранять ли старое значение.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.Compress">
+            <summary>
+            Сжимать ли сохраняемые значения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.KeepAllValues">
+            <summary>
+            Сохранять ли все значения атрибутов, а не только изменяемые.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.AuditClassService">
+            <summary>
+            Cервис аудита, который будет писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkAttribute.AuditSettings.AuditClassConnectionStringName">
+            <summary>
+            Имя строки соединения с БД, куда необходимо писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LinkView">
+            <summary>
+            LinkView.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkView.CreateTime">
+            <summary>
+            Время создания объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkView.Creator">
+            <summary>
+            Создатель объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkView.EditTime">
+            <summary>
+            Время последнего редактирования объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkView.Editor">
+            <summary>
+            Последний редактор объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkView.Class">
+            <summary>
+            LinkView.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkView.View">
+            <summary>
+            LinkView.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LinkView.Views">
+            <summary>
+            Class views container.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkView.Views.AuditView">
+            <summary>
+            "AuditView" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkView.Views.Sec_LinkViewE">
+            <summary>
+            "Sec_LinkViewE" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkView.Views.Sec_LinkViewL">
+            <summary>
+            "Sec_LinkViewL" view.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LinkView.AuditSettings">
+            <summary>
+            Audit class settings.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.AuditEnabled">
+            <summary>
+            Включён ли аудит для класса.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.UseDefaultView">
+            <summary>
+            Использовать имя представления для аудита по умолчанию.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.SelectAudit">
+            <summary>
+            Включён ли аудит операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.SelectAuditViewName">
+            <summary>
+            Имя представления для аудирования операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.InsertAudit">
+            <summary>
+            Включён ли аудит операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.InsertAuditViewName">
+            <summary>
+            Имя представления для аудирования операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.UpdateAudit">
+            <summary>
+            Включён ли аудит операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.UpdateAuditViewName">
+            <summary>
+            Имя представления для аудирования операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.DeleteAudit">
+            <summary>
+            Включён ли аудит операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.DeleteAuditViewName">
+            <summary>
+            Имя представления для аудирования операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.FormUrl">
+            <summary>
+            Путь к форме просмотра результатов аудита.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.WriteMode">
+            <summary>
+            Режим записи данных аудита (синхронный или асинхронный).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.PrunningLength">
+            <summary>
+            Максимальная длина сохраняемого значения поля (если 0, то строка обрезаться не будет).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.ShowPrimaryKey">
+            <summary>
+            Показывать ли пользователям в изменениях первичные ключи.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.KeepOldValue">
+            <summary>
+            Сохранять ли старое значение.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.Compress">
+            <summary>
+            Сжимать ли сохраняемые значения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.KeepAllValues">
+            <summary>
+            Сохранять ли все значения атрибутов, а не только изменяемые.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.AuditClassService">
+            <summary>
+            Cервис аудита, который будет писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkView.AuditSettings.AuditClassConnectionStringName">
+            <summary>
+            Имя строки соединения с БД, куда необходимо писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LinkOperation">
+            <summary>
+            LinkOperation.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkOperation.CreateTime">
+            <summary>
+            Время создания объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkOperation.Creator">
+            <summary>
+            Создатель объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkOperation.EditTime">
+            <summary>
+            Время последнего редактирования объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkOperation.Editor">
+            <summary>
+            Последний редактор объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkOperation.Class">
+            <summary>
+            LinkOperation.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkOperation.Operation">
+            <summary>
+            LinkOperation.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LinkOperation.Views">
+            <summary>
+            Class views container.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkOperation.Views.AuditView">
+            <summary>
+            "AuditView" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkOperation.Views.Sec_LinkOperationE">
+            <summary>
+            "Sec_LinkOperationE" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.LinkOperation.Views.Sec_LinkOperationL">
+            <summary>
+            "Sec_LinkOperationL" view.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings">
+            <summary>
+            Audit class settings.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.AuditEnabled">
+            <summary>
+            Включён ли аудит для класса.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.UseDefaultView">
+            <summary>
+            Использовать имя представления для аудита по умолчанию.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.SelectAudit">
+            <summary>
+            Включён ли аудит операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.SelectAuditViewName">
+            <summary>
+            Имя представления для аудирования операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.InsertAudit">
+            <summary>
+            Включён ли аудит операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.InsertAuditViewName">
+            <summary>
+            Имя представления для аудирования операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.UpdateAudit">
+            <summary>
+            Включён ли аудит операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.UpdateAuditViewName">
+            <summary>
+            Имя представления для аудирования операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.DeleteAudit">
+            <summary>
+            Включён ли аудит операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.DeleteAuditViewName">
+            <summary>
+            Имя представления для аудирования операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.FormUrl">
+            <summary>
+            Путь к форме просмотра результатов аудита.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.WriteMode">
+            <summary>
+            Режим записи данных аудита (синхронный или асинхронный).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.PrunningLength">
+            <summary>
+            Максимальная длина сохраняемого значения поля (если 0, то строка обрезаться не будет).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.ShowPrimaryKey">
+            <summary>
+            Показывать ли пользователям в изменениях первичные ключи.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.KeepOldValue">
+            <summary>
+            Сохранять ли старое значение.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.Compress">
+            <summary>
+            Сжимать ли сохраняемые значения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.KeepAllValues">
+            <summary>
+            Сохранять ли все значения атрибутов, а не только изменяемые.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.AuditClassService">
+            <summary>
+            Cервис аудита, который будет писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.LinkOperation.AuditSettings.AuditClassConnectionStringName">
+            <summary>
+            Имя строки соединения с БД, куда необходимо писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Permition">
+            <summary>
+            Permition.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Permition.CreateTime">
+            <summary>
+            Время создания объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Permition.Creator">
+            <summary>
+            Создатель объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Permition.EditTime">
+            <summary>
+            Время последнего редактирования объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Permition.Editor">
+            <summary>
+            Последний редактор объекта.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Permition.Agent">
+            <summary>
+            Permition.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Permition.Subject">
+            <summary>
+            Permition.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Permition.Access">
+            <summary>
+            Permition.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Permition.Views">
+            <summary>
+            Class views container.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Permition.Views.AuditView">
+            <summary>
+            "AuditView" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Permition.Views.CheckAccessOperation">
+            <summary>
+            "CheckAccessOperation" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Permition.Views.Sec_CheckClasses">
+            <summary>
+            "Sec_CheckClasses" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Permition.Views.Sec_CheckClassesAndGetDetails">
+            <summary>
+            "Sec_CheckClassesAndGetDetails" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Permition.Views.Sec_PermitionE">
+            <summary>
+            "Sec_PermitionE" view.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Permition.Views.Sec_PermitionL">
+            <summary>
+            "Sec_PermitionL" view.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Permition.AuditSettings">
+            <summary>
+            Audit class settings.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.AuditEnabled">
+            <summary>
+            Включён ли аудит для класса.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.UseDefaultView">
+            <summary>
+            Использовать имя представления для аудита по умолчанию.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.SelectAudit">
+            <summary>
+            Включён ли аудит операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.SelectAuditViewName">
+            <summary>
+            Имя представления для аудирования операции чтения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.InsertAudit">
+            <summary>
+            Включён ли аудит операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.InsertAuditViewName">
+            <summary>
+            Имя представления для аудирования операции создания.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.UpdateAudit">
+            <summary>
+            Включён ли аудит операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.UpdateAuditViewName">
+            <summary>
+            Имя представления для аудирования операции изменения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.DeleteAudit">
+            <summary>
+            Включён ли аудит операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.DeleteAuditViewName">
+            <summary>
+            Имя представления для аудирования операции удаления.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.FormUrl">
+            <summary>
+            Путь к форме просмотра результатов аудита.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.WriteMode">
+            <summary>
+            Режим записи данных аудита (синхронный или асинхронный).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.PrunningLength">
+            <summary>
+            Максимальная длина сохраняемого значения поля (если 0, то строка обрезаться не будет).
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.ShowPrimaryKey">
+            <summary>
+            Показывать ли пользователям в изменениях первичные ключи.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.KeepOldValue">
+            <summary>
+            Сохранять ли старое значение.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.Compress">
+            <summary>
+            Сжимать ли сохраняемые значения.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.KeepAllValues">
+            <summary>
+            Сохранять ли все значения атрибутов, а не только изменяемые.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.AuditClassService">
+            <summary>
+            Cервис аудита, который будет писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.Security.Permition.AuditSettings.AuditClassConnectionStringName">
+            <summary>
+            Имя строки соединения с БД, куда необходимо писать аудит системы полномочий.
+            </summary>
+        </member>
+        <member name="T:ICSSoft.STORMNET.Security.Session">
+            <summary>
+            Session.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Session.#ctor">
+            <summary>
+            Конструктор по умолчанию
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.Session.#ctor(System.DateTime,System.Guid)">
+            <summary>
+            Конструктор с параметрами
+            </summary>
+            <param name="StartedAt">Начало</param>
+            <param name="UserKey">Ключ агента</param>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Session.UserKey">
+            <summary>
+            UserKey.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Session.StartedAt">
+            <summary>
+            StartedAt.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Session.LastAccess">
+            <summary>
+            LastAccess.
+            </summary>
+        </member>
+        <member name="P:ICSSoft.STORMNET.Security.Session.Closed">
+            <summary>
+            Closed.
+            </summary>
+        </member>
+    </members>
+</doc>

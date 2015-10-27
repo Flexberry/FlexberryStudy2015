@@ -1,0 +1,138 @@
+﻿body{
+    font-family: Gabriola, 'Times New Roman', Times, serif;
+    background-color: #c7b3c7;
+}
+.start{
+    text-align:center;
+    font-size:25px;
+    font-style:italic;
+    color:#cf1521;
+}
+
+.panda{
+    background-image:url(../Spring/Pages/MainPage/Images/start.png);
+    width:120px;
+    height:128px;
+    background-repeat:no-repeat;
+    display:inline-block;
+    background-position:50% 50%;
+    vertical-align:middle;
+}
+.page-navigation a:active, .page-navigation a:hover, body_ahover {color:#fc9c79;}
+.page-navigation a:link, body_alink {color:#cf1521;}
+.page-navigation a{
+    font-size:25px;
+    color:#cf1521;
+}
+.page-header a:active, .page-header a:hover, body_ahover {color:#fc9c79;}
+.page-header a:visited,.page-header a:link, body_alink {color:#cf1521;}
+.page-header-caption a
+{
+    font-family:Sylfaen,'Times New Roman';
+    font-size:30px;
+    text-decoration: none;
+    color: #cf1521;
+}
+.page-header-userbar{
+    color:#cf1521;
+}
+.page-header-userbar a{
+    color: #cf1521;
+}
+.wolv-caption-table>tbody>tr>td{
+    color:#4d3d6b;
+     background-color:#c7b3c7;
+}
+#pageBlockContent .ics-form-header{
+    background-color:#c7b3c7;
+    font-size:25px;
+}
+.ics-form.ics-form-list{
+    color:#cf1521;
+    font-size:18px;
+}
+.page-header{
+    text-align:center;
+    background-color:#c7b3c7;
+    border-bottom:2px solid #cf1521;
+}
+#pageBlockTreeview{
+    background-color:#4d3d6b;
+    border-right:2px solid #cf1521;
+}
+.ics-treeview{
+    color: #0d496e;
+}
+.login-form-inner{
+    background-color:#4d3d6b;
+    border:2px solid #cf1521;
+    color:#cf1521;  
+}
+.login-form-inner h2{
+    color:#cf1521;  
+}
+.login-form-inner #LoginUser_LoginButton{
+    color:#cf1521;  
+    background-color:#4d3d6b
+}
+.login-form-header{
+    color:#0d496e;
+}
+.page-footer{
+    color:#fff;
+    background-color:#4d3d6b;
+    border-top:2px solid #cf1521;
+}
+.ics-form{
+    color: #cf1521;
+}
+.treeview-wrapper a{
+    color: #cf1521;
+}
+
+#TreeView1t6,#TreeView1t0{
+    font-style: italic;
+    color: #cf1521;
+}
+.treeview-wrapper a{
+    color: #cf1521;
+}
+#TreeView1n0Nodes tr td img{
+    background-image:url(../Spring/Pages/MainPage/Images/admin.png);
+    width:34px;
+    height:30px;
+    background-repeat:no-repeat;
+    display:inline-block;
+    vertical-align:middle;
+}
+
+#TreeView1n6Nodes tr td img{
+    background-image:url(../Spring/Pages/MainPage/Images/name.png);
+    width:37px;
+    height:30px;
+    background-repeat:no-repeat;
+    display:inline-block;
+    vertical-align:middle;
+    color:#c7b3c7;
+}
+.page-navigation{
+    background-color:#4d3d6b;
+    border-bottom:2px solid #cf1521;
+}
+.breadcrumb-node-active{
+    color:#c7b3c7;
+    font-size:25px;
+}
+#TreeView1 {
+    font-size: 20px;
+    color:#c7b3c7;
+}
+#pageBlockTreeview a > span.ics-treeview-node {
+    background-color: #c7b3c7;
+    text-decoration:underline;
+}
+#pageBlockTreeview a.ics-treeview-node:hover,#pageBlockTreeview a>span.ics-treeview-node:hover{
+    color:#c7b3c7;
+    background-color:#cf1521;
+    
+}
