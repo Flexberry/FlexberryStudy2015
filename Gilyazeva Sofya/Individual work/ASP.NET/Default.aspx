@@ -4,7 +4,7 @@
     <div>
         <asp:Localize Text="<%$ Resources: Resource, Home_Page %>" runat="server"></asp:Localize><br />
     </div>
-    <div style="background-image: url('1832342.png');     background-repeat: no-repeat;
+    <div style="background-image: url('/App_Themes/BaseTheme/Pages/MainPage/Images/1832342.png');     background-repeat: no-repeat;
     width: 100%;
     height: 400px;
     background-position: center">

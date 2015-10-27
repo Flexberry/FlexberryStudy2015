@@ -324,10 +324,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1832342.png" />
+    <Content Include="App_Themes\BaseTheme\Pages\MainPage\Images\1832342.png" />
     <Content Include="App_Themes\BaseTheme\book_orange.png" />
     <Content Include="App_Themes\BaseTheme\Pages\MainPage\Images\app-logo.jpg" />
+    <Content Include="App_Themes\BaseTheme\MyStyle.css" />
     <Content Include="App_Themes\Default\Images\book_orange.png" />
+    <Content Include="App_Themes\Spring\Images\author.png" />
+    <Content Include="App_Themes\Spring\Images\book_orange.png" />
+    <Content Include="App_Themes\Spring\Images\publisher.png" />
+    <Content Include="App_Themes\Spring\MyStyle.css" />
     <Content Include="forms\Avtor\AvtorE.aspx" />
     <Compile Include="forms\Avtor\AvtorE.aspx.cs">
       <DependentUpon>AvtorE.aspx</DependentUpon>
@@ -577,7 +582,7 @@
     <Content Include="App_Themes\BaseTheme\Pages\ExceptionPage\_Variables.less" />
     <Content Include="App_Themes\BaseTheme\Pages\LoginPage\LoginPage.less" />
     <Content Include="App_Themes\BaseTheme\Pages\LoginPage\_Variables.less" />
-    <Content Include="App_Themes\BaseTheme\Pages\MainPage\Images\app-logo.png" />
+    <Content Include="App_Themes\BaseTheme\Pages\MainPage\Images\logo.png" />
     <Content Include="App_Themes\BaseTheme\Pages\MainPage\Images\indicator.gif" />
     <Content Include="App_Themes\BaseTheme\Pages\MainPage\MainPage.less" />
     <Content Include="App_Themes\BaseTheme\Pages\MainPage\_Variables.less" />

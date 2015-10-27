@@ -8,7 +8,7 @@
     <ParentNodeStyle CssClass="ics-treeview-node-parent" Font-Bold="False" />
     <HoverNodeStyle CssClass="ics-treeview-node-hover" Font-Underline="False" />
     <SelectedNodeStyle CssClass="ics-treeview-node-selected" Font-Underline="False" />
-    <NodeStyle CssClass="ics-treeview-node" ImageUrl="\App_Themes\Default\Images\book_orange.png" ForeColor="Black" />
+    <NodeStyle CssClass="ics-treeview-node" ForeColor="Black" />
 </ac:IcsTreeView>
 <asp:CustomValidator runat="server" ForeColor="Red" CssClass="validator validator-custom" />
 <asp:RequiredFieldValidator runat="server" ForeColor="Red" CssClass="validator validator-field-required" />
