@@ -27,32 +27,28 @@ namespace IIS.Книги
         {
             var ds = (SQLDataService)DataServiceProvider.DataService;
             var authors = ds.Query<Автор>(Автор.Views.АвторE);
-            
+            int max = 0;
             foreach (var item in authors)
             {
-                //var detail = new DetailArrayOfАвторКнига(item);
-                //ds.LoadObjects(detail);
-                //var authbook = ds.Query<АвторКнига>(АвторКнига.Views.АвторКнигаE).Where(ab => ab.Автор == item);
                 
-                var sum = item.АвторКнига.GetAllObjects();
-               
-                foreach(var subitem in sum)
+                var authbooks = item.АвторКнига.Cast<АвторКнига>().ToList();
+                int sum = 0;
+                foreach(var subitem in authbooks)
                 {
-                    //subitem.AddLoadedProperties("Книга(КоличествоСтраниц)");
-                    //subitem.Книга;
-                    //ds.LoadObject(subitem);
-                        
-                   
-                    
-                    //ds.LoadObject(subitem.Книга);
+                    ds.LoadObject(subitem.Книга);
+                    sum += subitem.Книга.КоличествоСтраниц;
                 }
+                if (sum > max)
+                {
+                    max = sum;
+                    blAuthors.Items.Clear();
+                    blAuthors.Items.Add(item.Фамилия + " " + item.Имя);
+                }
+                else if (sum == max)
+                    blAuthors.Items.Add(item.Фамилия + " " + item.Имя);
                 
-                //foreach (var subitem in authbook)
-                //{
-                //    //ds.LoadObject(subitem.Книга);
-
-                //}
             }
+            lbSum.Text = lbSum.Text + max.ToString();
         }
     }
 }

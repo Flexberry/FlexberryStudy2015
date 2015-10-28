@@ -5,13 +5,17 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="AddToHeadPlaceholder" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Label ID="Label1" runat="server" Text="Здесь вы можете посмотреть авторов, опубликовавших наибольшее количество страниц"></asp:Label>
+    <div><asp:Label ID="Label1" runat="server" Text="Здесь вы можете посмотреть авторов, опубликовавших наибольшее количество страниц"></asp:Label>
     <br />
     <asp:Button ID="btFind" runat="server" OnClick="btFind_Click" Text="Найти" />
     <br />
     <asp:Label ID="Label2" runat="server" Text="Результаты поиска"></asp:Label>
+    
+     
     <asp:BulletedList ID="blAuthors" runat="server">
     </asp:BulletedList>
+    <br />
+    <asp:Label ID="lbSum" runat="server" Text="Количество страниц: "></asp:Label></div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder0" runat="server">
 </asp:Content>
