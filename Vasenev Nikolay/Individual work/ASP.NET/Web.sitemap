@@ -9,16 +9,23 @@
       <siteMapNode title="Лог" url="~/flexberry/LogList" />
       <siteMapNode title="Версии сборок" url="~/flexberry/Version" />
     </siteMapNode>
-    <siteMapNode title="Уральские Авиалинии" roles="*" xmlns="">
-      <siteMapNode title="Самолеты Компании" roles="*">
-        <siteMapNode title="Информация о Самолете" description="" url="~/forms/InformaciyaOSamolete/InformaciyaOSamoleteL.aspx" />
-        <siteMapNode title="Тип Самолета" description="" url="~/forms/TipSamoleta/TipSamoletaL.aspx" />
-        <siteMapNode title="История Ремонтов" description="" url="~/forms/IstoriyaRemontov/IstoriyaRemontovL.aspx" />
+    <siteMapNode title="Авиа Компания" roles="*" xmlns="">
+      <siteMapNode title="Информация о самолете" roles="*">
+        <siteMapNode title="Информация o cамолете" description="" url="~/forms/InformaciyaOSamolete/InformaciyaOSamoleteL.aspx" />
+        <siteMapNode title="Сотрудники самолета" description="" url="~/forms/SotrudnikiVSamolete/SotrudnikiVSamoleteL.aspx" />
+        <siteMapNode title="История ремонтов" description="" url="~/forms/IstoriyaRemontov/IstoriyaRemontovL.aspx" />
       </siteMapNode>
-      <siteMapNode title="Сотрудники и поставщики" roles="*">
-        <siteMapNode title="Компания Изготовитель" description="" url="~/forms/KompaniyaIzgotovitel/KompaniyaIzgotovitelL.aspx" />
+      <siteMapNode title="Справочники" roles="*">
         <siteMapNode title="Сотрудники" description="" url="~/forms/Sotrudniki/SotrudnikiL.aspx" />
+        <siteMapNode title="Тип Самолета" description="" url="~/forms/TipSamoleta/TipSamoletaL.aspx" />
       </siteMapNode>
+    </siteMapNode>
+    <siteMapNode title="Запросы" roles="*" xmlns="">
+      <siteMapNode title="Средний возраст самолетов типа Боинг 746" description="" url="~/forms/Vozrast.aspx" />
+      <siteMapNode title="Компания-изготовитель (Название самолета) самолета под номером 1388" description="" url="~/forms/Kompaniya.aspx" />
+      <siteMapNode title="Количество посадочных мест в Боинг 727" description="" url="~/forms/PosadochnyeMEsta.aspx" />
+      <siteMapNode title="Количество двигателей самолета, указанной модели" description="" url="~/forms/Dvigateli.aspx" />
+      <siteMapNode title="Главный механик самолета номер 1388" description="" url="~/forms/MExanik.aspx" />
     </siteMapNode>
   </siteMapNode>
 </siteMap>

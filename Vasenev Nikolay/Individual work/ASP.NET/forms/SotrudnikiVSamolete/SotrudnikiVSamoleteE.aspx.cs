@@ -6,13 +6,13 @@ namespace IIS.Авиакомпания
     using ICSSoft.STORMNET.Web.Controls;
     using ICSSoft.STORMNET.Web.AjaxControls;
     
-    public partial class КомпанияИзготовительE : BaseEditForm<КомпанияИзготовитель>
+    public partial class СотрудникиВСамолетеE : BaseEditForm<СотрудникиВСамолете>
     {
         /// <summary>
         /// Конструктор формы.
         /// </summary>
-        public КомпанияИзготовительE()
-            : base(КомпанияИзготовитель.Views.КомпанияИзготовительE)
+        public СотрудникиВСамолетеE()
+            : base(СотрудникиВСамолете.Views.СотрудникиВСамолетеE)
         {
         }
 
@@ -21,7 +21,7 @@ namespace IIS.Авиакомпания
         /// </summary>
         public static string FormPath
         {
-            get { return "~/forms/KompaniyaIzgotovitel/KompaniyaIzgotovitelE.aspx"; }
+            get { return "~/forms/SotrudnikiVSamolete/SotrudnikiVSamoleteE.aspx"; }
         }
 
         /// <summary>

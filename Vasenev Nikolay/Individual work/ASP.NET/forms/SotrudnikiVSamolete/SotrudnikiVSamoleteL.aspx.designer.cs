@@ -12,12 +12,12 @@ namespace IIS.Авиакомпания {
     
     
     /// <summary>
-    /// КомпанияИзготовительL class.
+    /// СотрудникиВСамолетеL class.
     /// </summary>
     /// <remarks>
     /// Auto-generated class.
     /// </remarks>
-    public partial class КомпанияИзготовительL {
+    public partial class СотрудникиВСамолетеL {
         //объявление WebObjectListView1 перенесено в BaseListForm.cs
     }
 }

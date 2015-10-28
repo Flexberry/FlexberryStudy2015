@@ -35,15 +35,6 @@
 
 </asp:DropDownList>
 </div>
-<div class="clearfix">
-  <asp:Label CssClass="descLbl" ID="ctrlИнформацияОСамолетеLabel" runat="server" Text="Номер Самолета" EnableViewState="False">
-</asp:Label>
-<ac:MasterEditorAjaxLookUp ID="ctrlИнформацияОСамолете" CssClass="descTxt" runat="server" ShowInThickBox="True" Autocomplete="true" />
-
-<asp:RequiredFieldValidator ID="ctrlИнформацияОСамолетеValidator" runat="server" ControlToValidate="ctrlИнформацияОСамолете"
-ErrorMessage="Не указано: ИнформацияОСамолете" EnableClientScript="true" ValidationGroup="savedoc">*</asp:RequiredFieldValidator>
-
-</div>
 <br/>
 
 </div>

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{661DE233-EE08-4C38-941A-FBC2ED22C39C}</ProjectGuid>
+    <ProjectGuid>{8D7A4648-60F8-46E6-B2FA-E80B89B5C5BC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IIS.Авиакомпания</RootNamespace>
@@ -140,7 +140,7 @@
     <Compile Include="Должность.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="КомпанияИзготовитель.cs">
+    <Compile Include="СотрудникиВСамолете.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ТипСамолета.cs">

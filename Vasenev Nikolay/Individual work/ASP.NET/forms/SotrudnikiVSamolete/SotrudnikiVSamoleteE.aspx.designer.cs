@@ -11,11 +11,11 @@
 namespace IIS.Авиакомпания {
     
     /// <summary>
-    /// КомпанияИзготовительE class.
+    /// СотрудникиВСамолетеE class.
     /// </summary>
     /// <remarks>
     /// Auto-generated class.
     /// </remarks>
-    public partial class КомпанияИзготовительE {
+    public partial class СотрудникиВСамолетеE {
     }
 }

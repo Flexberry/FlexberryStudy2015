@@ -31,21 +31,16 @@ namespace IIS.Авиакомпания
     [AccessType(ICSSoft.STORMNET.AccessType.none)]
     [View("ИсторияРемонтовE", new string[] {
             "ДатаРемонта as \'Дата ремонта\'",
-            "ПричинаРемонта as \'Причина ремонта\'",
-            "ИнформацияОСамолете as \'Номер Самолета\'"})]
-    [MasterViewDefineAttribute("ИсторияРемонтовE", "ИнформацияОСамолете", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "НомерСамолета")]
+            "ПричинаРемонта as \'Причина ремонта\'"})]
     [View("ИсторияРемонтовL", new string[] {
             "ДатаРемонта as \'Дата ремонта\'",
-            "ПричинаРемонта as \'Причина ремонта\'",
-            "ИнформацияОСамолете.НомерСамолета as \'Номер Самолета\'"})]
+            "ПричинаРемонта as \'Причина ремонта\'"})]
     public class ИсторияРемонтов : ICSSoft.STORMNET.DataObject
     {
         
         private System.DateTime fДатаРемонта;
         
         private IIS.Авиакомпания.ВидОтказа fПричинаРемонта;
-        
-        private IIS.Авиакомпания.ИнформацияОСамолете fИнформацияОСамолете;
         
         // *** Start programmer edit section *** (ИсторияРемонтов CustomMembers)
 
@@ -111,40 +106,6 @@ namespace IIS.Авиакомпания
                 // *** Start programmer edit section *** (ИсторияРемонтов.ПричинаРемонта Set end)
 
                 // *** End programmer edit section *** (ИсторияРемонтов.ПричинаРемонта Set end)
-            }
-        }
-        
-        /// <summary>
-        /// История ремонтов.
-        /// </summary>
-        // *** Start programmer edit section *** (ИсторияРемонтов.ИнформацияОСамолете CustomAttributes)
-
-        // *** End programmer edit section *** (ИсторияРемонтов.ИнформацияОСамолете CustomAttributes)
-        [PropertyStorage(new string[] {
-                "ИнформацияОСамолете"})]
-        [NotNull()]
-        public virtual IIS.Авиакомпания.ИнформацияОСамолете ИнформацияОСамолете
-        {
-            get
-            {
-                // *** Start programmer edit section *** (ИсторияРемонтов.ИнформацияОСамолете Get start)
-
-                // *** End programmer edit section *** (ИсторияРемонтов.ИнформацияОСамолете Get start)
-                IIS.Авиакомпания.ИнформацияОСамолете result = this.fИнформацияОСамолете;
-                // *** Start programmer edit section *** (ИсторияРемонтов.ИнформацияОСамолете Get end)
-
-                // *** End programmer edit section *** (ИсторияРемонтов.ИнформацияОСамолете Get end)
-                return result;
-            }
-            set
-            {
-                // *** Start programmer edit section *** (ИсторияРемонтов.ИнформацияОСамолете Set start)
-
-                // *** End programmer edit section *** (ИсторияРемонтов.ИнформацияОСамолете Set start)
-                this.fИнформацияОСамолете = value;
-                // *** Start programmer edit section *** (ИсторияРемонтов.ИнформацияОСамолете Set end)
-
-                // *** End programmer edit section *** (ИсторияРемонтов.ИнформацияОСамолете Set end)
             }
         }
         
