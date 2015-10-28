@@ -324,6 +324,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Themes\Spring\StyleSheet1.css" />
     <Content Include="forms\IstoriyaRemontov\IstoriyaRemontovE.aspx" />
     <Compile Include="forms\IstoriyaRemontov\IstoriyaRemontovE.aspx.cs">
       <DependentUpon>IstoriyaRemontovE.aspx</DependentUpon>

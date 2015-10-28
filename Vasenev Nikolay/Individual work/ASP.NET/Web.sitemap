@@ -22,7 +22,7 @@
     </siteMapNode>
     <siteMapNode title="Запросы" roles="*" xmlns="">
       <siteMapNode title="Средний возраст самолетов типа Боинг 746" description="" url="~/forms/Vozrast.aspx" />
-      <siteMapNode title="Компания-изготовитель (Название самолета) самолета под номером 1388" description="" url="~/forms/Kompaniya.aspx" />
+      <siteMapNode title="Компания-изготовитель (Название самолета) самолета с указанным номером  " description="" url="~/forms/Kompaniya.aspx" />
       <siteMapNode title="Количество посадочных мест в Боинг 727" description="" url="~/forms/PosadochnyeMEsta.aspx" />
       <siteMapNode title="Количество двигателей самолета, указанной модели" description="" url="~/forms/Dvigateli.aspx" />
       <siteMapNode title="Главный механик самолета номер 1388" description="" url="~/forms/MExanik.aspx" />
