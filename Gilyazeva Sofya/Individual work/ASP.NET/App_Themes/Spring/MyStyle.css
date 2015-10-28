@@ -7,6 +7,7 @@
     line-height: 27px;
     color: #fff;
     background-color: #e37917;
+    background-image: none;
     font-size: 13px;
     font-weight: 400;
 }
@@ -30,4 +31,14 @@ a[href="/forms/Izdatelstvo/IzdatelstvoL.aspx"] {
     background-size: 16px;
     background-repeat: no-repeat;
     padding-left: 20px;
+}
+.page-header-image {
+    display: inline-block;
+    margin: 10px;
+    width: 90px;
+    height: 90px;
+    background-image: url(/App_Themes/Spring/Images/logo.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    vertical-align: middle;
 }
