@@ -10,7 +10,7 @@
     <ParentNodeStyle CssClass="ics-treeview-node-parent" />
     <HoverNodeStyle CssClass="ics-treeview-node-hover" />
     <SelectedNodeStyle CssClass="ics-treeview-node-selected" />
-    <NodeStyle CssClass="ics-treeview-node" ImageUrl="\App_Themes\Default\Images\book_orange.png"/>
+    <NodeStyle CssClass="ics-treeview-node" />
 </ac:IcsTreeView>
 
 <asp:CustomValidator runat="server" ForeColor="Red" CssClass="validator validator-custom" />

@@ -20,7 +20,7 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -50,6 +50,43 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System">
+      <HintPath>System</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>System.Data</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <HintPath>System.Drawing</HintPath>
+    </Reference>
+    <Reference Include="System.Linq">
+      <HintPath>System.Linq</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <HintPath>System.Web</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <HintPath>System.Web.Extensions</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions.Design">
+      <HintPath>System.Web.Extensions.Design</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <HintPath>System.Web.Services</HintPath>
+    </Reference>
+    <Reference Include="System.XML">
+      <HintPath>System.XML</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <HintPath>System.Xml.Linq</HintPath>
+    </Reference>
+    <Reference Include="System.Workflow.Runtime">
+      <HintPath>System.Workflow.Runtime</HintPath>
+    </Reference>
+    <ProjectReference Include="..\Objects\Книги(Objects).csproj">
+      <Project>{086cdb28-2df1-4c14-8806-d6da442a7eed}</Project>
+      <Name>Книги(Objects)</Name>
+    </ProjectReference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-client\log4net.dll</HintPath>
     </Reference>
@@ -285,54 +322,12 @@
     <Reference Include="Stimulsoft.Report.WebDesignSL">
       <HintPath>..\packages\NewPlatform.Flexberry.AspNet.1.4.1\lib\net40\Stimulsoft.Report.WebDesignSL.dll</HintPath>
     </Reference>
-    <Reference Include="System">
-      <HintPath>System</HintPath>
-    </Reference>
-    <Reference Include="System.Data">
-      <HintPath>System.Data</HintPath>
-    </Reference>
-    <Reference Include="System.Drawing">
-      <HintPath>System.Drawing</HintPath>
-    </Reference>
-    <Reference Include="System.Linq">
-      <HintPath>System.Linq</HintPath>
-    </Reference>
-    <Reference Include="System.Web">
-      <HintPath>System.Web</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Extensions">
-      <HintPath>System.Web.Extensions</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Extensions.Design">
-      <HintPath>System.Web.Extensions.Design</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Services">
-      <HintPath>System.Web.Services</HintPath>
-    </Reference>
-    <Reference Include="System.XML">
-      <HintPath>System.XML</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <HintPath>System.Xml.Linq</HintPath>
-    </Reference>
-    <Reference Include="System.Workflow.Runtime">
-      <HintPath>System.Workflow.Runtime</HintPath>
-    </Reference>
-    <ProjectReference Include="..\Objects\Книги%28Objects%29.csproj">
-      <Project>{086cdb28-2df1-4c14-8806-d6da442a7eed}</Project>
-      <Name>Книги%28Objects%29</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Themes\BaseTheme\Pages\MainPage\Images\1832342.png" />
+    <Content Include="1832342.png" />
     <Content Include="App_Themes\BaseTheme\book_orange.png" />
     <Content Include="App_Themes\BaseTheme\Pages\MainPage\Images\app-logo.jpg" />
-    <Content Include="App_Themes\BaseTheme\MyStyle.css" />
     <Content Include="App_Themes\Default\Images\book_orange.png" />
-    <Content Include="App_Themes\Spring\Images\author.png" />
-    <Content Include="App_Themes\Spring\Images\book_orange.png" />
-    <Content Include="App_Themes\Spring\Images\publisher.png" />
-    <Content Include="App_Themes\Spring\MyStyle.css" />
     <Content Include="forms\Avtor\AvtorE.aspx" />
     <Compile Include="forms\Avtor\AvtorE.aspx.cs">
       <DependentUpon>AvtorE.aspx</DependentUpon>
@@ -582,7 +577,7 @@
     <Content Include="App_Themes\BaseTheme\Pages\ExceptionPage\_Variables.less" />
     <Content Include="App_Themes\BaseTheme\Pages\LoginPage\LoginPage.less" />
     <Content Include="App_Themes\BaseTheme\Pages\LoginPage\_Variables.less" />
-    <Content Include="App_Themes\BaseTheme\Pages\MainPage\Images\logo.png" />
+    <Content Include="App_Themes\BaseTheme\Pages\MainPage\Images\app-logo.png" />
     <Content Include="App_Themes\BaseTheme\Pages\MainPage\Images\indicator.gif" />
     <Content Include="App_Themes\BaseTheme\Pages\MainPage\MainPage.less" />
     <Content Include="App_Themes\BaseTheme\Pages\MainPage\_Variables.less" />
@@ -954,24 +949,15 @@
     <Content Include="App_Themes\Smart\_VariablesBasic.less" />
     <None Include="packages.config" />
     <Compile Include="forms\BaseEditForm.cs">
-      <DependentUpon>
-      </DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="forms\BaseListForm.cs">
-      <DependentUpon>
-      </DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="forms\LookUpForm.cs">
-      <DependentUpon>
-      </DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FormUtils.cs">
-      <DependentUpon>
-      </DependentUpon>
-    </Compile>
+    <Compile Include="FormUtils.cs" />
     <Content Include="Web.config" />
     <Content Include="Site1.Master" />
     <Compile Include="Site1.Master.cs">
@@ -1035,6 +1021,46 @@
     <Content Include="Xml\WebControlProvider.xsd" />
     <Content Include="Xml\Bindings\ExampleE.xml" />
     <Content Include="Xml\Sitemaps\Empty.sitemap" />
+    <Content Include="forms\Query4.aspx" />
+    <Compile Include="forms\Query4.aspx.cs">
+      <DependentUpon>Query4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Query4.aspx.designer.cs">
+      <DependentUpon>Query4.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Query3.aspx" />
+    <Compile Include="forms\Query3.aspx.cs">
+      <DependentUpon>Query3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Query3.aspx.designer.cs">
+      <DependentUpon>Query3.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Query2.aspx" />
+    <Compile Include="forms\Query2.aspx.cs">
+      <DependentUpon>Query2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Query2.aspx.designer.cs">
+      <DependentUpon>Query2.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Query5.aspx" />
+    <Compile Include="forms\Query5.aspx.cs">
+      <DependentUpon>Query5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Query5.aspx.designer.cs">
+      <DependentUpon>Query5.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Query1.aspx" />
+    <Compile Include="forms\Query1.aspx.cs">
+      <DependentUpon>Query1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Query1.aspx.designer.cs">
+      <DependentUpon>Query1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1047,12 +1073,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>6500</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost:6500/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
