@@ -13,7 +13,7 @@
     <asp:ContentPlaceHolder ID="AddToHeadPlaceholder" runat="server" />
     <asp:Placeholder ID="FlexberryStyles" runat="server" />
 </head>
-<%--<a href="LoginForm.aspx">LoginForm.aspx</a>
+<%--
     Тэг "body" является отдельным контролом для корректной работы PlaceholderPageContentConnector
     при отсутствии плейсхолдеров "FlexberryScripts" и "FlexberryRawHtml" ("body" должен быть
     отдельным контролом, а не входить в LiteralControl).
@@ -25,7 +25,7 @@
         <div class="page-wrap">
             <div class="page-header">
                 <div class="page-header-image"><a href="/Default.aspx"></a></div>
-                <div class="page-header-caption"><a href="/Default.aspx">Название проекта</a></div>
+                <div class="page-header-caption"><a href="/Default.aspx">Tra-ta-ta</a></div>
                 <div class="page-header-userbar">
                     <asp:Label ID="fio" runat="server" Text="YourUserID" />
                     <asp:LinkButton CssClass="exit-btn" ID="ExitButton" runat="server" OnClick="ExitButtonClickHandler">Выход</asp:LinkButton>

@@ -6,15 +6,15 @@ namespace IIS.Авиакомпания
 
     using Resources;
 
-    public partial class КомпанияИзготовительL : BaseListForm<КомпанияИзготовитель>
+    public partial class СотрудникиВСамолетеL : BaseListForm<СотрудникиВСамолете>
     {
         /// <summary>
         /// Конструктор без параметров,
         /// инициализирует свойства, соответствующие конкретной форме.
         /// </summary>
-        public КомпанияИзготовительL() : base(КомпанияИзготовитель.Views.КомпанияИзготовительL)
+        public СотрудникиВСамолетеL() : base(СотрудникиВСамолете.Views.СотрудникиВСамолетеL)
         {
-            EditPage = КомпанияИзготовительE.FormPath;
+            EditPage = СотрудникиВСамолетеE.FormPath;
         }
                 
         /// <summary>
@@ -22,7 +22,7 @@ namespace IIS.Авиакомпания
         /// </summary>
         public static string FormPath
         {
-            get { return "~/forms/KompaniyaIzgotovitel/KompaniyaIzgotovitelL.aspx"; }
+            get { return "~/forms/SotrudnikiVSamolete/SotrudnikiVSamoleteL.aspx"; }
         }
 
         /// <summary>

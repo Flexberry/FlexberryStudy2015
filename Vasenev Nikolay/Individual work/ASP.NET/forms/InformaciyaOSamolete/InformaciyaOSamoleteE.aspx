@@ -26,19 +26,11 @@
 <div class="clearfix">
   <asp:Label CssClass="descLbl" ID="ctrlВозрастLabel" runat="server" Text="Возраст" EnableViewState="False">
 </asp:Label>
-<ac:AlphaNumericTextBox CssClass="descTxt" ID="ctrlВозраст" Type="Numeric" runat="server">
-</ac:AlphaNumericTextBox>
-
+<div class="descTxt">
+    <ac:DatePicker ID="ctrlВозраст" runat="server"/>
 </div>
-<div class="clearfix">
-  <asp:Label CssClass="descLbl" ID="ctrlКомпанияИзготовительLabel" runat="server" Text="Компания изготовитель" EnableViewState="False">
-</asp:Label>
-<ac:MasterEditorAjaxLookUp ID="ctrlКомпанияИзготовитель" CssClass="descTxt" runat="server" ShowInThickBox="True" Autocomplete="true" />
-
-<asp:RequiredFieldValidator ID="ctrlКомпанияИзготовительValidator" runat="server" ControlToValidate="ctrlКомпанияИзготовитель"
-ErrorMessage="Не указано: КомпанияИзготовитель" EnableClientScript="true" ValidationGroup="savedoc">*</asp:RequiredFieldValidator>
-
 </div>
+<br/>
 <fieldset ID="ctrl_fsТип" style="clear: left">
 	<legend>Тип</legend>
 	<div class="clearfix">
