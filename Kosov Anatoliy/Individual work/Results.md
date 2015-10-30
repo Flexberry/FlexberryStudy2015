@@ -47,7 +47,7 @@
     </asp:Content>
     ```
     
-    Чтобы в ContentPlaceHolder0 сожно было добавлять свои скрипты, нужно поправить web.config приложения:
+    Чтобы в ContentPlaceHolder0 можно было добавлять свои скрипты, нужно поправить web.config приложения:
     Заменить
     ```
     <register type="NewPlatform.Flexberry.Web.Http.IPageContentConnector, NewPlatform.Flexberry.Web.Http"
