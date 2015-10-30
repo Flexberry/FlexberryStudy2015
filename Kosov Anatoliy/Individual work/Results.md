@@ -31,7 +31,7 @@
    пришедшее на клиент в разметке, будет отличаться от ожидаемого, и стили посыпятся.
    Лучше привязываться к именам классов.
 2. Чтобы на рабочем столе выполнялся какой-либо кастомный JS, Default.aspx должна выглядеть примерно так:
-   ```xml
+   ```
    <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="desktopDiv">
         <asp:Localize Text="<%$ Resources: Resource, Home_Page %>" runat="server"></asp:Localize><br />
@@ -46,14 +46,16 @@
     </script>
     </asp:Content>
     ```
+    
     Чтобы в ContentPlaceHolder0 сожно было добавлять свои скрипты, нужно поправить web.config приложения:
     Заменить
-    ```xml
+    ```
     <register type="NewPlatform.Flexberry.Web.Http.IPageContentConnector, NewPlatform.Flexberry.Web.Http"
                    mapTo="NewPlatform.Flexberry.Web.Http.FilterPageContentConnector, NewPlatform.Flexberry.Web.Http" />
    ```
+   
     на
-    ```xml
+    ```
     <register type="NewPlatform.Flexberry.Web.Http.IPageContentConnector, NewPlatform.Flexberry.Web.Http"
                     mapTo="NewPlatform.Flexberry.Web.Http.PlaceholderPageContentConnector, NewPlatform.Flexberry.Web.Http" />
    ```
