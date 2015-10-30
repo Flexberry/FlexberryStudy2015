@@ -1,0 +1,6 @@
+[submodule "Storehouse_workstation"]
+    path = Rudskoy Vladislav/Labs/Storehouse_workstation
+    url = https://github.com/rudskoy/workstation-app.git
+[submodule "nri_network"]
+    path = Rudskoy Vladislav/Individual work/nri_network
+    url = https://github.com/rudskoy/nri.git
