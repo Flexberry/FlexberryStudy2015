@@ -1,0 +1,279 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Comfortaa&subset=latin,cyrillic);
+
+*{
+    font-family: 'Comfortaa', cursive;
+    letter-spacing:2px;
+}
+
+body{
+    background-color:#a44a3e;    
+}
+
+.login-form{
+    background:#e6e6e6;
+}
+
+.container{
+    display:block;
+}
+
+.login-form .login-form-header{
+    margin:0 auto;
+    padding:64px 0 16px;
+    text-align:center;
+    text-shadow:0 1px 1px #fff;
+    color:#666;
+    font-size:22px;
+    background-image:none;
+}
+
+.login-form-inner .login-form-input {
+    width: 100%;
+}
+
+input[type=text], input[type=password], input[type=datetime], input[type=date], input[type=time], textarea, select {
+    display: inline-block;
+    margin-bottom: 0;
+    color: #555;
+    font-size: 14px;
+    line-height: 20px;
+    vertical-align: middle;
+    -webkit-box-shadow: inset 0 1px 1px #000;
+    -moz-box-shadow: inset 0 1px 1px #000;
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px #000;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border linear .2s,box-shadow linear .2s;
+    -moz-transition: border linear .2s,box-shadow linear .2s;
+    -o-transition: border linear .2s,box-shadow linear .2s;
+    transition: border linear .2s,box-shadow linear .2s;
+    outline: 0;
+}
+input[type=text], input[type=password], input[type=datetime], input[type=date], input[type=time], textarea, select {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 4px 6px;
+    border: 1px solid;
+    border-color: #ccc;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    background: #fff;
+    height: 30px;
+}
+textarea, input, select {
+    font-family: inherit;
+    font-size: 1em;
+}
+
+.login-form .login-form-inner .login-form-btn {
+    margin-top: 16px;
+    padding-right: 24px;
+    padding-left: 24px;
+    height: 37px;
+    font-size: 16px;
+}
+.login-form-inner .login-form-btn {
+    float: right;
+}
+
+.ics-btn, #popup_panel input[type=button] {
+    display: inline-block;
+    margin-bottom: 0;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #e5e5e5;
+    background-image: -moz-linear-gradient(top,#fff,#cecece);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#cecece));
+    background-image: -webkit-linear-gradient(top,#fff,#cecece);
+    background-image: -o-linear-gradient(top,#fff,#cecece);
+    background-image: linear-gradient(to bottom,#fff,#cecece);
+    color: #333;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    -moz-box-shadow: inset 0 0 1px 1px #fff;
+    -webkit-box-shadow: inset 0 0 1px 1px #fff;
+    box-shadow: inset 0 0 1px 1px #fff;
+    text-shadow: 0 1px 1px #fff;
+    font-size: 13px;
+    line-height: 20px;
+    cursor: pointer;
+}
+textarea, input, select {
+    font-family: inherit;
+    font-size: 1em;
+}
+
+.login-form .login-form-inner {
+    box-shadow: 0 1px 8px rgba(0,0,0,.3),0 0 40px rgba(0,0,0,.1);
+    font-size: 14px;
+}
+
+.login-form-inner {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 365px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    background: #fff;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.login-form-inner>h2{
+    margin: 0 0 16px;
+    color: #666;
+    font-size: 22px;
+    text-align: center;
+}
+
+.login-form-inner>label{
+    margin-top:3px;
+}
+
+.login-form-inner>input {
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 36px;
+}
+
+#conteiner{
+    margin:auto;
+    padding:0px; 
+    max-width:1920px;
+    min-width:800px;
+    max-height:1080px;
+    min-height:600px;
+}
+
+#github{
+    margin-left:10px;
+}
+
+.page-wrap{
+    width:100%;
+}
+
+.page-header{
+    background-color:#f0f3e8;
+    margin-bottom:30px;
+    width:100%;
+    padding:0px;
+}
+
+.page-header-caption{
+    position:relative;
+    left:15%;
+    width:80%;
+}
+
+.page-header-caption>.icons{
+    float:right;
+    position:relative;
+    top:30px;
+}
+
+#pageBlockTreeview{
+    position:relative;
+    left:15%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color:#fbfcf7;
+    margin-bottom:30px;
+    border:none;
+}
+
+#pageBlockContent{
+    background-color:#fbfcf7;
+    position:relative;
+    left:17%;
+    width: 50%;
+    margin:0px;
+    margin-bottom:30px;
+    border:none;
+    padding:3px;
+}
+
+.icons>img{
+   opacity: 0.8;
+}
+
+#exit{
+    margin-left:10px;
+}
+
+#pageContent{
+    background-color:#fbfcf7;
+    display:none;
+}
+
+.page-footer{
+    background-color:#191826;
+    color:white;
+    width:100% !important;
+}
+
+#footer-bar{
+    width:30%;
+    position:relative;
+    left:15%
+}
+
+#Jockei{
+    width:30%;
+    text-align:center;
+    float:left;
+    color:black;
+    padding-top:10px;
+    padding-bottom:10px;
+    margin: 0 1.6% 0 1.6%;
+}
+
+#Jockei>img{
+    width:90%;
+    height:45%;
+    margin: 5%;
+}
+
+#Horse{
+    width:30%;
+    text-align:center;
+    float:left;
+    color:black;
+    padding-top:10px;
+    padding-bottom:10px;
+    margin: 0 1.6% 0 1.6%;
+}
+
+#Horse>img{
+    width:90%;
+    height:45%;
+    margin: 5%;
+}
+
+
+#Konushnya{
+    width:30%;
+    text-align:center;
+    float:right;
+    color:black;
+    padding-top:10px;
+    padding-bottom:10px;
+    margin: 0 1.6% 0 1.6%;
+}
+
+#Konushnya>img{
+    width:90%;
+    height:45%;
+    margin: 5%;
+}
