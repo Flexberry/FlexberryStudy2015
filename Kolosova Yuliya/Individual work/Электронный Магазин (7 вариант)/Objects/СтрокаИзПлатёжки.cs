@@ -32,9 +32,7 @@ namespace IIS.Электронный_Магазин
     [View("СтрокаИзПлатёжкиE", new string[] {
             "Количество as \'Количество\'",
             "Стоимость as \'Стоимость\'",
-            "Товар as \'Товар\'",
-            "Товар.Наименование as \'Наименование\'"}, Hidden=new string[] {
-            "Товар.Наименование"})]
+            "Товар as \'Товар\'"})]
     [MasterViewDefineAttribute("СтрокаИзПлатёжкиE", "Товар", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Наименование")]
     public class СтрокаИзПлатёжки : ICSSoft.STORMNET.DataObject
     {

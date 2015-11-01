@@ -10,14 +10,12 @@
 
 namespace IIS.Электронный_Магазин {
     
-    
     /// <summary>
-    /// СкладL class.
+    /// ПоступлениеТовараE class.
     /// </summary>
     /// <remarks>
     /// Auto-generated class.
     /// </remarks>
-    public partial class СкладL {
-        //объявление WebObjectListView1 перенесено в BaseListForm.cs
+    public partial class ПоступлениеТовараE {
     }
 }

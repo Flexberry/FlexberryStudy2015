@@ -6,15 +6,15 @@ namespace IIS.Электронный_Магазин
 
     using Resources;
 
-    public partial class СкладL : BaseListForm<Склад>
+    public partial class ПоступлениеТовараL : BaseListForm<ПоступлениеТовара>
     {
         /// <summary>
         /// Конструктор без параметров,
         /// инициализирует свойства, соответствующие конкретной форме.
         /// </summary>
-        public СкладL() : base(Склад.Views.СкладL)
+        public ПоступлениеТовараL() : base(ПоступлениеТовара.Views.ПоступлениеТовараL)
         {
-            EditPage = СкладE.FormPath;
+            EditPage = ПоступлениеТовараE.FormPath;
         }
                 
         /// <summary>
@@ -22,7 +22,7 @@ namespace IIS.Электронный_Магазин
         /// </summary>
         public static string FormPath
         {
-            get { return "~/forms/Sklad/SkladL.aspx"; }
+            get { return "~/forms/PostuplenieTovara/PostuplenieTovaraL.aspx"; }
         }
 
         /// <summary>

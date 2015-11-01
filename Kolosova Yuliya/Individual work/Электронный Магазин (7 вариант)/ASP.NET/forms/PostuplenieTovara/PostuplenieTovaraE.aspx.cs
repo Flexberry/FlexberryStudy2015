@@ -6,13 +6,13 @@ namespace IIS.Электронный_Магазин
     using ICSSoft.STORMNET.Web.Controls;
     using ICSSoft.STORMNET.Web.AjaxControls;
     
-    public partial class СкладE : BaseEditForm<Склад>
+    public partial class ПоступлениеТовараE : BaseEditForm<ПоступлениеТовара>
     {
         /// <summary>
         /// Конструктор формы.
         /// </summary>
-        public СкладE()
-            : base(Склад.Views.СкладE)
+        public ПоступлениеТовараE()
+            : base(ПоступлениеТовара.Views.ПоступлениеТовараE)
         {
         }
 
@@ -21,7 +21,7 @@ namespace IIS.Электронный_Магазин
         /// </summary>
         public static string FormPath
         {
-            get { return "~/forms/Sklad/SkladE.aspx"; }
+            get { return "~/forms/PostuplenieTovara/PostuplenieTovaraE.aspx"; }
         }
 
         /// <summary>
