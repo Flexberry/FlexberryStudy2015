@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Security(BusinessServers)</name>
+    </assembly>
+    <members>
+        <member name="P:ICSSoft.STORMNET.Security.РаботаСЛинкамиРолей.SecurityBusinessServerPlugins">
+            <summary>
+            Массив плагинов к бизнес-серверу, которые будут вызываться при срабатывании событий этого бизнес-сервера.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.РаботаСЛинкамиРолей.GetLimitArray(ICSSoft.STORMNET.FunctionalLanguage.ObjectType,System.String,System.Type,System.String,System.Object)">
+            <summary>
+            Получение объектов, удовлетворяющих ограничению, сформированному на основании переданных параметров.
+            Запрос производится через сервис данных <see cref="P:ICSSoft.STORMNET.Business.DataServiceProvider.DataService"/>.
+            </summary>
+            <param name="langdefObjecttype">Тип свойства, на которое накладывается ограничение.</param>
+            <param name="objStringedView">Свойство, на которое накладывается ограничение.</param>
+            <param name="dataObjectType">Тип объектов, на которые накладывается ограничение.</param>
+            <param name="view">Имя представления, по которому накладывается ограничение.</param>
+            <param name="parameters">Значение, которому должно быть равно свойство, по которому производится ограничение.</param>
+            <returns>Объекты, удовлетворяющие сформированному ограничению.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.РаботаСЛинкамиРолей.GetLimitArray(ICSSoft.STORMNET.FunctionalLanguage.ObjectType,System.String,System.Type,ICSSoft.STORMNET.View,System.Object,ICSSoft.STORMNET.Business.IDataService)">
+            <summary>
+            Получение объектов, удовлетворяющих ограничению, сформированному на основании переданных параметров.
+            </summary>
+            <param name="langdefObjecttype">Тип свойства, на которое накладывается ограничение.</param>
+            <param name="objStringedView">Свойство, на которое накладывается ограничение.</param>
+            <param name="dataObjectType">Тип объектов, на которые накладывается ограничение.</param>
+            <param name="view">Представление, по которому накладывается ограничение.</param>
+            <param name="parameters">Значение, которому должно быть равно свойство, по которому производится ограничение.</param>
+            <param name="dataService">Сервис данных, через который пойдёт запрос к БД.</param>
+            <returns>Объекты, удовлетворяющие сформированному ограничению.</returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.РаботаСЛинкамиРолей.GetLimitArray(ICSSoft.STORMNET.FunctionalLanguage.ObjectType,System.String,System.Type,System.String,System.Object,System.String)">
+            <summary>
+            Получить объекты из БД
+            </summary>
+            <param name="langdefObjecttype">Тип объекта данных. Обрабатывается только строковый иначе вернется null</param>
+            <param name="objStringedView"></param>
+            <param name="dataObjectType"></param>
+            <param name="view"></param>
+            <param name="parameters"></param>
+            <param name="linkTo">Дополнительное ограничение на тип агента</param>
+            <returns></returns>
+        </member>
+        <member name="M:ICSSoft.STORMNET.Security.РаботаСЛинкамиРолей.ProcessPluginsCall(ICSSoft.STORMNET.DataObject,System.Collections.ArrayList)">
+            <summary>
+            Выполнение вызовов плагинов.
+            </summary>
+            <param name="updatedObject">Объект, для которого был вызван этот бизнес-сервер.</param>
+            <param name="objsList">Дополнительные объекты, которые были произведены в бизнес-сервере, для передачи в плагин.</param>
+            <returns>Перечень объектов, которые произвёл плагин.</returns>
+        </member>
+    </members>
+</doc>

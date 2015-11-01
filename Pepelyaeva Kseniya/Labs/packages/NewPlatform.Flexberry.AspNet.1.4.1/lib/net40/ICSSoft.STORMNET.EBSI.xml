@@ -1,0 +1,1994 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ICSSoft.STORMNET.EBSI</name>
+    </assembly>
+    <members>
+        <member name="T:Scriptizer.RunTime.EmptyArgumentInEventException">
+            <summary>
+            при генерации события был указан пустой (null) аргумент события
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.EmptyArgumentInEventException.Sender">
+            <summary>
+            объект, который сгенерил событие
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.EmptyArgumentInEventException.EventName">
+            <summary>
+            имя события, которое обрабатывается
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.EmptyArgumentInEventException.#ctor(System.String,System.String)">
+            <summary>
+            конструктор исключения
+            </summary>
+            <param name="sender"></param>
+            <param name="eventName"></param>
+        </member>
+        <member name="T:Scriptizer.RunTime.ScriptInterpreterBusyException">
+            <summary>
+            попытка запустить скрипт, когда данным интерпретером уже выполняется скрипт
+            </summary>
+        </member>
+        <member name="T:Scriptizer.RunTime.NoSuchScriptException">
+            <summary>
+            попытка выполнить скрипт/действие из скрипта, которого нет в коллекции интерпретера
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoSuchScriptException.ScriptName">
+            <summary>
+            имя скрипта
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.NoSuchScriptException.#ctor(System.String)">
+            <summary>
+            конструктор исключения
+            </summary>
+            <param name="scriptName"></param>
+        </member>
+        <member name="T:Scriptizer.RunTime.NoStartActionException">
+            <summary>
+            невозможно найти стартовое действие в скрипте
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoStartActionException.ScriptName">
+            <summary>
+            скрипт, в котором нет стартового действия
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.NoStartActionException.#ctor(System.String)">
+            <summary>
+            конструктор исключения
+            </summary>
+            <param name="scriptName"></param>
+        </member>
+        <member name="T:Scriptizer.RunTime.NoActionContextToRemoveException">
+            <summary>
+            невозможно удалить контекст действия, так как его нет
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoActionContextToRemoveException.Sender">
+            <summary>
+            объект, который сгенерил событие
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoActionContextToRemoveException.EventName">
+            <summary>
+            имя события, которое обрабатывается
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.NoActionContextToRemoveException.#ctor(System.String,System.String)">
+            <summary>
+            конструктор исключения
+            </summary>
+            <param name="sender"></param>
+            <param name="eventName"></param>
+        </member>
+        <member name="T:Scriptizer.RunTime.NoSuchVariableException">
+            <summary>
+            не существует переменной в коллекции 
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoSuchVariableException.VariableName">
+            <summary>
+            имя переменной
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.NoSuchVariableException.#ctor(System.String)">
+            <summary>
+            конструктор исключения
+            </summary>
+            <param name="variableName"></param>
+        </member>
+        <member name="T:Scriptizer.RunTime.NoDestActionException">
+            <summary>
+            не существует действия для перехода
+            </summary>
+        </member>
+        <member name="T:Scriptizer.RunTime.SomeErrorInConditionException">
+            <summary>
+            произошла ошибка при попытке вычислить значение условия
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.SomeErrorInConditionException.Condition">
+            <summary>
+            условие, в котором произошла ошибка
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.SomeErrorInConditionException.#ctor(System.String)">
+            <summary>
+            конструктор исключения
+            </summary>
+            <param name="condition"></param>
+        </member>
+        <member name="T:Scriptizer.RunTime.NoSuchFieldInEventArgsException">
+            <summary>
+            невозможно найти поле в аргументе события
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoSuchFieldInEventArgsException.EventArgsType">
+            <summary>
+            тип класса с аргументами
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoSuchFieldInEventArgsException.FieldName">
+            <summary>
+            имя поля
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.NoSuchFieldInEventArgsException.#ctor(System.String,System.String)">
+            <summary>
+            конструктор исключения
+            </summary>
+            <param name="eventArgsType"></param>
+            <param name="fieldName"></param>
+        </member>
+        <member name="T:Scriptizer.RunTime.NoSuchEventException">
+            <summary>
+            невозможно найти событие у объекта
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoSuchEventException.TypeOfObject">
+            <summary>
+            тип объекта
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoSuchEventException.EventName">
+            <summary>
+            имя события
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.NoSuchEventException.#ctor(System.String,System.String)">
+            <summary>
+            конструктор исключения
+            </summary>
+            <param name="typeOfObject"></param>
+            <param name="eventName"></param>
+        </member>
+        <member name="T:Scriptizer.RunTime.CantAddEventHandlerToNullObject">
+            <summary>
+            Невозможно добавить обработчик события к пустому объекту
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.CantAddEventHandlerToNullObject.#ctor(System.String,System.String,System.String)">
+            <summary>
+             Невозможно добавить обработчик события к пустому объекту
+            </summary>
+            <param name="actionName">Действие</param>
+            <param name="t">Тип</param>
+            <param name="evname">Событие</param>
+        </member>
+        <member name="T:Scriptizer.RunTime.NoStoredCatcherException">
+            <summary>
+            нет подходящего класса для обработки события
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoStoredCatcherException.TypeOfObject">
+            <summary>
+            тип объекта
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoStoredCatcherException.EventName">
+            <summary>
+            имя события
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.NoStoredCatcherException.#ctor(System.String,System.String)">
+            <summary>
+            конструктор исключения
+            </summary>
+            <param name="typeOfObject"></param>
+            <param name="eventName"></param>
+        </member>
+        <member name="T:Scriptizer.RunTime.NoAppropriateCatcherException">
+            <summary>
+            нет подходящего класса для обработки события
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoAppropriateCatcherException.TypeOfObject">
+            <summary>
+            тип объекта
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoAppropriateCatcherException.EventName">
+            <summary>
+            имя события
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.NoAppropriateCatcherException.#ctor(System.String,System.String)">
+            <summary>
+            конструктор исключения
+            </summary>
+            <param name="typeOfObject"></param>
+            <param name="eventName"></param>
+        </member>
+        <member name="T:Scriptizer.RunTime.InvalidConstValueException">
+            <summary>
+            ошибка при вычислении константы
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.InvalidConstValueException.m_sType">
+            <summary>
+             тип
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.InvalidConstValueException.m_sValue">
+            <summary>
+            Значение
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.InvalidConstValueException.#ctor(System.String,System.String)">
+            <summary>
+             Invalid const value
+            </summary>
+            <param name="sType">тип</param>
+            <param name="sValue">значение</param>
+        </member>
+        <member name="P:Scriptizer.RunTime.InvalidConstValueException.Type">
+            <summary>
+             Тип
+            </summary>
+        </member>
+        <member name="P:Scriptizer.RunTime.InvalidConstValueException.Value">
+            <summary>
+             Значение
+            </summary>
+        </member>
+        <member name="T:Scriptizer.RunTime.NoSuchTypeFound">
+            <summary>
+            нет типа объекта в подключенных сборках
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoSuchTypeFound.TypeOfObject">
+            <summary>
+            тип объекта
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.NoSuchTypeFound.#ctor(System.String)">
+            <summary>
+            конструктор исключения
+            </summary>
+            <param name="typeOfObject"></param>
+        </member>
+        <member name="T:Scriptizer.RunTime.NoSuchMethodForMethodActionException">
+            <summary>
+            невозможно найти метод 
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoSuchMethodForMethodActionException.TypeOfObject">
+            <summary>
+            тип объекта
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoSuchMethodForMethodActionException.MethodName">
+            <summary>
+            имя метода
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.NoSuchMethodForMethodActionException.#ctor(System.String,System.String)">
+            <summary>
+            конструктор исключения
+            </summary>
+            <param name="typeOfObject"></param>
+            <param name="methodName"></param>
+        </member>
+        <member name="T:Scriptizer.RunTime.NoSuchParameterException">
+            <summary>
+            невозможно найти описание параметра
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoSuchParameterException.TypeOfObject">
+            <summary>
+            тип объекта
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoSuchParameterException.MethodName">
+            <summary>
+            имя метода
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoSuchParameterException.ParamName">
+            <summary>
+            имя параметра
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.NoSuchParameterException.#ctor(System.String,System.String,System.String)">
+            <summary>
+            конструктор исключения
+            </summary>
+            <param name="typeOfObject"></param>
+            <param name="methodName"></param>
+            <param name="paramName"></param>
+        </member>
+        <member name="T:Scriptizer.RunTime.NoSuchActionForExternActionException">
+            <summary>
+            невозможно найти действие во внешнем скрипте
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoSuchActionForExternActionException.ScriptName">
+            <summary>
+            имя внешнего скрипта
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.NoSuchActionForExternActionException.ActionName">
+            <summary>
+            имя действия во внешнем скрипте
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.NoSuchActionForExternActionException.#ctor(System.String,System.String)">
+            <summary>
+            конструктор исключения
+            </summary>
+            <param name="scriptName"></param>
+            <param name="actionName"></param>
+        </member>
+        <member name="T:ICSSoft.STORMNET.EBSI.ScriptDebugger">
+            <summary>
+            Summary description for ScriptDebugger.
+            </summary>
+        </member>
+        <member name="F:ICSSoft.STORMNET.EBSI.ScriptDebugger.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.EBSI.ScriptDebugger.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:ICSSoft.STORMNET.EBSI.ScriptDebugger.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.AddActionScriptedParameter">
+            <summary>
+            Summary description for AddCollectionChange.
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.AddActionScriptedParameter.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.AddActionScriptedParameter.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.AddActionScriptedParameter.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.AddActionScriptedParameter.resultstring">
+            <summary>
+            возвращаемая строка без типов
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.AddActionScriptedParameter.resulttypedstring">
+            <summary>
+            возвращаемая строка с типами
+            </summary>
+        </member>
+        <member name="P:STORMCASE.UML.ebsd.AddActionScriptedParameter.IsReasonToShow">
+            <summary>
+            есть ли смысл показывать форму
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.AddAssembly">
+            <summary>
+            Summary description for AddScriptParameter.
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.AddAssembly.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.AddAssembly.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.AddAssembly.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.AddCollectionChange">
+            <summary>
+            Summary description for AddCollectionChange.
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.AddCollectionChange.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.AddCollectionChange.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.AddCollectionChange.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.AddCollectionChange.resultstring">
+            <summary>
+            возвращаемая строка без типов
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.AddCollectionChange.resulttypedstring">
+            <summary>
+            возвращаемая строка с типами
+            </summary>
+        </member>
+        <member name="P:STORMCASE.UML.ebsd.AddCollectionChange.IsReasonToShow">
+            <summary>
+            есть ли смысл показывать форму
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.AddScriptParameter">
+            <summary>
+            Summary description for AddScriptParameter.
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.AddScriptParameter.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.AddScriptParameter.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.AddScriptParameter.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.EBSD">
+            <summary>
+            Диаграмма классов
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EBSD.#ctor">
+            <summary>
+            конструктор - настройка возможных элементов
+            </summary>
+        </member>
+        <member name="P:STORMCASE.UML.ebsd.EBSD.STORMCASE#Primitives#IDiagramMethod#Name">
+            <summary>
+            имя диаграммы
+            </summary>
+        </member>
+        <member name="P:STORMCASE.UML.ebsd.EBSD.STORMCASE#Primitives#IDiagramMethod#PrimitiveTypes">
+            <summary>
+            коллекция возможных типов для примитивов
+            </summary>
+        </member>
+        <member name="P:STORMCASE.UML.ebsd.EBSD.STORMCASE#Primitives#IDiagramMethod#Primitives">
+            <summary>
+            коллекция примитивов
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.CommonPlaceStandardScript.#ctor(STORMCASE.Primitives.DrawStyle,STORMCASE.Repository.Diagram,STORMCASE.Primitives.VisualControllerProperties)">
+            <summary>
+            Конструктор
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.CommonPlaceStandardScript.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Конструктор для десериализации
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EditPlaceStandardScript.#ctor(STORMCASE.Primitives.DrawStyle,STORMCASE.Repository.Diagram,STORMCASE.Primitives.VisualControllerProperties)">
+            <summary>
+            Конструктор
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EditPlaceStandardScript.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Конструктор для десериализации
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ListPlaceStandardScript.#ctor(STORMCASE.Primitives.DrawStyle,STORMCASE.Repository.Diagram,STORMCASE.Primitives.VisualControllerProperties)">
+            <summary>
+            Конструктор
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ListPlaceStandardScript.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Конструктор для десериализации
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.ScriptParameters.text">
+            <summary>
+            текстовый блок для представления текста
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.ScriptParameters.textstyle">
+            <summary>
+            стиль, с которым будет рисоваться текст
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.ScriptParameters.borderheight">
+            <summary>
+            зазор между верхней границей и именем
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.ScriptParameters.borderwidth">
+            <summary>
+            зазор между левой границей и именем
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.ScriptParameters.textoffset">
+            <summary>
+            зазор между разделитьельной полосой и текстом
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.ScriptParameters.minWidthOfObject">
+            <summary>
+            минимальная ширина объекта
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.ScriptParameters.bIsFolded">
+            <summary>
+            "свернут" ли объект
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptParameters.GetPlaceInformation">
+            <summary>
+            информация о возможном месторасположении
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptParameters.#ctor(STORMCASE.Primitives.DrawStyle,STORMCASE.Repository.Diagram,STORMCASE.Primitives.VisualControllerProperties)">
+            <summary>
+            параметры скрипта
+            </summary>
+            <param name="drawstyle">стиль для рисования</param>
+            <param name="diagram">диаграмма в репозитарии</param>
+            <param name="controllerproperties">общие визуальные свойства контроллера</param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptParameters.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            состояние объекта (конструктор десериализации)
+            </summary>
+            <param name="info">параметры десериализации</param>
+            <param name="context">параметры десериализации</param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptParameters.prv_UpdateTextColor">
+            <summary>
+            обновить цвет текста
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptParameters.prv_RecalcNamePosition">
+            <summary>
+            пересчет позиции текста с именем
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptParameters.prv_RecalcTextPosition">
+            <summary>
+            пересчет позиции теста с текстом
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptParameters.Paint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            отрисовка
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptParameters.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Реализация стандартного интерфейса сериализации -- получение данных 
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptParameters.GetContextMenuItems(System.Windows.Forms.MouseEventArgs,System.Boolean)">
+            <summary>
+            добавить специфические меню к контекстному меню
+            </summary>
+            <param name="eg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptParameters.FireContextMenu(System.String)">
+            <summary>
+            реакция на выбор контекстного меню
+            </summary>
+            <param name="MenuName"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptParameters.prv_Fold">
+            <summary>
+            "свернуть" класс
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptParameters.prv_Unfold">
+            <summary>
+            "развернуть" класс
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptParameters.TextBlockEditFinished(STORMCASE.Primitives.TextBlock,STORMCASE.Primitives.TextBlockEditFinishedEventArgs)">
+            <summary>
+            Реакция на окончание редактирования текстового поля
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptParameters.CheckTextEdit(System.Windows.Forms.MouseEventArgs,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            проверка на редактирование текста
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.CommonAction">
+            <summary>
+            Действие, состоит из 3-х текстов
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.CommonAction.text1">
+            <summary>
+            текстовый блок с средним текстом
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.CommonAction.textstyle">
+            <summary>
+            стиль, с помощью которого необходимо будет рисовать нижний текст
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.CommonAction.borderheight">
+            <summary>
+            смещение между текстом и разделительной линией
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.CommonAction.borderwidth">
+            <summary>
+            зазор между текстом и боковыми границами
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.CommonAction.minWidthOfObject">
+            <summary>
+            минимальный размер объекта
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.CommonAction.text2">
+            <summary>
+            текстовый блок с нижним текстом
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.CommonAction.m_bUseText2">
+            <summary>
+            используется ли нижний текст (вычисляется позиция, рисуется)
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.CommonAction.bIsActive">
+            <summary>
+            является ли активным (подсвечивается на диаграмме) в процессе выполнения
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.CommonAction.m_bNeedToUpdateRepositoryObjectInDeserializationChilds">
+            <summary>
+            надо ли еще раз обновлять репозитарный объект с текстами наследников в процессе десериализации
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.CommonAction.GetRepositoryObject">
+            <summary>
+            вернуть актуальный объект репозитария
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.CommonAction.prv_SetRepositaryObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.CommonAction.Paint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            отрисовка
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.CommonAction.CanToBeConnected(STORMCASE.Primitives.Connector)">
+            <summary>
+            проверка, можно ли подсоединить коннектор
+            </summary>
+            <param name="connector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.CommonAction.prv_RecalcNamePosition">
+            <summary>
+            перевычислить положение текстового блока с именем
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.CommonAction.prv_GetAdditionalHeight">
+            <summary>
+            позволяет увеличить высоту объекта для потомков
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.CommonAction.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            записать данные для сериализации
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.CommonAction.prv_GetDistanceFromPoint(System.Drawing.Point,System.Int32)">
+            <summary>
+            возвращает "расстояние" по периметру от левого верхнего угла. 
+            Возвращаемые значения:	0-100 - верхняя грань
+            						100-200 - правая грань
+            						200-300 - нижняя грань
+            						300-400 - левая грань
+            </summary>
+            <param name="pt">точка, до которой нужно считать расстояние</param>
+            <param name="segmno">на каком сегменте находится точка</param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.CommonAction.prv_GetPointFromDistance(System.Single,System.Int32,System.Drawing.Point@,System.Int32@)">
+            <summary>
+            по расстоянию вычислить точку и сегмент, к которой она принадлежит
+            </summary>
+            <param name="distance"></param>
+            <param name="pt"></param>
+            <param name="segmno"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.CommonAction.prv_GetPointToNewEvent(System.Int32)">
+            <summary>
+            возвращает наиболее удобное место для вставки нового события
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.CommonAction.PlaceEvent(STORMCASE.UML.ebsd.Event)">
+            <summary>
+            добавить примитив (место выбирается автоматически)
+            </summary>
+            <param name="ev"></param>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.EmptyAction">
+            <summary>
+            Класс, представляющий рисование действия метода
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EmptyAction.OnCreated">
+            <summary>
+            вызывается сразу после намазывания на диаграмму
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EmptyAction.CheckTextEdit(System.Windows.Forms.MouseEventArgs,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Нажимание клавиши мыши
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EmptyAction.SetRepositoryObjectDefsToTextBlocks(System.Boolean)">
+            <summary>
+            синхронизировать примитив с объектом из репозитария
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EmptyAction.SetTextBlocksToRepositioryObjectDefs">
+            <summary>
+            синхронизировать объект из репозитария с текстовыми блоками
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EmptyAction.TextBlockEditFinished(STORMCASE.Primitives.TextBlock,STORMCASE.Primitives.TextBlockEditFinishedEventArgs)">
+            <summary>
+            реакция на окончание редактирования списка с типами
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EmptyAction.GetObjectType">
+            <summary>
+            получить тип, который прописан в данном примитиве
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EmptyAction.CheckEventInfo(System.Reflection.EventInfo)">
+            <summary>
+            проверить, преобразуется ли второй параметр события к EventArgs
+            </summary>
+            <param name="ev"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EmptyAction.GetContextMenuItems(System.Windows.Forms.MouseEventArgs,System.Boolean)">
+            <summary>
+            обновить контекстное меню
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EmptyAction.FireContextMenu(System.String)">
+            <summary>
+            обработка выбора в контекстном меню
+            </summary>
+            <param name="MenuName"></param>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.Action">
+            <summary>
+            Класс, представляющий рисование действия метода
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Action.OnCreated">
+            <summary>
+            вызывается сразу после намазывания на диаграмму
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Action.SetRepositoryObjectDefsToTextBlocks(System.Boolean)">
+            <summary>
+            синхронизировать примитив с объектом из репозитария
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Action.SetTextBlocksToRepositioryObjectDefs">
+            <summary>
+            синхронизировать объект из репозитария с текстовыми блоками
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Action.GetMethodInfo">
+            <summary>
+            получить информацию о методе
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Action.GetContextMenuItems(System.Windows.Forms.MouseEventArgs,System.Boolean)">
+            <summary>
+            обновить контекстное меню
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Action.FireContextMenu(System.String)">
+            <summary>
+            обработка выбора в контекстном меню
+            </summary>
+            <param name="MenuName"></param>
+        </member>
+        <member name="P:STORMCASE.UML.ebsd.Action.MethodName">
+            <summary>
+            имя метода для вызова
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.ActionWithCreate">
+            <summary>
+            Класс, представляющий рисование действия метода
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ActionWithCreate.prv_GetAdditionalHeight">
+            <summary>
+            возвращаем высоту звездочки
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ActionWithCreate.Paint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            дополнительно к стандартному коду добавляем код по отрисовке звездочки
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.ScriptedAction">
+            <summary>
+            Класс, представляющий рисование действия метода
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.ScriptedAction.text3">
+            <summary>
+            текстовый блок с средним текстом
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptedAction.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            записать данные для сериализации
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptedAction.prv_GetAdditionalHeight">
+            <summary>
+            возвращаем высоту звездочки
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptedAction.Paint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            дополнительно к стандартному коду добавляем код по отрисовке звездочки
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptedAction.GetContextMenuItems(System.Windows.Forms.MouseEventArgs,System.Boolean)">
+            <summary>
+            получить специфические контекстные меню
+            </summary>
+            <param name="eg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ScriptedAction.FireContextMenu(System.String)">
+            <summary>
+            обработать выбор контекстного меню
+            </summary>
+            <param name="MenuName"></param>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.ExternAction">
+            <summary>
+            Класс, представляющий рисование действия метода
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ExternAction.CheckTextEdit(System.Windows.Forms.MouseEventArgs,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Нажимание клавиши мыши
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ExternAction.SetRepositoryObjectDefsToTextBlocks(System.Boolean)">
+            <summary>
+            синхронизировать примитив с объектом из репозитария
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ExternAction.SetTextBlocksToRepositioryObjectDefs">
+            <summary>
+            синхронизировать объект из репозитария с текстовыми блоками
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ExternAction.TextBlockEditFinished(STORMCASE.Primitives.TextBlock,STORMCASE.Primitives.TextBlockEditFinishedEventArgs)">
+            <summary>
+            реакция на окончание редактирования списка с типами
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:STORMCASE.UML.ebsd.ExternAction.DestScriptName">
+            <summary>
+            имя метода для вызова
+            </summary>
+        </member>
+        <member name="P:STORMCASE.UML.ebsd.ExternAction.DestActionName">
+            <summary>
+            имя метода для вызова
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.Event">
+            <summary>
+            Класс, представляющий функциональность по рисованию интерфейса на компоненте
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.Event.bIsFinal">
+            <summary>
+            нужно ли закрашивать
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.Event.finalstyle">
+            <summary>
+            стиль для рисования финального евента
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.#ctor(STORMCASE.Primitives.DrawStyle,STORMCASE.Repository.Diagram,STORMCASE.Primitives.VisualControllerProperties,System.String)">
+            <summary>
+            событие
+            </summary>
+            <param name="drawstyle"></param>
+            <param name="diagram"></param>
+            <param name="controllerproperties"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.prv_GetMixedColor(System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            получить "средний" между двумя цветами цвет
+            </summary>
+            <param name="color1"></param>
+            <param name="color2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            событие (конструктор десериализации)
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.OnWantDelete(System.EventArgs)">
+            <summary>
+            обработка события удаления объекта - нужно удалить соответствующий объект из репозитария
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.Fire">
+            <summary>
+            визуально показать, что событие произошло
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.OnCreated">
+            <summary>
+            вызывается после реального намазывания на диаграмму
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.GetRepositoryObject">
+            <summary>
+            возвращает актуальный объект репозитария
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.prv_SetRepositaryObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.SetRepositoryObjectDefsToTextBlocks(System.Boolean)">
+            <summary>
+            синхронизировать примитив с объектом из репозитария
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.SetTextBlocksToRepositioryObjectDefs">
+            <summary>
+            синхронизировать объект из репозитария с текстовыми блоками
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            сохранение данных для сериализации
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.GetLocationAndSizeByInteractorPoint(System.Drawing.Point,System.Drawing.Point@,System.Drawing.Size@)">
+            <summary>
+            возвратить положение интерактора
+            </summary>
+            <param name="interactorPoint"></param>
+            <param name="loc"></param>
+            <param name="siz"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.prv_GetPositionOfLeftUpperCornerOfEllipse">
+            <summary>
+            получить координаты левого верхнего угла окружности события
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.GetContextMenuItems(System.Windows.Forms.MouseEventArgs,System.Boolean)">
+            <summary>
+            подготовка контекстного меню
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.FireContextMenu(System.String)">
+            <summary>
+            обработка выбора контекстного меню
+            </summary>
+            <param name="MenuName"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.DropTest(System.Drawing.Point)">
+            <summary>
+            можно ли бросить чего-нибудь на наш объект
+            </summary>
+            <param name="droppoint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.Paint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            отрисовка
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.GetLocationByAddon(System.Drawing.Point,System.Int32,System.Int32,System.Int32,System.Drawing.Graphics)">
+            <summary>
+            Статический метод, считает положение интерактора
+            </summary>
+            <param name="interfLocation"></param>
+            <param name="h"></param>
+            <param name="w"></param>
+            <param name="segmno"></param>
+            <param name="gr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.TuneInteractorPosition(System.Drawing.Point@)">
+            <summary>
+            настройка, связанная с бросанием интерактора на грань
+            </summary>
+            <param name="InteractorPoint"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.TunePosition(System.Drawing.Point@)">
+            <summary>
+            настройка, связанная с бросанием объекта на грань
+            </summary>
+            <param name="InteractorPoint"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.CanToBeConnected(STORMCASE.Primitives.Connector)">
+            <summary>
+            проверка, можно ли подсоединить коннектор
+            </summary>
+            <param name="connector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Event.FindIntersectWithSegment(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            переопределми поиск пересечений с нашим объектом т.о., чтобы все линии всегда входили в начало события
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.SystemEvent">
+            <summary>
+            системное событие
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.SystemEvent.#ctor(STORMCASE.Primitives.DrawStyle,STORMCASE.Repository.Diagram,STORMCASE.Primitives.VisualControllerProperties,System.String)">
+            <summary>
+            событие
+            </summary>
+            <param name="drawstyle"></param>
+            <param name="diagram"></param>
+            <param name="controllerproperties"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.SystemEvent.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            событие (конструктор десериализации)
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.SystemEvent.CheckTextEdit(System.Windows.Forms.MouseEventArgs,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            названия системных евентов не редактируются
+            </summary>
+            <param name="e"></param>
+            <param name="eg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EndMethodEvent.#ctor(STORMCASE.Primitives.DrawStyle,STORMCASE.Repository.Diagram,STORMCASE.Primitives.VisualControllerProperties)">
+            <summary>
+            событие
+            </summary>
+            <param name="drawstyle"></param>
+            <param name="diagram"></param>
+            <param name="controllerproperties"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EndMethodEvent.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            событие (конструктор десериализации)
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EndMethodEvent.GetEventArgsType">
+            <summary>
+            возвращаем тип аргумента события
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ErrorEvent.#ctor(STORMCASE.Primitives.DrawStyle,STORMCASE.Repository.Diagram,STORMCASE.Primitives.VisualControllerProperties)">
+            <summary>
+            событие
+            </summary>
+            <param name="drawstyle"></param>
+            <param name="diagram"></param>
+            <param name="controllerproperties"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ErrorEvent.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            событие (конструктор десериализации)
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.ErrorEvent.GetEventArgsType">
+            <summary>
+            возвращаем тип аргументов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.StartAction">
+            <summary>
+            Начальное состояние
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.StartAction.#ctor(STORMCASE.Primitives.DrawStyle,STORMCASE.Repository.Diagram,STORMCASE.Primitives.VisualControllerProperties)">
+            <summary>
+            начальное состояние
+            </summary>
+            <param name="drawstyle">стиль для рисования</param>
+            <param name="diagram">диаграмма в репозитарии</param>
+            <param name="controllerproperties">общие визуальные свойства контроллера</param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.StartAction.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Начальное состояние (конструктор десериализации)
+            </summary>
+            <param name="info">параметры десериализации</param>
+            <param name="context">параметры десериализации</param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.StartAction.prv_SetRepositaryObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.StartAction.GetRepositoryObject">
+            <summary>
+            вернуть актуальный объект репозитария
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.StartAction.SetRepositoryObjectDefsToTextBlocks(System.Boolean)">
+            <summary>
+            синхронизировать примитив с объектом из репозитария
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.StartAction.SetTextBlocksToRepositioryObjectDefs">
+            <summary>
+            синхронизировать объект из репозитария с текстовыми блоками
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.StartAction.CanToBeConnected(STORMCASE.Primitives.Connector)">
+            <summary>
+            Контроллер спрашивает о том, может ли коннектор быть присоединен к нашему объекту
+            </summary>
+            <param name="connector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.StartAction.FindIntersectWithSegment(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            пересечение точки с объектом
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.FinalAction">
+            <summary>
+            конечное состояние
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.FinalAction.#ctor(STORMCASE.Primitives.DrawStyle,STORMCASE.Repository.Diagram,STORMCASE.Primitives.VisualControllerProperties)">
+            <summary>
+            конечное состояние
+            </summary>
+            <param name="drawstyle">стиль для рисования</param>
+            <param name="diagram">диаграмма в репозитарии</param>
+            <param name="controllerproperties">общие визуальные свойства контроллера</param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.FinalAction.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            конечное состояние (конструктор десериализации)
+            </summary>
+            <param name="info">параметры десериализации</param>
+            <param name="context">параметры десериализации</param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.FinalAction.CanToBeConnected(STORMCASE.Primitives.Connector)">
+            <summary>
+            Контроллер спрашивает о том, может ли коннектор быть присоединен к нашему объекту
+            </summary>
+            <param name="connector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.FinalAction.prv_SetRepositaryObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.FinalAction.GetRepositoryObject">
+            <summary>
+            вернуть актуальный объект репозитария
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.FinalAction.SetRepositoryObjectDefsToTextBlocks(System.Boolean)">
+            <summary>
+            синхронизировать примитив с объектом из репозитария
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.FinalAction.SetTextBlocksToRepositioryObjectDefs">
+            <summary>
+            синхронизировать объект из репозитария с текстовыми блоками
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.SplitterH">
+            <summary>
+            синхронизатор/разветвитель
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.SplitterH.#ctor(STORMCASE.Primitives.DrawStyle,STORMCASE.Repository.Diagram,STORMCASE.Primitives.VisualControllerProperties)">
+            <summary>
+            синхронизация/разветвление
+            </summary>
+            <param name="drawstyle">стиль для рисования</param>
+            <param name="diagram">диаграмма в репозитарии</param>
+            <param name="controllerproperties">общие визуальные свойства контроллера</param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.SplitterH.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            синхронизация/разветвление
+            </summary>
+            <param name="info">параметры десериализации</param>
+            <param name="context">параметры десериализации</param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.SplitterH.prv_SetRepositaryObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.SplitterH.GetRepositoryObject">
+            <summary>
+            вернуть актуальный объект репозитария
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.SplitterH.SetRepositoryObjectDefsToTextBlocks(System.Boolean)">
+            <summary>
+            синхронизировать примитив с объектом из репозитария
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.SplitterH.SetTextBlocksToRepositioryObjectDefs">
+            <summary>
+            синхронизировать объект из репозитария с текстовыми блоками
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.SplitterV">
+            <summary>
+            синхронизатор/разветвитель
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.SplitterV.#ctor(STORMCASE.Primitives.DrawStyle,STORMCASE.Repository.Diagram,STORMCASE.Primitives.VisualControllerProperties)">
+            <summary>
+            синхронизация/разветвление
+            </summary>
+            <param name="drawstyle">стиль для рисования</param>
+            <param name="diagram">диаграмма в репозитарии</param>
+            <param name="controllerproperties">общие визуальные свойства контроллера</param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.SplitterV.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            синхронизация/разветвление
+            </summary>
+            <param name="info">параметры десериализации</param>
+            <param name="context">параметры десериализации</param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.SplitterV.prv_SetRepositaryObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.SplitterV.GetRepositoryObject">
+            <summary>
+            вернуть актуальный объект репозитария
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.SplitterV.SetRepositoryObjectDefsToTextBlocks(System.Boolean)">
+            <summary>
+            синхронизировать примитив с объектом из репозитария
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.SplitterV.SetTextBlocksToRepositioryObjectDefs">
+            <summary>
+            синхронизировать объект из репозитария с текстовыми блоками
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.Transition">
+            <summary>
+            Базовый класс для cod-коннекторов 
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.Transition.objecttext">
+            <summary>
+            Поле для хранения поля с именем объекта
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.OnWantDelete(System.EventArgs)">
+            <summary>
+            обработка события удаления объекта - нужно удалить соответствующий объект из репозитария
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.OnCreated">
+            <summary>
+            вызывается после реального намазывания на диаграмму
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.prv_SetRepositaryObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.SetRepositoryObjectDefsToTextBlocks(System.Boolean)">
+            <summary>
+            синхронизировать примитив с объектом из репозитария
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.SetTextBlocksToRepositioryObjectDefs">
+            <summary>
+            синхронизировать объект из репозитария с текстовыми блоками
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.Paint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            отрисовка
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.Highlight">
+            <summary>
+            Выделение коннектора
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.Unhighlight">
+            <summary>
+            Отмена выделения коннектора
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.CheckTextEdit(System.Windows.Forms.MouseEventArgs,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            проверка, можно ли редактировать текст
+            </summary>
+            <param name="e"></param>
+            <param name="eg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.prv_getEndLEPoints(System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            настройка вида окончания коннектора
+            </summary>
+            <param name="StartPoint"></param>
+            <param name="EndPoint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.HitTest(System.Drawing.Point)">
+            <summary>
+            проверка, попадает ли точка на объект
+            </summary>
+            <param name="hitpoint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            реализация стандартного интерфейса сериализации - сохранение данных
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.CanConnectTo(STORMCASE.Primitives.Primitive)">
+            <summary>
+            Функция, которую запрашивает контроллер при рисовании связи: 
+            может ли данный коннектор присоединяться к некоторому прямоугольному примитиву
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.prv_RecalcDependencies">
+            <summary>
+            пересчитать все зависимое
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.GetContextMenuItems(System.Windows.Forms.MouseEventArgs,System.Boolean)">
+            <summary>
+            получить специфические контекстные меню
+            </summary>
+            <param name="eg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.FireContextMenu(System.String)">
+            <summary>
+            обработать выбор контекстного меню
+            </summary>
+            <param name="MenuName"></param>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.UpdateParamsText">
+            <summary>
+            синхронизировать текст с параметрами метода с реальными параметрами метода
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.Transition.TextBlockEditFinished(STORMCASE.Primitives.TextBlock,STORMCASE.Primitives.TextBlockEditFinishedEventArgs)">
+            <summary>
+            обработка окончания редактирования текстового блока
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:STORMCASE.UML.ebsd.Transition.ObjectStr">
+            <summary>
+            имя объекта для передаче по переходу
+            </summary>
+        </member>
+        <member name="P:STORMCASE.UML.ebsd.Transition.ConditionStr">
+            <summary>
+            строка с условием для перехода
+            </summary>
+        </member>
+        <member name="P:STORMCASE.UML.ebsd.Transition.CollectionChangesStr">
+            <summary>
+            строка с изменениями коллекции в начале перехода
+            </summary>
+        </member>
+        <member name="P:STORMCASE.UML.ebsd.Transition.ParamsStr">
+            <summary>
+            строка с параметрами для целевого действия
+            </summary>
+        </member>
+        <member name="P:STORMCASE.UML.ebsd.Transition.Object">
+            <summary>
+            текстовое поле с именем объекта
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.EventIntercator">
+            <summary>
+            Интерактор, специальный для перемещения фишки
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EventIntercator.MouseMove(System.Windows.Forms.MouseEventArgs,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Вызывать, если хотим имитировать (или сообщить о) перемещении мыши
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.EditActionScriptedParameters">
+            <summary>
+            Summary description for EditChanges.
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.EditActionScriptedParameters.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EditActionScriptedParameters.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EditActionScriptedParameters.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.EditAssemblyList">
+            <summary>
+            Summary description for EditScriptParameters.
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.EditAssemblyList.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EditAssemblyList.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EditAssemblyList.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.EditChanges">
+            <summary>
+            Summary description for EditChanges.
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.EditChanges.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EditChanges.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EditChanges.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.EditParameters">
+            <summary>
+            Summary description for EditParameters.
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.EditParameters.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EditParameters.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EditParameters.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.EditScriptParameters">
+            <summary>
+            Summary description for EditScriptParameters.
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.EditScriptParameters.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EditScriptParameters.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.EditScriptParameters.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:STORMCASE.UML.ebsd.TuneTypeVisibility">
+            <summary>
+            Summary description for TuneTypeVisibility.
+            </summary>
+        </member>
+        <member name="F:STORMCASE.UML.ebsd.TuneTypeVisibility.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.TuneTypeVisibility.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:STORMCASE.UML.ebsd.TuneTypeVisibility.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Scriptizer.RunTime.EndMethodEventArgs">
+            <summary>
+            аргументы системного события - окончание метода
+            </summary>
+        </member>
+        <member name="T:Scriptizer.RunTime.ErrorEventArgs">
+            <summary>
+            аргументы системного события - аварийное завершение метода по ошибке
+            </summary>
+        </member>
+        <member name="T:Scriptizer.RunTime.ActionContext">
+            <summary>
+            контекст действия. Создается для всех активных действий и удаляется, когда срабатывает финальное событие действия.
+            Скрипт выполняется до тех пор, пока есть хотя-бы один контекст действия
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.ActionContext.action">
+            <summary>
+            действие для выполенения
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.ActionContext.parameters">
+            <summary>
+            параметры для действия
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.ActionContext.interpreter">
+            <summary>
+            ссылка на интерпретатор, который выполняет действие
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.ActionContext.handlers">
+            <summary>
+            коллекция обработчиков событий объекта
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.ActionContext.obj">
+            <summary>
+            объект, который выполняется в данном действии
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.ActionContext.#ctor(Scriptizer.DataObjects.CommonAction,ICSSoft.STORMNET.Collections.NameObjectCollection,System.Object,Scriptizer.RunTime.ScriptInterpreter)">
+            <summary>
+            контекст действия
+            </summary>
+            <param name="action"></param>
+            <param name="parameters"></param>
+            <param name="obj"></param>
+            <param name="interpreter"></param>
+        </member>
+        <member name="M:Scriptizer.RunTime.ActionContext.AddCatcher(Scriptizer.RunTime.Catcher)">
+            <summary>
+            добавить обработчик в коллекцию
+            </summary>
+            <param name="eh"></param>
+        </member>
+        <member name="M:Scriptizer.RunTime.Catcher.prv_HandleEvent(System.Object,System.EventArgs)">
+            <summary>
+            обработчик события
+            </summary>
+            <param name="sender"></param>       
+            <param name="e"></param>
+        </member>
+        <member name="P:Scriptizer.RunTime.Catcher.EventName">
+            <summary>
+            имя события
+            </summary>
+        </member>
+        <member name="P:Scriptizer.RunTime.Catcher.Parent">
+            <summary>
+            родитель
+            </summary>
+        </member>
+        <member name="T:Scriptizer.RunTime.ScriptInterpreter">
+            <summary>
+            интерпретатор скриптов
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.ScriptInterpreter.variables">
+            <summary>
+            глобальная коллекция переменных
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.ScriptInterpreter.assemblies">
+            <summary>
+            коллекция со сборками, участвующими в скрипте (классы которых будут подниматься в качестве действий)
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.ScriptInterpreter.derivedinterpreters">
+            <summary>
+            Коллекция интерпретаторов, которые созданы посредством MethodActionScripted в рамках данного интерпретатора
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.ScriptInterpreter.script">
+            <summary>
+            текущий скрипт
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.ScriptInterpreter.actioncontexts">
+            <summary>
+            список активных действий
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.DoScript(System.String,ICSSoft.STORMNET.Collections.NameObjectCollection)">
+            <summary>
+            выполнить скрипт
+            </summary>
+            <param name="ScriptName">Имя скрипта</param>
+            <param name="parameters">Параметры</param>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.prv_GetStartActionForScript(Scriptizer.DataObjects.Script)">
+            <summary>
+            получить начальное действие для скрипта
+            </summary>
+            <param name="script"></param>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.DoEvent(Scriptizer.DataObjects.Event,Scriptizer.RunTime.ActionContext,System.EventArgs,System.Object)">
+            <summary>
+            обработать событие
+            </summary>
+            <param name="e"></param>
+            <param name="aroundacc"></param>
+            <param name="ea"></param>
+            <param name="sender"></param>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.IsScriptActive(Scriptizer.DataObjects.Script)">
+            <summary>
+            проверить, является ли скрипт "активным". Т.е., находится ли како-либо действие скрипта в коллекции контекстов актиывных действий.
+            </summary>
+            <param name="scr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.prv_GetConstValue(System.String,System.String)">
+            <summary>
+            получить значение константы
+            </summary>
+            <param name="sConstValueType"></param>
+            <param name="sConstValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.prv_GetActionContextByTransition(Scriptizer.DataObjects.Transition,Scriptizer.RunTime.ActionContext,System.EventArgs,System.Object)">
+            <summary>
+            "выполнить переход". Фактически выполнить действия над коллекцией, 
+            подготовить параметры и вернуть контекст для нового действия
+            </summary>
+            <param name="tr">Переход</param>
+            <param name="acc">контекст действия</param>
+            <param name="ea"></param>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.prv_GetMethodInfo(System.Type,System.String,System.Type[])">
+            <summary>
+            получить информацию о методе
+            </summary>
+            <param name="typeofobject"></param>
+            <param name="methodname"></param>
+            <param name="types"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.prv_ExecuteCondition(System.String)">
+            <summary>
+            вычисляет значение выражения. Выражение должно быть написано в стандартном sql-виде
+            </summary>
+            <param name="conditionstring"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.prv_GetNameAndValueOfComplexVariable(System.String,System.Int32,System.Object,System.String@,System.Object@)">
+            <summary>
+            реализует преобразование имени и значения при использовании пропертей любого уровня в строке с условиями
+            </summary>
+            <param name="conditionstring"></param>
+            <param name="iEnd"></param>
+            <param name="v"></param>
+            <param name="sName"></param>
+            <param name="realobj"></param>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.prv_GetNextChar(System.String,System.Int32@)">
+            <summary>
+            возвращает текущий символ
+            </summary>
+            <param name="s"></param>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.prv_GetFieldValue(System.Object,System.EventArgs,System.String)">
+            <summary>
+            получить значение поля в классе с аргументами
+            </summary>
+            <param name="sender"></param>
+            <param name="ea"></param>
+            <param name="fieldName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.DoActionContext(Scriptizer.RunTime.ActionContext)">
+            <summary>
+            запустить на выполнение вновь созданный контекст действия
+            </summary>
+            <param name="acc"></param>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.prv_SetEventsForActionContext(Scriptizer.RunTime.ActionContext)">
+            <summary>
+            установить обработчики событий для действия
+            </summary>
+            <param name="acc"></param>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.prv_GetTypeOfMethod(System.String)">
+            <summary>
+            возвратить тип по его полному имени. Просматриваются все подключенные сборки
+            </summary>
+            <param name="ma"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.prv_ReleaseEventsForActionContext(Scriptizer.RunTime.ActionContext)">
+            <summary>
+            снять обработчики событий для действия
+            </summary>
+            <param name="acc"></param>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.prv_DoAction(Scriptizer.RunTime.ActionContext)">
+            <summary>
+            выполнить действие
+            </summary>
+            <param name="acc"></param>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.FinalizeInterpretation">
+            <summary>
+            Завершить работу скрипта
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.OnFinal">
+            <summary>
+            Взводит событие <see cref="E:Scriptizer.RunTime.ScriptInterpreter.FinalEvent"/>
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.prv_GetEndMethodEventForAction(Scriptizer.DataObjects.CommonAction)">
+            <summary>
+            возвратить событие окончания метода для действия метода
+            </summary>
+            <param name="ma"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Scriptizer.RunTime.ScriptInterpreter.prv_GetErrorEventForAction(Scriptizer.DataObjects.CommonAction)">
+            <summary>
+            возвратить событие ошибки для действия метода
+            </summary>
+            <param name="ma"></param>
+            <returns></returns>
+        </member>
+        <member name="E:Scriptizer.RunTime.ScriptInterpreter.FinalEvent">
+            <summary>
+            Извещает об окончании работы скрипта.
+            </summary>
+        </member>
+        <member name="P:Scriptizer.RunTime.ScriptInterpreter.Assemblies">
+            <summary>
+            коллекция со сборками, участвующими в скрипте (классы которых будут подниматься в качестве действий)
+            </summary>
+        </member>
+        <member name="P:Scriptizer.RunTime.ScriptInterpreter.Variables">
+            <summary>
+            глобальная коллекция переменных
+            </summary>
+        </member>
+        <member name="P:Scriptizer.RunTime.ScriptInterpreter.Scripts">
+            <summary>
+            коллекция скриптов
+            </summary>
+        </member>
+        <member name="P:Scriptizer.RunTime.ScriptInterpreter.ActionContexts">
+            <summary>
+            список активных контекстов действий
+            </summary>
+        </member>
+        <member name="P:Scriptizer.RunTime.ScriptInterpreter.Ready">
+            <summary>
+            свободен ли
+            </summary>
+        </member>
+        <member name="T:Scriptizer.RunTime.ActionContextCollectionChangedEventHandler">
+            <summary>
+            Делегат для эвента, сообщающего об изменении коллекции активных действий
+            </summary>
+        </member>
+        <member name="T:Scriptizer.RunTime.FireEventEventHandler">
+            <summary>
+            Делегат для эвента, сообщающего о том, что произошло какое-то событие
+            </summary>
+        </member>
+        <member name="T:Scriptizer.RunTime.FireEventArgs">
+            <summary>
+            аргументы для отправки сообщения о происхождении события
+            </summary>
+        </member>
+        <member name="T:Scriptizer.RunTime.ActionContextCollectionChangedEventArgs">
+            <summary>
+            аргументы для события изменения коллекции активных контекстов
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.ActionContextCollectionChangedEventArgs.ActionContext">
+            <summary>
+             контекст, над которым производится операция
+            </summary>
+        </member>
+        <member name="F:Scriptizer.RunTime.ActionContextCollectionChangedEventArgs.ActionContextAdded">
+            <summary>
+             действие, которое произведено
+             Если true - то контекст был добавлен в коллекцию активных контекстов.
+             Если false - то контекст был удален из коллекции активных контекстов.
+            </summary>
+        </member>
+        <member name="M:Scriptizer.RunTime.ActionContextCollectionChangedEventArgs.#ctor(Scriptizer.RunTime.ActionContext,System.Boolean)">
+            <summary>
+            конструктор 
+            </summary>
+            <param name="acc">контекст, над которым производится операция</param>
+            <param name="added">действие, которое произведено. 
+            Если true - то контекст был добавлен в коллекцию активных контекстов.
+            Если false - то контекст был удален из коллекции активных контекстов.</param>
+        </member>
+        <member name="T:Scriptizer.RunTime.ScriptFinalizerAttribute">
+            <summary>
+            Если некоторый объект, имеющий помеченный данным атрибутом метод, 
+            помещён в коллекцию переменных интерпретатора скриптов, то этот меченый метод вызывается
+            при достижении скриптом FinalAction или его принудительном окончании.
+            Метод должен быть обязательно объявлен как void и без параметров.
+            </summary>
+        </member>
+    </members>
+</doc>

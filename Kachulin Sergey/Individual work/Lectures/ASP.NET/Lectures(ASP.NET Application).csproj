@@ -325,6 +325,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Themes\Default\Pages\MainPage\Images\notes.png" />
+    <Content Include="App_Themes\Light\MyStyles.css" />
+    <Content Include="App_Themes\Spring\MyStyles.css" />
     <Content Include="App_Themes\Spring\Pages\MainPage\Images\book.png" />
     <Content Include="App_Themes\Spring\Pages\MainPage\Images\book2.png" />
     <Content Include="App_Themes\Spring\Pages\MainPage\Images\book3.png" />

@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NewPlatform.Flexberry.Security</name>
+    </assembly>
+    <members>
+        <member name="T:NewPlatform.Flexberry.Security.Resources.Text">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Security.Resources.Text.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Security.Resources.Text.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Security.Resources.Text.AgentKeyIsNotLoadedExceptionTempalte">
+            <summary>
+              Looks up a localized string similar to User &quot;{0}&quot; is not found in Flexberry Security. Check the CurrentUserService and the IDataService instance, that is used for SecurityManager..
+            </summary>
+        </member>
+        <member name="T:NewPlatform.Flexberry.Security.SecurityManager">
+            <summary>
+            Реализация <see cref="T:ICSSoft.STORMNET.Security.ISecurityManager"/> по умолчанию.
+            </summary>
+            <remarks>
+            Является заменой устаревшей реализации менеджера полномочий <see cref="T:ICSSoft.STORMNET.Security.DefaultSecurityManager"/> на основе 
+            <see cref="T:ICSSoft.STORMNET.RightManager"/>. В ближайшем будущем эти классы будут отмечены как "obsolete", а затем удалены.
+            <para />
+            Текущий пользователь для всех связанных действий определяется через <see cref="T:ICSSoft.Services.CurrentUserService"/>.
+            </remarks>
+        </member>
+        <member name="F:NewPlatform.Flexberry.Security.SecurityManager._dataService">
+            <summary>
+            Сервис данных, использующийся для загрузки объектов полномочий.
+            </summary>
+        </member>
+        <member name="F:NewPlatform.Flexberry.Security.SecurityManager._langDef">
+            <summary>
+            Описание языка запросов.
+            </summary>
+        </member>
+        <member name="F:NewPlatform.Flexberry.Security.SecurityManager._enabled">
+            <summary>
+            Флаг включенных полномочий <see cref="P:NewPlatform.Flexberry.Security.SecurityManager.Enabled"/>.
+            </summary>
+        </member>
+        <member name="F:NewPlatform.Flexberry.Security.SecurityManager._useRightsOnObjects">
+            <summary>
+            Флаг включенных полномочий над объектами (для <see cref="P:NewPlatform.Flexberry.Security.SecurityManager.UseRightsOnObjects"/>).
+            </summary>
+        </member>
+        <member name="F:NewPlatform.Flexberry.Security.SecurityManager._useRightsOnAttribute">
+            <summary>
+            Флаг включенных полномочий над атрибутами (для <see cref="P:NewPlatform.Flexberry.Security.SecurityManager.UseRightsOnAttribute"/>).
+            </summary>
+        </member>
+        <member name="F:NewPlatform.Flexberry.Security.SecurityManager._currentUser">
+            <summary>
+            Текущий пользователь системы, для которого анализируются полномочия (для <see cref="P:NewPlatform.Flexberry.Security.SecurityManager.CurrentUser"/>).
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Security.SecurityManager.CurrentUser">
+            <summary>
+            Текущий пользователь системы, для которого анализируются полномочия.
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Security.SecurityManager.#ctor(ICSSoft.STORMNET.Business.IDataService)">
+            <summary>
+            Создаётся сервис полномочий, в котором проверка полномочий включена.
+            </summary>
+            <param name="dataService">Сервис данных для загрузки информации о полномочиях.</param>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Security.SecurityManager.#ctor(ICSSoft.STORMNET.Business.IDataService,System.Boolean)">
+            <summary>
+            Указать будут ли полномочия включены.
+            </summary>
+            <param name="dataService">Сервис данных для загрузки информации о полномочиях.</param>
+            <param name="enabled">Полномочия будут проверяться, если <c>true</c>.</param>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Security.SecurityManager.#ctor(ICSSoft.STORMNET.Business.IDataService,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Конструктор менеджера полномочий.
+            </summary>
+            <param name="dataService">Сервис данных для загрузки информации о полномочиях.</param>
+            <param name="enabled">Полномочия будут проверяться, если <c>true</c>.</param>
+            <param name="useRightsOnObjects">Полномочия над объектами будут проверяться, если <c>true</c>.</param>
+            <param name="useRightsOnAttribute">Полномочия над атрибутами будут проверяться, если <c>true</c>.</param>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Security.SecurityManager.Enabled">
+            <summary>
+            Флаг включенных полномочий.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Security.SecurityManager.UseRightsOnObjects">
+            <summary>
+            Флаг включенных полномочий над объектами.
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Security.SecurityManager.UseRightsOnAttribute">
+            <summary>
+            Флаг включенных полномочий над атрибутами. 
+            </summary>
+        </member>
+        <member name="P:NewPlatform.Flexberry.Security.SecurityManager.AttributeCheckExpressionPattern">
+            <summary>
+            Регулярное выражение для извлечения информации о контроле прав на атрибуты из <see cref="T:ICSSoft.STORMNET.DataServiceExpressionAttribute"/>.
+            </summary>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Security.SecurityManager.AccessCheck(System.Int32)">
+            <summary>
+            Проверка полномочий на выполнение операции.
+            </summary>
+            <remarks>Проверяется только наличие записи, но не тип доступа.</remarks>
+            <param name="operationId">Идентификатор операции.</param>
+            <returns>
+            Если у текущего пользователя есть доступ, то <c>true</c>.
+            Возвращает <c>true</c> без проверок если полномочия выключены в <see cref="P:NewPlatform.Flexberry.Security.SecurityManager.Enabled"/>.
+            </returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Security.SecurityManager.AccessObjectCheck(System.Type,ICSSoft.STORMNET.Security.tTypeAccess,System.Boolean)">
+            <summary>
+            Проверка полномочий на выполнение операции с типом.
+            </summary>
+            <param name="type">Тип объекта данных.</param>
+            <param name="operation">Тип операции.</param>
+            <param name="throwException">Генерировать ли исключение в случае отсутсвия прав.</param>
+            <returns>
+            Если у текущего пользователя есть доступ, то <c>true</c>.
+            Возвращает <c>true</c> без проверок если полномочия выключены в <see cref="P:NewPlatform.Flexberry.Security.SecurityManager.Enabled"/>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Исключение генерируется при передаче <c>null</c> в качестве значения для <paramref name="type"/>.</exception>
+            <exception cref="T:ICSSoft.STORMNET.UnauthorizedAccessException">
+            Исключение генерируется в том случае, если у пользователя отсутсвует доступ и параметр <paramref name="throwException"/> установлен в <c>true</c>.
+            </exception>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Security.SecurityManager.AccessObjectCheck(System.Object,ICSSoft.STORMNET.Security.tTypeAccess,System.Boolean)">
+            <summary>
+            Проверка полномочий на выполнение операции с объектом.
+            </summary>
+            <param name="obj">Объект данных.</param>
+            <param name="operation">Тип операции.</param>
+            <param name="throwException">Генерировать ли исключение в случае отсутсвия прав.</param>
+            <returns>Если у текущего пользователя есть доступ, то <c>true</c>.</returns>
+            <exception cref="T:System.ArgumentNullException">Исключение генерируется при передаче <c>null</c> в качестве значения для <paramref name="obj"/>.</exception>
+            <exception cref="T:ICSSoft.STORMNET.UnauthorizedAccessException">
+            Исключение генерируется в том случае, если у пользователя отсутсвует доступ и параметр <paramref name="throwException"/> установлен в <c>true</c>.
+            </exception>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Security.SecurityManager.GetLimitForAccess(System.Type,ICSSoft.STORMNET.Security.tTypeAccess,System.Object@,System.Boolean@)">
+            <summary>
+            Получить ограничение для текущего пользователя.
+            </summary>
+            <remarks>
+            Не поддерживается в текущей реализации.
+            </remarks>
+            <param name="type">Тип объекта.</param>
+            <param name="operation">Тип операции.</param>
+            <param name="limit">Ограничение, которое есть для текущего пользователя.</param>
+            <param name="canAccess">Есть ли доступ к этому типу у пользователя.</param>
+            <returns>Результат выполнения операции.</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Security.SecurityManager.GetLimitStrForRoles(System.Type,System.Collections.Generic.List{ICSSoft.STORMNET.Security.RoleWithAccesses}@)">
+            <summary>
+            Получить роли с заданными ограничениями, которые реализуют функцию разграничения по объектам.
+            </summary>
+            <remarks>
+            Не поддерживается в текущей реализации.
+            </remarks>
+            <param name="type">Класс, для которого получаем ограничения.</param>
+            <param name="rolesWithAccesses">Роли с заданными ограничениями для этих ролей.</param>
+            <returns>Результат выполнения операции.</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Security.SecurityManager.SetLimitStrForRole(System.Type,ICSSoft.STORMNET.Security.tTypeAccess,System.String,System.String)">
+            <summary>
+            Задать ограничение для указанной роли.
+            </summary>
+            <remarks>
+            Не поддерживается в текущей реализации.
+            </remarks>
+            <param name="type">Тип объектов данных, для которых будет применяться данный фильтр.</param>
+            <param name="operation">Тип доступа, для которого применяется этот фильтр.</param>
+            <param name="roleName">Название роли.</param>
+            <param name="filter">Сериализованный фильтр, который будет применяться для указанной роли.</param>
+            <returns>Результат выполнения операции.</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Security.SecurityManager.CheckExistLogin(System.String)">
+            <summary>
+            Проверить наличие в системе логина (чувствительность к регистру зависит от настроек источника данных).
+            Уникальность проверяется без контроля доменов, то есть гарантируется уникальность в рамках всей таблицы.
+            Отключенные пользователи тоже учитываются, как занимающие логин.
+            </summary>
+            <param name="login">Логин, который проверяем.</param>
+            <returns>Если логин свободен, то <see cref="F:ICSSoft.STORMNET.Security.OperationResult.ЛогинСвободен"/>, если занят, то <see cref="F:ICSSoft.STORMNET.Security.OperationResult.ЛогинЗанят"/>.</returns>
+            <exception cref="T:System.ArgumentException">Исключение генерируется при передаче <c>null</c> или <c>string.Empty</c> в качестве значения для <paramref name="login"/>.</exception>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Security.SecurityManager.CheckAccessToAttribute(System.String,System.String@)">
+            <summary>
+            Метод проверки прав на доступ текущего пользователя к операции, заданной в <see cref="T:ICSSoft.STORMNET.DataServiceExpressionAttribute"/> атрибута.
+            </summary>
+            <remarks>
+            Не поддерживается в текущей реализации.
+            </remarks>
+            <param name="expression">Строка <see cref="T:ICSSoft.STORMNET.DataServiceExpressionAttribute"/>.</param>
+            <param name="deniedAccessValue">Значение, которое должен получить атрибут при отсутствии прав.</param>
+            <returns>Если у текущего пользователя есть доступ, то <c>true</c>.</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Security.SecurityManager.CheckTypeAccess(System.Type,ICSSoft.STORMNET.Security.tTypeAccess)">
+            <summary>
+            Проверка полномочий на выполнение операции с типом.
+            Реализует всю логику проверки доступа к типу, в т.ч. с учетом наследования (через <see cref="F:ICSSoft.STORMNET.AccessType.base"/>)  и <see cref="F:ICSSoft.STORMNET.AccessType.this_and_base"/>.
+            </summary>
+            <param name="type">Тип объекта данных.</param>
+            <param name="operation">Тип операции.</param>
+            <returns>Если у текущего пользователя есть доступ, то <c>true</c>.</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Security.SecurityManager.GetAccessTypeAttribute(System.Type)">
+            <summary>
+            Метод для загрузки атрибута <see cref="T:ICSSoft.STORMNET.AccessTypeAttribute"/> для типа.
+            </summary>
+            <param name="type">Тип, для которого нужно загрузить атрибут.</param>
+            <returns>Экземпляр атрибута или <c>null</c>, если атрибут не был найден.</returns>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Security.SecurityManager.AddLinkedAgents(System.Guid,System.Collections.Generic.ICollection{System.Guid})">
+            <summary>
+            Добавить прилинкованных агентов.
+            </summary>
+            <param name="userKey">Идентификатор агента, для которого формируется список всех связанных.</param>
+            <param name="agentPKs">Коллекция прилинкованных агентов.</param>
+        </member>
+        <member name="M:NewPlatform.Flexberry.Security.SecurityManager.GetUserByUsername(System.Nullable{System.Boolean})">
+            <summary>
+            Получить для текущего пользователя (<see cref="P:NewPlatform.Flexberry.Security.SecurityManager.CurrentUser"/>) ключ агента в базе полномочий.
+            TODO: объединить с реализацией из CheckingInSessionMode + AuthenticationAdapter.
+            </summary>
+            <param name="enabled">Нужны ли только неотключенные пользователи?
+            <c>true</c> - включенные, <c>false</c> - отключенные, <c>null</c> - все. По умолчанию true.</param>
+            <returns>
+            Массив пользователей, удовлетворяющих данному критерию. Ожидается, что будет возвращён только один пользователь.
+            В любом случае применяется ограничение TOP 2.
+            </returns>
+            <exception cref="T:System.Security.SecurityException">Исключение генерируется в случае, если ключ агента не найден.</exception>
+            <exception cref="T:System.InvalidOperationException">
+            Исключение генерируется в случае, если сервис данных вернул несколько агентов. Это означает, что в БД есть дубликаты пользователей.
+            </exception>
+        </member>
+    </members>
+</doc>
