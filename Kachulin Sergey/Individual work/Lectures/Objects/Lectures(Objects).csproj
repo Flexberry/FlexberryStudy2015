@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{561FD01C-FBCC-462F-B53D-9027F7ABD6D4}</ProjectGuid>
+    <ProjectGuid>{90B4CA48-9255-4016-8CAB-6C39CA3EE122}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IIS.Lectures</RootNamespace>

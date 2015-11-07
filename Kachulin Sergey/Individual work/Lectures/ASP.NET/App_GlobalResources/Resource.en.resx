@@ -184,7 +184,7 @@
     <value>An error occurred while processing the form</value>
   </data>
   <data name="Home_Page" xml:space="preserve">
-    <value>Home Page</value>
+    <value />
   </data>
   <data name="Incorrect_Date" xml:space="preserve">
     <value>Incorrect Date</value>
@@ -208,7 +208,7 @@
     <value>LookUp</value>
   </data>
   <data name="Master_Page_Header_Title" xml:space="preserve">
-    <value>[Project Name]</value>
+    <value>My lectures</value>
   </data>
   <data name="Master_Page_Title" xml:space="preserve">
     <value>Web system on CASEBERRY Technology</value>
