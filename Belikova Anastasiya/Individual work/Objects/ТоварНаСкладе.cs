@@ -30,9 +30,11 @@ namespace IIS.Склад
     [Caption("Товар на складе")]
     [AccessType(ICSSoft.STORMNET.AccessType.none)]
     [View("ТоварНаСкладеE", new string[] {
-            "Количество as \'Количество\'",
-            "Товар as \'Товар\'",
-            "Товар.Наименование as \'Наименование\'"}, Hidden=new string[] {
+            "Склад",
+            "Товар.Наименование",
+            "Товар",
+            "Количество"}, Hidden=new string[] {
+            "Склад",
             "Товар.Наименование"})]
     [MasterViewDefineAttribute("ТоварНаСкладеE", "Товар", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Наименование")]
     public class ТоварНаСкладе : ICSSoft.STORMNET.DataObject
@@ -45,7 +47,9 @@ namespace IIS.Склад
         private IIS.Склад.Склад fСклад;
         
         // *** Start programmer edit section *** (ТоварНаСкладе CustomMembers)
-
+        private ICSSoft.STORMNET.UserDataTypes.NullableDecimal cashedPurchaseSum = null; //переменная для хранения кэша поля СуммаОплаченныхПокупок  
+        private ICSSoft.STORMNET.UserDataTypes.NullableDecimal cashedAvailableSum = null; //переменная для хранения кэша поля ДоступнаяСумма   
+        private double fКоличество2;
         // *** End programmer edit section *** (ТоварНаСкладе CustomMembers)
 
         
@@ -81,6 +85,37 @@ namespace IIS.Склад
         }
         
         /// <summary>
+        /// Количество2.
+        /// </summary>
+        // *** Start programmer edit section *** (ТоварНаСкладе.Количество2 CustomAttributes)
+
+        // *** End programmer edit section *** (ТоварНаСкладе.Количество2 CustomAttributes)
+        [ICSSoft.STORMNET.NotStored()]
+        [DataServiceExpression(typeof(ICSSoft.STORMNET.Business.SQLDataService), "Select Sum(Количество) from Поставки where Товар  = @Товар@ and  Склад = @Склад@")]
+        public virtual double Количество2
+        {
+            get
+            {
+                // *** Start programmer edit section *** (ТоварНаСкладе.Количество2 Get)
+                //return (decimal)this.cashedPurchaseSum;
+                return fКоличество2;
+                // *** End programmer edit section *** (ТоварНаСкладе.Количество2 Get)
+            }
+            set
+            {
+                // *** Start programmer edit section *** (ТоварНаСкладе.Количество2 Set)
+                /*if (value != null)
+                {*/
+                    //this.cashedPurchaseSum = (ICSSoft.STORMNET.UserDataTypes.NullableDecimal)value;
+                    //this.
+                    fКоличество2 = value;
+                //}*
+
+                // *** End programmer edit section *** (ТоварНаСкладе.Количество2 Set)
+            }
+        }
+        
+        /// <summary>
         /// Товар на складе.
         /// </summary>
         // *** Start programmer edit section *** (ТоварНаСкладе.Товар CustomAttributes)
@@ -88,6 +123,7 @@ namespace IIS.Склад
         // *** End programmer edit section *** (ТоварНаСкладе.Товар CustomAttributes)
         [PropertyStorage(new string[] {
                 "Товар"})]
+        [NotNull()]
         public virtual IIS.Склад.Товар Товар
         {
             get

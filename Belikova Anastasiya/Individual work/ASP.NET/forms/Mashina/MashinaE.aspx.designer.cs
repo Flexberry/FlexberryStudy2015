@@ -46,7 +46,7 @@ namespace IIS.Склад {
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::ICSSoft.STORMNET.Web.AjaxControls.AlphaNumericTextBox ctrlГрузоподъемность;
+        protected global::ICSSoft.STORMNET.Web.AjaxControls.DecimalTextBox ctrlГрузоподъемность;
         
         /// <summary>
         /// ctrlВладелецМашиныLabel элемент управления.
@@ -74,23 +74,5 @@ namespace IIS.Склад {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ctrlВладелецМашиныValidator;
-        
-        /// <summary>
-        /// ctrlВладелецМашины_ФИОLabel элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ctrlВладелецМашины_ФИОLabel;
-        
-        /// <summary>
-        /// ctrlВладелецМашины_ФИО элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ctrlВладелецМашины_ФИО;
     }
 }

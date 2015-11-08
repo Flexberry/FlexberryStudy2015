@@ -32,19 +32,25 @@ namespace IIS.Склад
             "Марка as \'Марка\'",
             "Грузоподъемность as \'Грузоподъемность\'",
             "ВладелецМашины as \'Владелец машины\'",
-            "ВладелецМашины.ФИО as \'ФИО\'"}, Hidden=new string[] {
-            "ВладелецМашины.ФИО"})]
-    [MasterViewDefineAttribute("МашинаE", "ВладелецМашины", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "ФИО")]
+            "ВладелецМашины.Фамилия as \'Фамилия\'",
+            "ВладелецМашины.Имя as \'Имя\'",
+            "ВладелецМашины.Отчество as \'Отчество\'"}, Hidden=new string[] {
+            "ВладелецМашины.Фамилия",
+            "ВладелецМашины.Имя",
+            "ВладелецМашины.Отчество"})]
+    [MasterViewDefineAttribute("МашинаE", "ВладелецМашины", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Фамилия")]
     [View("МашинаL", new string[] {
             "Марка as \'Марка\'",
             "Грузоподъемность as \'Грузоподъемность\'",
-            "ВладелецМашины.ФИО as \'ФИО\'"})]
+            "ВладелецМашины.Фамилия as \'Фамилия\'",
+            "ВладелецМашины.Имя as \'Имя\'",
+            "ВладелецМашины.Отчество as \'Отчество\'"})]
     public class Машина : ICSSoft.STORMNET.DataObject
     {
         
         private IIS.Склад.tМаркаМашины fМарка;
         
-        private int fГрузоподъемность;
+        private double fГрузоподъемность;
         
         private IIS.Склад.Личность fВладелецМашины;
         
@@ -90,14 +96,14 @@ namespace IIS.Склад
         // *** Start programmer edit section *** (Машина.Грузоподъемность CustomAttributes)
 
         // *** End programmer edit section *** (Машина.Грузоподъемность CustomAttributes)
-        public virtual int Грузоподъемность
+        public virtual double Грузоподъемность
         {
             get
             {
                 // *** Start programmer edit section *** (Машина.Грузоподъемность Get start)
 
                 // *** End programmer edit section *** (Машина.Грузоподъемность Get start)
-                int result = this.fГрузоподъемность;
+                double result = this.fГрузоподъемность;
                 // *** Start programmer edit section *** (Машина.Грузоподъемность Get end)
 
                 // *** End programmer edit section *** (Машина.Грузоподъемность Get end)

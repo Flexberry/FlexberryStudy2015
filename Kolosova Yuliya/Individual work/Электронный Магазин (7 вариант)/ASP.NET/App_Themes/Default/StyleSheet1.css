@@ -8,7 +8,9 @@
     font-style:italic;
     color:#cf1521;
 }
-
+.text{
+    font-size:20px;
+}
 .panda{
     background-image:url(../Spring/Pages/MainPage/Images/start.png);
     width:120px;
@@ -90,7 +92,7 @@
     color: #cf1521;
 }
 
-#TreeView1t6,#TreeView1t0{
+#TreeView1t6,#TreeView1t0,#TreeView1t10{
     font-style: italic;
     color: #cf1521;
 }
@@ -135,4 +137,14 @@
     color:#c7b3c7;
     background-color:#cf1521;
     
+}
+.page-header-image {
+    display: inline-block;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    background-image: url(../Default/Pages/MainPage/Images/logo.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    vertical-align: middle;
 }

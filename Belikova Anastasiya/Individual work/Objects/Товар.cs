@@ -41,6 +41,8 @@ namespace IIS.Склад
         
         private int fНомер;
         
+        private double fВес;
+        
         // *** Start programmer edit section *** (Товар CustomMembers)
 
         // *** End programmer edit section *** (Товар CustomMembers)
@@ -108,6 +110,37 @@ namespace IIS.Склад
                 // *** Start programmer edit section *** (Товар.Номер Set end)
 
                 // *** End programmer edit section *** (Товар.Номер Set end)
+            }
+        }
+        
+        /// <summary>
+        /// Вес.
+        /// </summary>
+        // *** Start programmer edit section *** (Товар.Вес CustomAttributes)
+
+        // *** End programmer edit section *** (Товар.Вес CustomAttributes)
+        public virtual double Вес
+        {
+            get
+            {
+                // *** Start programmer edit section *** (Товар.Вес Get start)
+
+                // *** End programmer edit section *** (Товар.Вес Get start)
+                double result = this.fВес;
+                // *** Start programmer edit section *** (Товар.Вес Get end)
+
+                // *** End programmer edit section *** (Товар.Вес Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (Товар.Вес Set start)
+
+                // *** End programmer edit section *** (Товар.Вес Set start)
+                this.fВес = value;
+                // *** Start programmer edit section *** (Товар.Вес Set end)
+
+                // *** End programmer edit section *** (Товар.Вес Set end)
             }
         }
         

@@ -21,13 +21,12 @@
                 </div>
             </div>
         </div>
-
     </div>
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="ContentPlaceHolder0">
     <script>
-        var c = 0;
+        var count = 0;
 
         function setTimer(time) {
             var minutes = parseInt(time / 60);
@@ -45,83 +44,33 @@
             } else {
                 $('#gameForm').hide();
                 $('#startBtn').removeAttr('disabled');
-                if ($('#bestTime span').text() < c) { $('#bestTime span').text(c); }
+                if ($('#bestTime span').text() < count) { $('#bestTime span').text(count); }
             }
         }
 
         $(document).on('click', '#startBtn', function () {
-            c = 0;
-            $('#counter span').text(c);
+            count = 0;
+            $('#counter span').text(count);
             $(this).attr('disabled', true);
             $('#gameForm').show();
             setTimer(15);
         })
 
         $(document).on('click', '#gameBlock', function () {
-            c++;
+            count++;
 
-            // 1 вариант - появление в рандомном месте
-            var w = $('#game').width();
-            var h = $('#game').height();
+            var width = $('#game').width();
+            var height = $('#game').height();
 
-            var maxl = Math.floor(w / 50);
-            var maxt = Math.floor(h / 50);
+            var maxleft = Math.floor(width / 50);
+            var maxtop = Math.floor(height / 50);
 
-            l = 10 + 50 * Math.round(Math.random() * (maxl - 1));
-            t = 10 + 50 * Math.round(Math.random() * (maxt - 1));
+            curleft = 10 + 50 * Math.round(Math.random() * (maxleft - 1));
+            curtop = 10 + 50 * Math.round(Math.random() * (maxtop - 1));
 
-            $("#gameBlock").css({ left: l + "px", top: t + "px" });
+            $("#gameBlock").css({ left: curleft + "px", top: curtop + "px" });
 
-            // 2 вариант - сдвиг на рандомную клетку рядом            
-            /*
-            var position = $('#gameBlock').position();
-            var l = position.left;
-            var t = position.top;
-            var w = $('#game').width();
-            var h = $('#game').height();
-
-            var r = Math.round(Math.random());
-
-            // если 0 - вертикально, если 1 - горизонтально
-            if (r) {
-                // alert(r + ' ' + l + ' ' + w);
-                if (l < 60) {
-                    // сдвиг вправо
-                    $("#gameBlock").css({ left: "+=50" });
-                } else if (l > w - 90) {
-                    // сдвиг влево
-                    $("#gameBlock").css({ left: "-=50" });
-                } else {
-                    var rh = Math.round(Math.random());
-                    if (rh) {
-                        // сдвиг вправо
-                        $("#gameBlock").css({ left: "+=50" });
-                    } else {
-                        // сдвиг влево
-                        $("#gameBlock").css({ left: "-=50" });
-                    }
-                }
-            } else {
-                if (t < 60) {
-                    // сдвиг вниз
-                    $("#gameBlock").css({ top: "+=50" });
-                } else if (l > h - 110) {
-                    // сдвиг вверх
-                    $("#gameBlock").css({ top: "-=50" });
-                } else {
-                    var rv = Math.round(Math.random());
-                    if (rv) {
-                        // сдвиг вниз
-                        $("#gameBlock").css({ top: "+=50" });
-                    } else {
-                        // сдвиг вверх
-                        $("#gameBlock").css({ top: "-=50" });
-                    }
-                }
-            }
-            */
-
-            $('#counter span').text(c);
+            $('#counter span').text(count);
         });
     </script>
 </asp:Content>

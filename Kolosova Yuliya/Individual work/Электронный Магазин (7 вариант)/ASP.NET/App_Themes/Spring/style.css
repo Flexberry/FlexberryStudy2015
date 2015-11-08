@@ -1,3 +1,16 @@
+.page-header-image {
+    display: inline-block;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    background-image: url(../Spring/Pages/MainPage/Images/logo.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+.text{
+    font-size:16px;
+}
 body{
     font-family: Courier New, Courier, monospace;
     background-color: #9ac5ed;
@@ -23,6 +36,15 @@ body{
 }
 
 
+.page-navigation {
+    padding-left: 20px;
+    height: 27px;
+    line-height: 27px;
+    color: #fff;
+    background: url(Pages/MainPage/Images/navi.png);
+    font-size: 13px;
+    font-weight: 400;
+}
 
 .login-form-label{
     font-size:20px;
@@ -83,10 +105,10 @@ body{
 .treeview-wrapper a{
     color: #0d496e;
 }
-.TreeView1_0{
+.TreeView1_0,.TreeView1_1{
     color: #0d496e;
 }
-#TreeView1t6,#TreeView1t0{
+#TreeView1t6,#TreeView1t0,#TreeView1t10{
     font-style: italic;
     color: #0d496e;
 }
@@ -97,6 +119,10 @@ body{
     background-repeat:no-repeat;
     display:inline-block;
     vertical-align:middle;
+}
+.TreeView1_1 {
+	color: #0D496E;
+	border-style: none;
 }
 
 #TreeView1n6Nodes tr td img{

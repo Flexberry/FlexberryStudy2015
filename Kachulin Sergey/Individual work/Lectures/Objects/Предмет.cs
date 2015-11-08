@@ -29,17 +29,13 @@ namespace IIS.Lectures
     [AutoAltered()]
     [AccessType(ICSSoft.STORMNET.AccessType.none)]
     [View("ПредметE", new string[] {
-            "Название as \'Название\'",
-            "КоличествоЧасовИзучения as \'Количество часов изучения\'"})]
+            "Название as \'Название\'"})]
     [View("ПредметL", new string[] {
-            "Название as \'Название\'",
-            "КоличествоЧасовИзучения as \'Количество часов изучения\'"})]
+            "Название as \'Название\'"})]
     public class Предмет : ICSSoft.STORMNET.DataObject
     {
         
         private string fНазвание;
-        
-        private int fКоличествоЧасовИзучения;
         
         // *** Start programmer edit section *** (Предмет CustomMembers)
 
@@ -75,37 +71,6 @@ namespace IIS.Lectures
                 // *** Start programmer edit section *** (Предмет.Название Set end)
 
                 // *** End programmer edit section *** (Предмет.Название Set end)
-            }
-        }
-        
-        /// <summary>
-        /// КоличествоЧасовИзучения.
-        /// </summary>
-        // *** Start programmer edit section *** (Предмет.КоличествоЧасовИзучения CustomAttributes)
-
-        // *** End programmer edit section *** (Предмет.КоличествоЧасовИзучения CustomAttributes)
-        public virtual int КоличествоЧасовИзучения
-        {
-            get
-            {
-                // *** Start programmer edit section *** (Предмет.КоличествоЧасовИзучения Get start)
-
-                // *** End programmer edit section *** (Предмет.КоличествоЧасовИзучения Get start)
-                int result = this.fКоличествоЧасовИзучения;
-                // *** Start programmer edit section *** (Предмет.КоличествоЧасовИзучения Get end)
-
-                // *** End programmer edit section *** (Предмет.КоличествоЧасовИзучения Get end)
-                return result;
-            }
-            set
-            {
-                // *** Start programmer edit section *** (Предмет.КоличествоЧасовИзучения Set start)
-
-                // *** End programmer edit section *** (Предмет.КоличествоЧасовИзучения Set start)
-                this.fКоличествоЧасовИзучения = value;
-                // *** Start programmer edit section *** (Предмет.КоличествоЧасовИзучения Set end)
-
-                // *** End programmer edit section *** (Предмет.КоличествоЧасовИзучения Set end)
             }
         }
         

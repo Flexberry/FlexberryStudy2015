@@ -30,19 +30,19 @@ namespace IIS.Lectures
     [Caption("Предмет в семестре")]
     [AccessType(ICSSoft.STORMNET.AccessType.none)]
     [View("ПредметВСеместреE", new string[] {
-            "Семестр as \'Семестр\'",
-            "Предмет as \'Предмет\'"})]
-    [MasterViewDefineAttribute("ПредметВСеместреE", "Семестр", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Номер")]
+            "Предмет as \'Предмет\'",
+            "КоличествоЧасовИзучения as \'Количество часов изучения\'",
+            "Предмет.Название as \'Название\'"}, Hidden=new string[] {
+            "Предмет.Название"})]
     [MasterViewDefineAttribute("ПредметВСеместреE", "Предмет", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Название")]
-    [View("ПредметВСеместреL", new string[] {
-            "Семестр.Номер as \'Номер\'",
-            "Предмет.Название as \'Название\'"})]
     public class ПредметВСеместре : ICSSoft.STORMNET.DataObject
     {
         
-        private IIS.Lectures.Семестр fСеместр;
+        private int fКоличествоЧасовИзучения;
         
         private IIS.Lectures.Предмет fПредмет;
+        
+        private IIS.Lectures.Семестр fСеместр;
         
         // *** Start programmer edit section *** (ПредметВСеместре CustomMembers)
 
@@ -50,36 +50,33 @@ namespace IIS.Lectures
 
         
         /// <summary>
-        /// Предмет в семестре.
+        /// КоличествоЧасовИзучения.
         /// </summary>
-        // *** Start programmer edit section *** (ПредметВСеместре.Семестр CustomAttributes)
+        // *** Start programmer edit section *** (ПредметВСеместре.КоличествоЧасовИзучения CustomAttributes)
 
-        // *** End programmer edit section *** (ПредметВСеместре.Семестр CustomAttributes)
-        [PropertyStorage(new string[] {
-                "Семестр"})]
-        [NotNull()]
-        public virtual IIS.Lectures.Семестр Семестр
+        // *** End programmer edit section *** (ПредметВСеместре.КоличествоЧасовИзучения CustomAttributes)
+        public virtual int КоличествоЧасовИзучения
         {
             get
             {
-                // *** Start programmer edit section *** (ПредметВСеместре.Семестр Get start)
+                // *** Start programmer edit section *** (ПредметВСеместре.КоличествоЧасовИзучения Get start)
 
-                // *** End programmer edit section *** (ПредметВСеместре.Семестр Get start)
-                IIS.Lectures.Семестр result = this.fСеместр;
-                // *** Start programmer edit section *** (ПредметВСеместре.Семестр Get end)
+                // *** End programmer edit section *** (ПредметВСеместре.КоличествоЧасовИзучения Get start)
+                int result = this.fКоличествоЧасовИзучения;
+                // *** Start programmer edit section *** (ПредметВСеместре.КоличествоЧасовИзучения Get end)
 
-                // *** End programmer edit section *** (ПредметВСеместре.Семестр Get end)
+                // *** End programmer edit section *** (ПредметВСеместре.КоличествоЧасовИзучения Get end)
                 return result;
             }
             set
             {
-                // *** Start programmer edit section *** (ПредметВСеместре.Семестр Set start)
+                // *** Start programmer edit section *** (ПредметВСеместре.КоличествоЧасовИзучения Set start)
 
-                // *** End programmer edit section *** (ПредметВСеместре.Семестр Set start)
-                this.fСеместр = value;
-                // *** Start programmer edit section *** (ПредметВСеместре.Семестр Set end)
+                // *** End programmer edit section *** (ПредметВСеместре.КоличествоЧасовИзучения Set start)
+                this.fКоличествоЧасовИзучения = value;
+                // *** Start programmer edit section *** (ПредметВСеместре.КоличествоЧасовИзучения Set end)
 
-                // *** End programmer edit section *** (ПредметВСеместре.Семестр Set end)
+                // *** End programmer edit section *** (ПредметВСеместре.КоличествоЧасовИзучения Set end)
             }
         }
         
@@ -118,6 +115,41 @@ namespace IIS.Lectures
         }
         
         /// <summary>
+        /// мастеровая ссылка на шапку IIS.Lectures.Семестр.
+        /// </summary>
+        // *** Start programmer edit section *** (ПредметВСеместре.Семестр CustomAttributes)
+
+        // *** End programmer edit section *** (ПредметВСеместре.Семестр CustomAttributes)
+        [Agregator()]
+        [NotNull()]
+        [PropertyStorage(new string[] {
+                "Семестр"})]
+        public virtual IIS.Lectures.Семестр Семестр
+        {
+            get
+            {
+                // *** Start programmer edit section *** (ПредметВСеместре.Семестр Get start)
+
+                // *** End programmer edit section *** (ПредметВСеместре.Семестр Get start)
+                IIS.Lectures.Семестр result = this.fСеместр;
+                // *** Start programmer edit section *** (ПредметВСеместре.Семестр Get end)
+
+                // *** End programmer edit section *** (ПредметВСеместре.Семестр Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (ПредметВСеместре.Семестр Set start)
+
+                // *** End programmer edit section *** (ПредметВСеместре.Семестр Set start)
+                this.fСеместр = value;
+                // *** Start programmer edit section *** (ПредметВСеместре.Семестр Set end)
+
+                // *** End programmer edit section *** (ПредметВСеместре.Семестр Set end)
+            }
+        }
+        
+        /// <summary>
         /// Class views container.
         /// </summary>
         public class Views
@@ -133,17 +165,48 @@ namespace IIS.Lectures
                     return ICSSoft.STORMNET.Information.GetView("ПредметВСеместреE", typeof(IIS.Lectures.ПредметВСеместре));
                 }
             }
-            
-            /// <summary>
-            /// "ПредметВСеместреL" view.
-            /// </summary>
-            public static ICSSoft.STORMNET.View ПредметВСеместреL
+        }
+    }
+    
+    /// <summary>
+    /// Detail array of ПредметВСеместре.
+    /// </summary>
+    // *** Start programmer edit section *** (DetailArrayDetailArrayOfПредметВСеместре CustomAttributes)
+
+    // *** End programmer edit section *** (DetailArrayDetailArrayOfПредметВСеместре CustomAttributes)
+    public class DetailArrayOfПредметВСеместре : ICSSoft.STORMNET.DetailArray
+    {
+        
+        // *** Start programmer edit section *** (IIS.Lectures.DetailArrayOfПредметВСеместре members)
+
+        // *** End programmer edit section *** (IIS.Lectures.DetailArrayOfПредметВСеместре members)
+
+        
+        /// <summary>
+        /// Construct detail array.
+        /// </summary>
+        /// <summary>
+        /// Returns object with type ПредметВСеместре by index.
+        /// </summary>
+        /// <summary>
+        /// Adds object with type ПредметВСеместре.
+        /// </summary>
+        public DetailArrayOfПредметВСеместре(IIS.Lectures.Семестр fСеместр) : 
+                base(typeof(ПредметВСеместре), ((ICSSoft.STORMNET.DataObject)(fСеместр)))
+        {
+        }
+        
+        public IIS.Lectures.ПредметВСеместре this[int index]
+        {
+            get
             {
-                get
-                {
-                    return ICSSoft.STORMNET.Information.GetView("ПредметВСеместреL", typeof(IIS.Lectures.ПредметВСеместре));
-                }
+                return ((IIS.Lectures.ПредметВСеместре)(this.ItemByIndex(index)));
             }
+        }
+        
+        public virtual void Add(IIS.Lectures.ПредметВСеместре dataobject)
+        {
+            this.AddObject(((ICSSoft.STORMNET.DataObject)(dataobject)));
         }
     }
 }

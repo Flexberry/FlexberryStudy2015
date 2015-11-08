@@ -30,7 +30,7 @@
             if(new Date().getHours() < 9 && new Date().getHours() > 18)
                 $('#pageBlockContent').append('<p>Все склады Открыты.</p>');
             else
-                $('#pageBlockContent').append('<p>Все склады еще закрыты. Склады работают с 9.00 до 18.00.</p>');
+                $('#pageBlockContent').append('<p>Все склады закрыты. Склады работают с 9.00 до 18.00.</p>');
         });
     </script>
 </asp:Content>

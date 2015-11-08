@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9C2F298A-72FA-4AB3-8E89-688DD41DC4F1}</ProjectGuid>
+    <ProjectGuid>{DF30E171-886E-44B8-BA19-98A77A0781D8}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -84,7 +84,7 @@
       <HintPath>System.Workflow.Runtime</HintPath>
     </Reference>
     <ProjectReference Include="..\Objects\Авиакомпания(Objects).csproj">
-      <Project>{661de233-ee08-4c38-941a-fbc2ed22c39c}</Project>
+      <Project>{8d7a4648-60f8-46e6-b2fa-e80b89b5c5bc}</Project>
       <Name>Авиакомпания(Objects)</Name>
     </ProjectReference>
     <Reference Include="log4net">
@@ -324,14 +324,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="forms\Sotrudniki\SotrudnikiL.aspx" />
-    <Compile Include="forms\Sotrudniki\SotrudnikiL.aspx.cs">
-      <DependentUpon>SotrudnikiL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Sotrudniki\SotrudnikiL.aspx.designer.cs">
-      <DependentUpon>SotrudnikiL.aspx</DependentUpon>
-    </Compile>
+    <Content Include="App_Themes\Spring\StyleSheet1.css" />
     <Content Include="forms\IstoriyaRemontov\IstoriyaRemontovE.aspx" />
     <Compile Include="forms\IstoriyaRemontov\IstoriyaRemontovE.aspx.cs">
       <DependentUpon>IstoriyaRemontovE.aspx</DependentUpon>
@@ -348,37 +341,38 @@
     <Compile Include="forms\Sotrudniki\SotrudnikiE.aspx.designer.cs">
       <DependentUpon>SotrudnikiE.aspx</DependentUpon>
     </Compile>
-    <Content Include="forms\TipSamoleta\TipSamoletaL.aspx" />
-    <Compile Include="forms\TipSamoleta\TipSamoletaL.aspx.cs">
-      <DependentUpon>TipSamoletaL.aspx</DependentUpon>
+    <Content Include="Web.sitemap" />
+    <Content Include="forms\SotrudnikiVSamolete\SotrudnikiVSamoleteE.aspx" />
+    <Compile Include="forms\SotrudnikiVSamolete\SotrudnikiVSamoleteE.aspx.cs">
+      <DependentUpon>SotrudnikiVSamoleteE.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\TipSamoleta\TipSamoletaL.aspx.designer.cs">
-      <DependentUpon>TipSamoletaL.aspx</DependentUpon>
+    <Compile Include="forms\SotrudnikiVSamolete\SotrudnikiVSamoleteE.aspx.designer.cs">
+      <DependentUpon>SotrudnikiVSamoleteE.aspx</DependentUpon>
     </Compile>
-    <Content Include="forms\KompaniyaIzgotovitel\KompaniyaIzgotovitelL.aspx" />
-    <Compile Include="forms\KompaniyaIzgotovitel\KompaniyaIzgotovitelL.aspx.cs">
-      <DependentUpon>KompaniyaIzgotovitelL.aspx</DependentUpon>
+    <Content Include="forms\Sotrudniki\SotrudnikiL.aspx" />
+    <Compile Include="forms\Sotrudniki\SotrudnikiL.aspx.cs">
+      <DependentUpon>SotrudnikiL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\KompaniyaIzgotovitel\KompaniyaIzgotovitelL.aspx.designer.cs">
-      <DependentUpon>KompaniyaIzgotovitelL.aspx</DependentUpon>
+    <Compile Include="forms\Sotrudniki\SotrudnikiL.aspx.designer.cs">
+      <DependentUpon>SotrudnikiL.aspx</DependentUpon>
     </Compile>
-    <Content Include="forms\KompaniyaIzgotovitel\KompaniyaIzgotovitelE.aspx" />
-    <Compile Include="forms\KompaniyaIzgotovitel\KompaniyaIzgotovitelE.aspx.cs">
-      <DependentUpon>KompaniyaIzgotovitelE.aspx</DependentUpon>
+    <Content Include="forms\InformaciyaOSamolete\InformaciyaOSamoleteE.aspx" />
+    <Compile Include="forms\InformaciyaOSamolete\InformaciyaOSamoleteE.aspx.cs">
+      <DependentUpon>InformaciyaOSamoleteE.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\KompaniyaIzgotovitel\KompaniyaIzgotovitelE.aspx.designer.cs">
-      <DependentUpon>KompaniyaIzgotovitelE.aspx</DependentUpon>
+    <Compile Include="forms\InformaciyaOSamolete\InformaciyaOSamoleteE.aspx.designer.cs">
+      <DependentUpon>InformaciyaOSamoleteE.aspx</DependentUpon>
     </Compile>
-    <Content Include="forms\TipSamoleta\TipSamoletaE.aspx" />
-    <Compile Include="forms\TipSamoleta\TipSamoletaE.aspx.cs">
-      <DependentUpon>TipSamoletaE.aspx</DependentUpon>
+    <Content Include="forms\IstoriyaRemontov\IstoriyaRemontovL.aspx" />
+    <Compile Include="forms\IstoriyaRemontov\IstoriyaRemontovL.aspx.cs">
+      <DependentUpon>IstoriyaRemontovL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\TipSamoleta\TipSamoletaE.aspx.designer.cs">
-      <DependentUpon>TipSamoletaE.aspx</DependentUpon>
+    <Compile Include="forms\IstoriyaRemontov\IstoriyaRemontovL.aspx.designer.cs">
+      <DependentUpon>IstoriyaRemontovL.aspx</DependentUpon>
     </Compile>
     <Content Include="forms\InformaciyaOSamolete\InformaciyaOSamoleteL.aspx" />
     <Compile Include="forms\InformaciyaOSamolete\InformaciyaOSamoleteL.aspx.cs">
@@ -388,22 +382,29 @@
     <Compile Include="forms\InformaciyaOSamolete\InformaciyaOSamoleteL.aspx.designer.cs">
       <DependentUpon>InformaciyaOSamoleteL.aspx</DependentUpon>
     </Compile>
-    <Content Include="Web.sitemap" />
-    <Content Include="forms\IstoriyaRemontov\IstoriyaRemontovL.aspx" />
-    <Compile Include="forms\IstoriyaRemontov\IstoriyaRemontovL.aspx.cs">
-      <DependentUpon>IstoriyaRemontovL.aspx</DependentUpon>
+    <Content Include="forms\SotrudnikiVSamolete\SotrudnikiVSamoleteL.aspx" />
+    <Compile Include="forms\SotrudnikiVSamolete\SotrudnikiVSamoleteL.aspx.cs">
+      <DependentUpon>SotrudnikiVSamoleteL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\IstoriyaRemontov\IstoriyaRemontovL.aspx.designer.cs">
-      <DependentUpon>IstoriyaRemontovL.aspx</DependentUpon>
+    <Compile Include="forms\SotrudnikiVSamolete\SotrudnikiVSamoleteL.aspx.designer.cs">
+      <DependentUpon>SotrudnikiVSamoleteL.aspx</DependentUpon>
     </Compile>
-    <Content Include="forms\InformaciyaOSamolete\InformaciyaOSamoleteE.aspx" />
-    <Compile Include="forms\InformaciyaOSamolete\InformaciyaOSamoleteE.aspx.cs">
-      <DependentUpon>InformaciyaOSamoleteE.aspx</DependentUpon>
+    <Content Include="forms\TipSamoleta\TipSamoletaL.aspx" />
+    <Compile Include="forms\TipSamoleta\TipSamoletaL.aspx.cs">
+      <DependentUpon>TipSamoletaL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\InformaciyaOSamolete\InformaciyaOSamoleteE.aspx.designer.cs">
-      <DependentUpon>InformaciyaOSamoleteE.aspx</DependentUpon>
+    <Compile Include="forms\TipSamoleta\TipSamoletaL.aspx.designer.cs">
+      <DependentUpon>TipSamoletaL.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\TipSamoleta\TipSamoletaE.aspx" />
+    <Compile Include="forms\TipSamoleta\TipSamoletaE.aspx.cs">
+      <DependentUpon>TipSamoletaE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\TipSamoleta\TipSamoletaE.aspx.designer.cs">
+      <DependentUpon>TipSamoletaE.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="shared\jstreeThemes\apple\bg.jpg" />
@@ -885,6 +886,7 @@
     <Content Include="App_Themes\Light\Theme.skin" />
     <Content Include="App_Themes\Light\Web.config" />
     <Content Include="App_Themes\Light\_VariablesBasic.less" />
+    <Content Include="App_Themes\Smart\BaseStyles.css" />
     <Content Include="App_Themes\Smart\BaseStyles.less" />
     <Content Include="App_Themes\Smart\Controls\AjaxGroupEdit\AjaxGroupEdit.less" />
     <Content Include="App_Themes\Smart\Controls\AjaxGroupEdit\_Settings.less" />
@@ -974,7 +976,6 @@
     <Content Include="App_Themes\Smart\Theme.skin" />
     <Content Include="App_Themes\Smart\Web.config" />
     <Content Include="App_Themes\Smart\_VariablesBasic.less" />
-    <Content Include="App_Themes\Smart\faith_connects.zip" />
     <None Include="packages.config" />
     <Compile Include="forms\BaseEditForm.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -1047,6 +1048,46 @@
     <Content Include="Xml\WebControlProvider.xsd" />
     <Content Include="Xml\Bindings\ExampleE.xml" />
     <Content Include="Xml\Sitemaps\Empty.sitemap" />
+    <Content Include="forms\MExanik.aspx" />
+    <Compile Include="forms\MExanik.aspx.cs">
+      <DependentUpon>MExanik.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\MExanik.aspx.designer.cs">
+      <DependentUpon>MExanik.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Vozrast.aspx" />
+    <Compile Include="forms\Vozrast.aspx.cs">
+      <DependentUpon>Vozrast.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Vozrast.aspx.designer.cs">
+      <DependentUpon>Vozrast.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\PosadochnyeMEsta.aspx" />
+    <Compile Include="forms\PosadochnyeMEsta.aspx.cs">
+      <DependentUpon>PosadochnyeMEsta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\PosadochnyeMEsta.aspx.designer.cs">
+      <DependentUpon>PosadochnyeMEsta.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Kompaniya.aspx" />
+    <Compile Include="forms\Kompaniya.aspx.cs">
+      <DependentUpon>Kompaniya.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Kompaniya.aspx.designer.cs">
+      <DependentUpon>Kompaniya.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Dvigateli.aspx" />
+    <Compile Include="forms\Dvigateli.aspx.cs">
+      <DependentUpon>Dvigateli.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Dvigateli.aspx.designer.cs">
+      <DependentUpon>Dvigateli.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

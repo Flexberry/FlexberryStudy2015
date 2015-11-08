@@ -19,8 +19,8 @@
 	<div class="clearfix">
   <asp:Label CssClass="descLbl" ID="ctrlКоличестсвоLabel" runat="server" Text="Количестсво" EnableViewState="False">
 </asp:Label>
-<ac:AlphaNumericTextBox CssClass="descTxt" ID="ctrlКоличестсво" Type="Numeric" runat="server">
-</ac:AlphaNumericTextBox>
+<ac:DecimalTextBox CssClass="descTxt" ID="ctrlКоличестсво" runat="server">
+</ac:DecimalTextBox>
 
 </div>
 <div class="clearfix">

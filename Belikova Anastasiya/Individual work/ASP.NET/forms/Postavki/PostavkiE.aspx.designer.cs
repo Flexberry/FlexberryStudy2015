@@ -28,7 +28,7 @@ namespace IIS.Склад {
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::ICSSoft.STORMNET.Web.AjaxControls.AlphaNumericTextBox ctrlКоличестсво;
+        protected global::ICSSoft.STORMNET.Web.AjaxControls.DecimalTextBox ctrlКоличестсво;
         
         /// <summary>
         /// ctrlДатаLabel элемент управления.
@@ -76,24 +76,6 @@ namespace IIS.Склад {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ctrlСкладValidator;
         
         /// <summary>
-        /// ctrlСклад_НазваниеLabel элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ctrlСклад_НазваниеLabel;
-        
-        /// <summary>
-        /// ctrlСклад_Название элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ctrlСклад_Название;
-        
-        /// <summary>
         /// ctrlТоварLabel элемент управления.
         /// </summary>
         /// <remarks>
@@ -121,24 +103,6 @@ namespace IIS.Склад {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ctrlТоварValidator;
         
         /// <summary>
-        /// ctrlТовар_НаименованиеLabel элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ctrlТовар_НаименованиеLabel;
-        
-        /// <summary>
-        /// ctrlТовар_Наименование элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ctrlТовар_Наименование;
-        
-        /// <summary>
         /// ctrlМашинаLabel элемент управления.
         /// </summary>
         /// <remarks>
@@ -164,23 +128,5 @@ namespace IIS.Склад {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ctrlМашинаValidator;
-        
-        /// <summary>
-        /// ctrlМашина_МаркаLabel элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ctrlМашина_МаркаLabel;
-        
-        /// <summary>
-        /// ctrlМашина_Марка элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ctrlМашина_Марка;
     }
 }

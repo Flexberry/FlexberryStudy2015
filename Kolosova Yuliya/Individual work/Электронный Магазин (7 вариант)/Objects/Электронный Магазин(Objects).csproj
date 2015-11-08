@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CC2E7DEF-BCAD-42A4-8E6B-61294953072C}</ProjectGuid>
+    <ProjectGuid>{70DE3B9C-3FE6-4DB6-B7E6-8ECE9C2D13CF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IIS.Электронный_Магазин</RootNamespace>
@@ -134,7 +134,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Склад.cs">
+    <Compile Include="ПоступлениеТовара.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Товар.cs">

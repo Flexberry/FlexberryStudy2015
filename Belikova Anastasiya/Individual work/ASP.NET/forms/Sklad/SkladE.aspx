@@ -26,8 +26,8 @@
 <div class="clearfix">
   <asp:Label CssClass="descLbl" ID="ctrlВместимостьLabel" runat="server" Text="Вместимость" EnableViewState="False">
 </asp:Label>
-<ac:AlphaNumericTextBox CssClass="descTxt" ID="ctrlВместимость" Type="Numeric" runat="server">
-</ac:AlphaNumericTextBox>
+<ac:DecimalTextBox CssClass="descTxt" ID="ctrlВместимость" runat="server">
+</ac:DecimalTextBox>
 
 </div>
 <div class="clearfix">

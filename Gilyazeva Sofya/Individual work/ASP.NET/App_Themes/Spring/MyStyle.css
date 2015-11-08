@@ -1,0 +1,44 @@
+﻿body {
+}
+
+.page-navigation {
+    padding-left: 20px;
+    height: 27px;
+    line-height: 27px;
+    color: #fff;
+    background-color: #e37917;
+    background-image: none;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+a[href="/forms/Avtor/AvtorL.aspx"] {
+    background-image: url(/App_Themes/Spring/Images/author.png);
+    background-size: 16px;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+}
+
+a[href="/forms/Kniga/KnigaL.aspx"] {
+    background-image: url(/App_Themes/Spring/Images/book_orange.png);
+    background-size: 16px;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+}
+
+a[href="/forms/Izdatelstvo/IzdatelstvoL.aspx"] {
+    background-image: url(/App_Themes/Spring/Images/publ.png);
+    background-size: 16px;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+}
+.page-header-image {
+    display: inline-block;
+    margin: 10px;
+    width: 90px;
+    height: 90px;
+    background-image: url(/App_Themes/Spring/Images/logo.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
