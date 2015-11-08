@@ -131,3 +131,7 @@ background:#fff;
 .home-page {
 font-size:21px;
 }
+
+#pageBlockTreeview .ics-treeview tr:hover td{
+    background-color:#26a69a;
+}
