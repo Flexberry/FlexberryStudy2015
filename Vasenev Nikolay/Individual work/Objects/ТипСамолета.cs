@@ -29,6 +29,14 @@ namespace IIS.Авиакомпания
     [AutoAltered()]
     [Caption("Тип самолета")]
     [AccessType(ICSSoft.STORMNET.AccessType.none)]
+    [View("Dvigateli", new string[] {
+            "Название",
+            "Код",
+            "КоличествоДвигателей"})]
+    [View("Mesta", new string[] {
+            "Название",
+            "Код",
+            "КоличествоМест as \'Количество мест\'"})]
     [View("ТипСамолетаE", new string[] {
             "Название as \'Название\'",
             "Код as \'Код\'",
@@ -218,6 +226,28 @@ namespace IIS.Авиакомпания
         /// </summary>
         public class Views
         {
+            
+            /// <summary>
+            /// "Dvigateli" view.
+            /// </summary>
+            public static ICSSoft.STORMNET.View Dvigateli
+            {
+                get
+                {
+                    return ICSSoft.STORMNET.Information.GetView("Dvigateli", typeof(IIS.Авиакомпания.ТипСамолета));
+                }
+            }
+            
+            /// <summary>
+            /// "Mesta" view.
+            /// </summary>
+            public static ICSSoft.STORMNET.View Mesta
+            {
+                get
+                {
+                    return ICSSoft.STORMNET.Information.GetView("Mesta", typeof(IIS.Авиакомпания.ТипСамолета));
+                }
+            }
             
             /// <summary>
             /// "ТипСамолетаE" view.

@@ -30,8 +30,10 @@ namespace IIS.Lectures
     [Caption("Предмет в тетради")]
     [AccessType(ICSSoft.STORMNET.AccessType.none)]
     [View("ПредметВТетрадиE", new string[] {
+            "Предмет as \'Предмет\'",
             "КоличествоЛекций as \'Количество лекций\'",
-            "Предмет as \'Предмет\'"})]
+            "Предмет.Название as \'Предмет\'"}, Hidden=new string[] {
+            "Предмет.Название"})]
     [MasterViewDefineAttribute("ПредметВТетрадиE", "Предмет", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Название")]
     public class ПредметВТетради : ICSSoft.STORMNET.DataObject
     {

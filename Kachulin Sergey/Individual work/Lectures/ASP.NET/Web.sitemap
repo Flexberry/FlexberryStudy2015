@@ -9,10 +9,17 @@
       <siteMapNode title="Лог" url="~/flexberry/LogList" />
       <siteMapNode title="Версии сборок" url="~/flexberry/Version" />
     </siteMapNode>
-    <siteMapNode title="Мои конспекты" roles="*" xmlns="">
-      <siteMapNode title="Тетради" description="" url="~/forms/Tetrad/TetradL.aspx" />
-      <siteMapNode title="Предметы" description="" url="~/forms/Predmet/PredmetL.aspx" />
-      <siteMapNode title="Семестры" description="" url="~/forms/Semestr/SemestrL.aspx" />
+    <siteMapNode title="Лекции" roles="*" xmlns="">
+      <siteMapNode title="Тетрадь" description="" url="~/forms/Tetrad/TetradL.aspx" />
+      <siteMapNode title="Предмет" description="" url="~/forms/Predmet/PredmetL.aspx" />
+      <siteMapNode title="Семестр" description="" url="~/forms/Semestr/SemestrL.aspx" />
+    </siteMapNode>
+    <siteMapNode title="Запросы" roles="*" xmlns="">
+      <siteMapNode title="Поиск тетрадей по предмету" description="" url="~/forms/Zapros1.aspx" />
+      <siteMapNode title="Список предметов в тетради" description="" url="~/forms/Zapros2.aspx" />
+      <siteMapNode title="Цвета обложек тетрадей" description="" url="~/forms/Zapros3.aspx" />
+      <siteMapNode title="Семестры предметов в тетради" description="" url="~/forms/Zapros4.aspx" />
+      <siteMapNode title="Тетради с самыми долгими предметами" description="" url="~/forms/Zapros5.aspx" />
     </siteMapNode>
   </siteMapNode>
 </siteMap>

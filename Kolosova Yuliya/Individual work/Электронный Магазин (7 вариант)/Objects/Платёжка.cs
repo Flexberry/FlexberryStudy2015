@@ -34,6 +34,8 @@ namespace IIS.Электронный_Магазин
             ""})]
     [View("ПлатёжкаL", new string[] {
             "Дата as \'Дата\'"})]
+    [AssociatedDetailViewAttribute("ПлатёжкаL", "СтрокаИзПлатёжки", "СтрокаИзПлатёжкиE", true, "", "", false, new string[] {
+            ""})]
     public class Платёжка : ICSSoft.STORMNET.DataObject
     {
         

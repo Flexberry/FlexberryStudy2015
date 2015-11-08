@@ -19,3 +19,9 @@ Introduction: [просмотр](https://sway.com/BtSViRD4KqLbsLrj)
 
 ## Занятие №3
 Flexberry ORM. Работа с данными из веб-приложения: [просмотр](https://sway.com/kdVqoZeLGopieIqf)
+
+## Занятие №4
+Доработка сгенерированного прототипа до уровня конечного веб-приложения: [просмотр](https://sway.com/8gAg7K3IhPIrWohk)
+
+## Занятие №5
+Настройка полномочий и аудита в веб-приложениях на платформе Flexberry: [просмотр](https://sway.com/dWOIN5doHFiOI3te)

@@ -29,6 +29,13 @@ namespace IIS.Авиакомпания
     [AutoAltered()]
     [Caption("Информация о самолете")]
     [AccessType(ICSSoft.STORMNET.AccessType.none)]
+    [View("company", new string[] {
+            "НомерСамолета as \'Номер\'",
+            "ТипСамолета.Название as \'Компания\'"})]
+    [View("Vozrast", new string[] {
+            "ТипСамолета.Название",
+            "ТипСамолета.Код",
+            "Возраст"})]
     [View("ИнформацияОСамолетеE", new string[] {
             "НомерСамолета as \'Номер самолета\'",
             "Возраст as \'Возраст\'",
@@ -36,10 +43,8 @@ namespace IIS.Авиакомпания
             "ТипСамолета.Код as \'Код\' on \'-Тип\'",
             "ТипСамолета.КоличествоДвигателей as \'Количество двигателей\' on \'-Характеристики\'",
             "ТипСамолета.КоличествоМест as \'Количество мест\' on \'-Характеристики\'",
-            "ТипСамолета.Масса as \'Масса\' on \'-Характеристики\'",
-            "КомпанияИзготовитель as \'Компания изготовитель\'"})]
+            "ТипСамолета.Масса as \'Масса\' on \'-Характеристики\'"})]
     [MasterViewDefineAttribute("ИнформацияОСамолетеE", "ТипСамолета", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Название")]
-    [MasterViewDefineAttribute("ИнформацияОСамолетеE", "КомпанияИзготовитель", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "НазваниеКомпании")]
     [View("ИнформацияОСамолетеL", new string[] {
             "НомерСамолета as \'Номер самолета\'",
             "ТипСамолета.Название as \'Название Самолета\'",
@@ -49,11 +54,9 @@ namespace IIS.Авиакомпания
         
         private int fНомерСамолета;
         
-        private int fВозраст;
+        private System.DateTime fВозраст;
         
         private IIS.Авиакомпания.ТипСамолета fТипСамолета;
-        
-        private IIS.Авиакомпания.КомпанияИзготовитель fКомпанияИзготовитель;
         
         // *** Start programmer edit section *** (ИнформацияОСамолете CustomMembers)
 
@@ -97,14 +100,14 @@ namespace IIS.Авиакомпания
         // *** Start programmer edit section *** (ИнформацияОСамолете.Возраст CustomAttributes)
 
         // *** End programmer edit section *** (ИнформацияОСамолете.Возраст CustomAttributes)
-        public virtual int Возраст
+        public virtual System.DateTime Возраст
         {
             get
             {
                 // *** Start programmer edit section *** (ИнформацияОСамолете.Возраст Get start)
 
                 // *** End programmer edit section *** (ИнформацияОСамолете.Возраст Get start)
-                int result = this.fВозраст;
+                System.DateTime result = this.fВозраст;
                 // *** Start programmer edit section *** (ИнформацияОСамолете.Возраст Get end)
 
                 // *** End programmer edit section *** (ИнформацияОСамолете.Возраст Get end)
@@ -157,44 +160,32 @@ namespace IIS.Авиакомпания
         }
         
         /// <summary>
-        /// Информация о самолете.
-        /// </summary>
-        // *** Start programmer edit section *** (ИнформацияОСамолете.КомпанияИзготовитель CustomAttributes)
-
-        // *** End programmer edit section *** (ИнформацияОСамолете.КомпанияИзготовитель CustomAttributes)
-        [PropertyStorage(new string[] {
-                "КомпанияИзготовитель"})]
-        [NotNull()]
-        public virtual IIS.Авиакомпания.КомпанияИзготовитель КомпанияИзготовитель
-        {
-            get
-            {
-                // *** Start programmer edit section *** (ИнформацияОСамолете.КомпанияИзготовитель Get start)
-
-                // *** End programmer edit section *** (ИнформацияОСамолете.КомпанияИзготовитель Get start)
-                IIS.Авиакомпания.КомпанияИзготовитель result = this.fКомпанияИзготовитель;
-                // *** Start programmer edit section *** (ИнформацияОСамолете.КомпанияИзготовитель Get end)
-
-                // *** End programmer edit section *** (ИнформацияОСамолете.КомпанияИзготовитель Get end)
-                return result;
-            }
-            set
-            {
-                // *** Start programmer edit section *** (ИнформацияОСамолете.КомпанияИзготовитель Set start)
-
-                // *** End programmer edit section *** (ИнформацияОСамолете.КомпанияИзготовитель Set start)
-                this.fКомпанияИзготовитель = value;
-                // *** Start programmer edit section *** (ИнформацияОСамолете.КомпанияИзготовитель Set end)
-
-                // *** End programmer edit section *** (ИнформацияОСамолете.КомпанияИзготовитель Set end)
-            }
-        }
-        
-        /// <summary>
         /// Class views container.
         /// </summary>
         public class Views
         {
+            
+            /// <summary>
+            /// "company" view.
+            /// </summary>
+            public static ICSSoft.STORMNET.View company
+            {
+                get
+                {
+                    return ICSSoft.STORMNET.Information.GetView("company", typeof(IIS.Авиакомпания.ИнформацияОСамолете));
+                }
+            }
+            
+            /// <summary>
+            /// "Vozrast" view.
+            /// </summary>
+            public static ICSSoft.STORMNET.View Vozrast
+            {
+                get
+                {
+                    return ICSSoft.STORMNET.Information.GetView("Vozrast", typeof(IIS.Авиакомпания.ИнформацияОСамолете));
+                }
+            }
             
             /// <summary>
             /// "ИнформацияОСамолетеE" view.

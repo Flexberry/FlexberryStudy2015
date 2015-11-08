@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{234376E1-11AE-4338-871F-792F759CEB48}</ProjectGuid>
+    <ProjectGuid>{3AC91D50-0FC9-4E35-93D6-2CD218951C80}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -50,6 +50,43 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System">
+      <HintPath>System</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>System.Data</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <HintPath>System.Drawing</HintPath>
+    </Reference>
+    <Reference Include="System.Linq">
+      <HintPath>System.Linq</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <HintPath>System.Web</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <HintPath>System.Web.Extensions</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions.Design">
+      <HintPath>System.Web.Extensions.Design</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <HintPath>System.Web.Services</HintPath>
+    </Reference>
+    <Reference Include="System.XML">
+      <HintPath>System.XML</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <HintPath>System.Xml.Linq</HintPath>
+    </Reference>
+    <Reference Include="System.Workflow.Runtime">
+      <HintPath>System.Workflow.Runtime</HintPath>
+    </Reference>
+    <ProjectReference Include="..\Objects\Lectures(Objects).csproj">
+      <Project>{90b4ca48-9255-4016-8cab-6c39ca3ee122}</Project>
+      <Name>Lectures(Objects)</Name>
+    </ProjectReference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-client\log4net.dll</HintPath>
     </Reference>
@@ -285,47 +322,15 @@
     <Reference Include="Stimulsoft.Report.WebDesignSL">
       <HintPath>..\packages\NewPlatform.Flexberry.AspNet.1.4.1\lib\net40\Stimulsoft.Report.WebDesignSL.dll</HintPath>
     </Reference>
-    <Reference Include="System">
-      <HintPath>System</HintPath>
-    </Reference>
-    <Reference Include="System.Data">
-      <HintPath>System.Data</HintPath>
-    </Reference>
-    <Reference Include="System.Drawing">
-      <HintPath>System.Drawing</HintPath>
-    </Reference>
-    <Reference Include="System.Linq">
-      <HintPath>System.Linq</HintPath>
-    </Reference>
-    <Reference Include="System.Web">
-      <HintPath>System.Web</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Extensions">
-      <HintPath>System.Web.Extensions</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Extensions.Design">
-      <HintPath>System.Web.Extensions.Design</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Services">
-      <HintPath>System.Web.Services</HintPath>
-    </Reference>
-    <Reference Include="System.XML">
-      <HintPath>System.XML</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <HintPath>System.Xml.Linq</HintPath>
-    </Reference>
-    <Reference Include="System.Workflow.Runtime">
-      <HintPath>System.Workflow.Runtime</HintPath>
-    </Reference>
-    <ProjectReference Include="..\Objects\Lectures%28Objects%29.csproj">
-      <Project>{561fd01c-fbcc-462f-b53d-9027f7abd6d4}</Project>
-      <Name>Lectures%28Objects%29</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Themes\Default\Pages\MainPage\Images\notes.png" />
     <Content Include="App_Themes\Light\MyStyles.css" />
+    <Content Include="App_Themes\Light\Pages\MainPage\Images\book.png" />
+    <Content Include="App_Themes\Light\Pages\MainPage\Images\book2.png" />
+    <Content Include="App_Themes\Light\Pages\MainPage\Images\book3.png" />
+    <Content Include="App_Themes\Light\Pages\MainPage\Images\notes.png" />
+    <Content Include="App_Themes\Light\Pages\MainPage\Images\tree-hide.png" />
+    <Content Include="App_Themes\Light\Pages\MainPage\Images\tree-show.png" />
     <Content Include="App_Themes\Spring\MyStyles.css" />
     <Content Include="App_Themes\Spring\Pages\MainPage\Images\book.png" />
     <Content Include="App_Themes\Spring\Pages\MainPage\Images\book2.png" />
@@ -333,6 +338,30 @@
     <Content Include="App_Themes\Spring\Pages\MainPage\Images\notes.png" />
     <Content Include="App_Themes\Spring\Pages\MainPage\Images\tree-hide.png" />
     <Content Include="App_Themes\Spring\Pages\MainPage\Images\tree-show.png" />
+    <Content Include="forms\Zapros5.aspx" />
+    <Compile Include="forms\Zapros5.aspx.cs">
+      <DependentUpon>Zapros5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zapros5.aspx.designer.cs">
+      <DependentUpon>Zapros5.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Zapros4.aspx" />
+    <Compile Include="forms\Zapros4.aspx.cs">
+      <DependentUpon>Zapros4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zapros4.aspx.designer.cs">
+      <DependentUpon>Zapros4.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Zapros2.aspx" />
+    <Compile Include="forms\Zapros2.aspx.cs">
+      <DependentUpon>Zapros2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zapros2.aspx.designer.cs">
+      <DependentUpon>Zapros2.aspx</DependentUpon>
+    </Compile>
     <Content Include="forms\Predmet\PredmetE.aspx" />
     <Compile Include="forms\Predmet\PredmetE.aspx.cs">
       <DependentUpon>PredmetE.aspx</DependentUpon>
@@ -341,38 +370,13 @@
     <Compile Include="forms\Predmet\PredmetE.aspx.designer.cs">
       <DependentUpon>PredmetE.aspx</DependentUpon>
     </Compile>
-    <Content Include="forms\Tetrad\TetradE.aspx" />
-    <Compile Include="forms\Tetrad\TetradE.aspx.cs">
-      <DependentUpon>TetradE.aspx</DependentUpon>
+    <Content Include="forms\Predmet\PredmetL.aspx" />
+    <Compile Include="forms\Predmet\PredmetL.aspx.cs">
+      <DependentUpon>PredmetL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\Tetrad\TetradE.aspx.designer.cs">
-      <DependentUpon>TetradE.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\Tetrad\TetradL.aspx" />
-    <Compile Include="forms\Tetrad\TetradL.aspx.cs">
-      <DependentUpon>TetradL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Tetrad\TetradL.aspx.designer.cs">
-      <DependentUpon>TetradL.aspx</DependentUpon>
-    </Compile>
-    <Content Include="Web.sitemap" />
-    <Content Include="forms\Semestr\SemestrL.aspx" />
-    <Compile Include="forms\Semestr\SemestrL.aspx.cs">
-      <DependentUpon>SemestrL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Semestr\SemestrL.aspx.designer.cs">
-      <DependentUpon>SemestrL.aspx</DependentUpon>
-    </Compile>
-    <Content Include="forms\PredmetVSemestre\PredmetVSemestreE.aspx" />
-    <Compile Include="forms\PredmetVSemestre\PredmetVSemestreE.aspx.cs">
-      <DependentUpon>PredmetVSemestreE.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\PredmetVSemestre\PredmetVSemestreE.aspx.designer.cs">
-      <DependentUpon>PredmetVSemestreE.aspx</DependentUpon>
+    <Compile Include="forms\Predmet\PredmetL.aspx.designer.cs">
+      <DependentUpon>PredmetL.aspx</DependentUpon>
     </Compile>
     <Content Include="forms\Semestr\SemestrE.aspx" />
     <Compile Include="forms\Semestr\SemestrE.aspx.cs">
@@ -382,13 +386,48 @@
     <Compile Include="forms\Semestr\SemestrE.aspx.designer.cs">
       <DependentUpon>SemestrE.aspx</DependentUpon>
     </Compile>
-    <Content Include="forms\Predmet\PredmetL.aspx" />
-    <Compile Include="forms\Predmet\PredmetL.aspx.cs">
-      <DependentUpon>PredmetL.aspx</DependentUpon>
+    <Content Include="forms\Tetrad\TetradL.aspx" />
+    <Compile Include="forms\Tetrad\TetradL.aspx.cs">
+      <DependentUpon>TetradL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\Predmet\PredmetL.aspx.designer.cs">
-      <DependentUpon>PredmetL.aspx</DependentUpon>
+    <Compile Include="forms\Tetrad\TetradL.aspx.designer.cs">
+      <DependentUpon>TetradL.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Zapros1.aspx" />
+    <Compile Include="forms\Zapros1.aspx.cs">
+      <DependentUpon>Zapros1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zapros1.aspx.designer.cs">
+      <DependentUpon>Zapros1.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Tetrad\TetradE.aspx" />
+    <Compile Include="forms\Tetrad\TetradE.aspx.cs">
+      <DependentUpon>TetradE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Tetrad\TetradE.aspx.designer.cs">
+      <DependentUpon>TetradE.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Web.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="forms\Zapros3.aspx" />
+    <Compile Include="forms\Zapros3.aspx.cs">
+      <DependentUpon>Zapros3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zapros3.aspx.designer.cs">
+      <DependentUpon>Zapros3.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Semestr\SemestrL.aspx" />
+    <Compile Include="forms\Semestr\SemestrL.aspx.cs">
+      <DependentUpon>SemestrL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Semestr\SemestrL.aspx.designer.cs">
+      <DependentUpon>SemestrL.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="shared\jstreeThemes\apple\bg.jpg" />
@@ -763,9 +802,12 @@
     <Content Include="App_Themes\Spring\Pages\LoginPage\LoginPage.less" />
     <Content Include="App_Themes\Spring\Pages\LoginPage\_Settings.less" />
     <Content Include="App_Themes\Spring\Pages\LoginPage\_Variables.less" />
+    <Content Include="App_Themes\Spring\Pages\MainPage\Images\app-logo.png" />
     <Content Include="App_Themes\Spring\Pages\MainPage\Images\background.png" />
     <Content Include="App_Themes\Spring\Pages\MainPage\Images\indicator.gif" />
     <Content Include="App_Themes\Spring\Pages\MainPage\Images\navigator-background.png" />
+    <Content Include="App_Themes\Spring\Pages\MainPage\Images\treeview-hide.png" />
+    <Content Include="App_Themes\Spring\Pages\MainPage\Images\treeview-show.png" />
     <Content Include="App_Themes\Spring\Pages\MainPage\MainPage.less" />
     <Content Include="App_Themes\Spring\Pages\MainPage\_Settings.less" />
     <Content Include="App_Themes\Spring\Pages\MainPage\_Variables.less" />
@@ -959,24 +1001,15 @@
     <Content Include="App_Themes\Smart\_VariablesBasic.less" />
     <None Include="packages.config" />
     <Compile Include="forms\BaseEditForm.cs">
-      <DependentUpon>
-      </DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="forms\BaseListForm.cs">
-      <DependentUpon>
-      </DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="forms\LookUpForm.cs">
-      <DependentUpon>
-      </DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FormUtils.cs">
-      <DependentUpon>
-      </DependentUpon>
-    </Compile>
+    <Compile Include="FormUtils.cs" />
     <Content Include="Web.config" />
     <Content Include="Site1.Master" />
     <Compile Include="Site1.Master.cs">

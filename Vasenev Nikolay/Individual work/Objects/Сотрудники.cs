@@ -30,9 +30,7 @@ namespace IIS.Авиакомпания
     [AccessType(ICSSoft.STORMNET.AccessType.none)]
     [View("СотрудникиE", new string[] {
             "ФИО as \'ФИО\'",
-            "Должность as \'Должность\'",
-            "ИнформацияОСамолете as \'Номер Самолета\'"})]
-    [MasterViewDefineAttribute("СотрудникиE", "ИнформацияОСамолете", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "НомерСамолета")]
+            "Должность as \'Должность\'"})]
     [View("СотрудникиL", new string[] {
             "ФИО as \'ФИО\'",
             "Должность as \'Должность\'"})]
@@ -42,8 +40,6 @@ namespace IIS.Авиакомпания
         private string fФИО;
         
         private IIS.Авиакомпания.Должность fДолжность;
-        
-        private IIS.Авиакомпания.ИнформацияОСамолете fИнформацияОСамолете;
         
         // *** Start programmer edit section *** (Сотрудники CustomMembers)
 
@@ -110,40 +106,6 @@ namespace IIS.Авиакомпания
                 // *** Start programmer edit section *** (Сотрудники.Должность Set end)
 
                 // *** End programmer edit section *** (Сотрудники.Должность Set end)
-            }
-        }
-        
-        /// <summary>
-        /// Сотрудники.
-        /// </summary>
-        // *** Start programmer edit section *** (Сотрудники.ИнформацияОСамолете CustomAttributes)
-
-        // *** End programmer edit section *** (Сотрудники.ИнформацияОСамолете CustomAttributes)
-        [PropertyStorage(new string[] {
-                "ИнформацияОСамолете"})]
-        [NotNull()]
-        public virtual IIS.Авиакомпания.ИнформацияОСамолете ИнформацияОСамолете
-        {
-            get
-            {
-                // *** Start programmer edit section *** (Сотрудники.ИнформацияОСамолете Get start)
-
-                // *** End programmer edit section *** (Сотрудники.ИнформацияОСамолете Get start)
-                IIS.Авиакомпания.ИнформацияОСамолете result = this.fИнформацияОСамолете;
-                // *** Start programmer edit section *** (Сотрудники.ИнформацияОСамолете Get end)
-
-                // *** End programmer edit section *** (Сотрудники.ИнформацияОСамолете Get end)
-                return result;
-            }
-            set
-            {
-                // *** Start programmer edit section *** (Сотрудники.ИнформацияОСамолете Set start)
-
-                // *** End programmer edit section *** (Сотрудники.ИнформацияОСамолете Set start)
-                this.fИнформацияОСамолете = value;
-                // *** Start programmer edit section *** (Сотрудники.ИнформацияОСамолете Set end)
-
-                // *** End programmer edit section *** (Сотрудники.ИнформацияОСамолете Set end)
             }
         }
         

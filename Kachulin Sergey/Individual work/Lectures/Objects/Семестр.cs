@@ -29,13 +29,21 @@ namespace IIS.Lectures
     [AutoAltered()]
     [AccessType(ICSSoft.STORMNET.AccessType.none)]
     [View("СеместрE", new string[] {
-            "Номер as \'Номер\'"})]
+            "Номер as \'Номер\'",
+            "Название as \'Название\'"})]
+    [AssociatedDetailViewAttribute("СеместрE", "ПредметВСеместре", "ПредметВСеместреE", true, "", "Предмет в семестре", true, new string[] {
+            ""})]
     [View("СеместрL", new string[] {
-            "Номер as \'Номер\'"})]
+            "Номер as \'Номер\'",
+            "Название as \'Название\'"})]
     public class Семестр : ICSSoft.STORMNET.DataObject
     {
         
         private int fНомер;
+        
+        private string fНазвание;
+        
+        private IIS.Lectures.DetailArrayOfПредметВСеместре fПредметВСеместре;
         
         // *** Start programmer edit section *** (Семестр CustomMembers)
 
@@ -70,6 +78,73 @@ namespace IIS.Lectures
                 // *** Start programmer edit section *** (Семестр.Номер Set end)
 
                 // *** End programmer edit section *** (Семестр.Номер Set end)
+            }
+        }
+        
+        /// <summary>
+        /// Название.
+        /// </summary>
+        // *** Start programmer edit section *** (Семестр.Название CustomAttributes)
+
+        // *** End programmer edit section *** (Семестр.Название CustomAttributes)
+        [StrLen(255)]
+        public virtual string Название
+        {
+            get
+            {
+                // *** Start programmer edit section *** (Семестр.Название Get start)
+
+                // *** End programmer edit section *** (Семестр.Название Get start)
+                string result = this.fНазвание;
+                // *** Start programmer edit section *** (Семестр.Название Get end)
+
+                // *** End programmer edit section *** (Семестр.Название Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (Семестр.Название Set start)
+
+                // *** End programmer edit section *** (Семестр.Название Set start)
+                this.fНазвание = value;
+                // *** Start programmer edit section *** (Семестр.Название Set end)
+
+                // *** End programmer edit section *** (Семестр.Название Set end)
+            }
+        }
+        
+        /// <summary>
+        /// Семестр.
+        /// </summary>
+        // *** Start programmer edit section *** (Семестр.ПредметВСеместре CustomAttributes)
+
+        // *** End programmer edit section *** (Семестр.ПредметВСеместре CustomAttributes)
+        public virtual IIS.Lectures.DetailArrayOfПредметВСеместре ПредметВСеместре
+        {
+            get
+            {
+                // *** Start programmer edit section *** (Семестр.ПредметВСеместре Get start)
+
+                // *** End programmer edit section *** (Семестр.ПредметВСеместре Get start)
+                if ((this.fПредметВСеместре == null))
+                {
+                    this.fПредметВСеместре = new IIS.Lectures.DetailArrayOfПредметВСеместре(this);
+                }
+                IIS.Lectures.DetailArrayOfПредметВСеместре result = this.fПредметВСеместре;
+                // *** Start programmer edit section *** (Семестр.ПредметВСеместре Get end)
+
+                // *** End programmer edit section *** (Семестр.ПредметВСеместре Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (Семестр.ПредметВСеместре Set start)
+
+                // *** End programmer edit section *** (Семестр.ПредметВСеместре Set start)
+                this.fПредметВСеместре = value;
+                // *** Start programmer edit section *** (Семестр.ПредметВСеместре Set end)
+
+                // *** End programmer edit section *** (Семестр.ПредметВСеместре Set end)
             }
         }
         

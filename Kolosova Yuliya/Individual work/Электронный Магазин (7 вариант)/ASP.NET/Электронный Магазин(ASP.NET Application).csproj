@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{66C89560-1EE6-46F1-A519-766845C6E71F}</ProjectGuid>
+    <ProjectGuid>{519B54CD-70BA-42C4-AA12-6DC8421CEA4E}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -84,7 +84,7 @@
       <HintPath>System.Workflow.Runtime</HintPath>
     </Reference>
     <ProjectReference Include="..\Objects\Электронный Магазин(Objects).csproj">
-      <Project>{cc2e7def-bcad-42a4-8e6b-61294953072c}</Project>
+      <Project>{70de3b9c-3fe6-4db6-b7e6-8ece9c2d13cf}</Project>
       <Name>Электронный Магазин(Objects)</Name>
     </ProjectReference>
     <Reference Include="log4net">
@@ -326,22 +326,13 @@
   <ItemGroup>
     <Content Include="App_Themes\Default\StyleSheet1.css" />
     <Content Include="App_Themes\Spring\style.css" />
-    <Content Include="forms\Tovar\TovarL.aspx" />
-    <Compile Include="forms\Tovar\TovarL.aspx.cs">
-      <DependentUpon>TovarL.aspx</DependentUpon>
+    <Content Include="forms\Platyozhka\PlatyozhkaE.aspx" />
+    <Compile Include="forms\Platyozhka\PlatyozhkaE.aspx.cs">
+      <DependentUpon>PlatyozhkaE.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\Tovar\TovarL.aspx.designer.cs">
-      <DependentUpon>TovarL.aspx</DependentUpon>
-    </Compile>
-    <Content Include="Web.sitemap" />
-    <Content Include="forms\Platyozhka\PlatyozhkaL.aspx" />
-    <Compile Include="forms\Platyozhka\PlatyozhkaL.aspx.cs">
-      <DependentUpon>PlatyozhkaL.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="forms\Platyozhka\PlatyozhkaL.aspx.designer.cs">
-      <DependentUpon>PlatyozhkaL.aspx</DependentUpon>
+    <Compile Include="forms\Platyozhka\PlatyozhkaE.aspx.designer.cs">
+      <DependentUpon>PlatyozhkaE.aspx</DependentUpon>
     </Compile>
     <Content Include="forms\Tovar\TovarE.aspx" />
     <Compile Include="forms\Tovar\TovarE.aspx.cs">
@@ -351,29 +342,38 @@
     <Compile Include="forms\Tovar\TovarE.aspx.designer.cs">
       <DependentUpon>TovarE.aspx</DependentUpon>
     </Compile>
-    <Content Include="forms\Sklad\SkladE.aspx" />
-    <Compile Include="forms\Sklad\SkladE.aspx.cs">
-      <DependentUpon>SkladE.aspx</DependentUpon>
+    <Content Include="Web.sitemap" />
+    <Content Include="forms\Tovar\TovarL.aspx" />
+    <Compile Include="forms\Tovar\TovarL.aspx.cs">
+      <DependentUpon>TovarL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\Sklad\SkladE.aspx.designer.cs">
-      <DependentUpon>SkladE.aspx</DependentUpon>
+    <Compile Include="forms\Tovar\TovarL.aspx.designer.cs">
+      <DependentUpon>TovarL.aspx</DependentUpon>
     </Compile>
-    <Content Include="forms\Sklad\SkladL.aspx" />
-    <Compile Include="forms\Sklad\SkladL.aspx.cs">
-      <DependentUpon>SkladL.aspx</DependentUpon>
+    <Content Include="forms\PostuplenieTovara\PostuplenieTovaraL.aspx" />
+    <Compile Include="forms\PostuplenieTovara\PostuplenieTovaraL.aspx.cs">
+      <DependentUpon>PostuplenieTovaraL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\Sklad\SkladL.aspx.designer.cs">
-      <DependentUpon>SkladL.aspx</DependentUpon>
+    <Compile Include="forms\PostuplenieTovara\PostuplenieTovaraL.aspx.designer.cs">
+      <DependentUpon>PostuplenieTovaraL.aspx</DependentUpon>
     </Compile>
-    <Content Include="forms\Platyozhka\PlatyozhkaE.aspx" />
-    <Compile Include="forms\Platyozhka\PlatyozhkaE.aspx.cs">
-      <DependentUpon>PlatyozhkaE.aspx</DependentUpon>
+    <Content Include="forms\Platyozhka\PlatyozhkaL.aspx" />
+    <Compile Include="forms\Platyozhka\PlatyozhkaL.aspx.cs">
+      <DependentUpon>PlatyozhkaL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\Platyozhka\PlatyozhkaE.aspx.designer.cs">
-      <DependentUpon>PlatyozhkaE.aspx</DependentUpon>
+    <Compile Include="forms\Platyozhka\PlatyozhkaL.aspx.designer.cs">
+      <DependentUpon>PlatyozhkaL.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\PostuplenieTovara\PostuplenieTovaraE.aspx" />
+    <Compile Include="forms\PostuplenieTovara\PostuplenieTovaraE.aspx.cs">
+      <DependentUpon>PostuplenieTovaraE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\PostuplenieTovara\PostuplenieTovaraE.aspx.designer.cs">
+      <DependentUpon>PostuplenieTovaraE.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="shared\jstreeThemes\apple\bg.jpg" />
@@ -1017,6 +1017,46 @@
     <Content Include="Xml\WebControlProvider.xsd" />
     <Content Include="Xml\Bindings\ExampleE.xml" />
     <Content Include="Xml\Sitemaps\Empty.sitemap" />
+    <Content Include="forms\Zapros4.aspx" />
+    <Compile Include="forms\Zapros4.aspx.cs">
+      <DependentUpon>Zapros4.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zapros4.aspx.designer.cs">
+      <DependentUpon>Zapros4.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Zapros5.aspx" />
+    <Compile Include="forms\Zapros5.aspx.cs">
+      <DependentUpon>Zapros5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zapros5.aspx.designer.cs">
+      <DependentUpon>Zapros5.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Zapros1.aspx" />
+    <Compile Include="forms\Zapros1.aspx.cs">
+      <DependentUpon>Zapros1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zapros1.aspx.designer.cs">
+      <DependentUpon>Zapros1.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Zapros3.aspx" />
+    <Compile Include="forms\Zapros3.aspx.cs">
+      <DependentUpon>Zapros3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zapros3.aspx.designer.cs">
+      <DependentUpon>Zapros3.aspx</DependentUpon>
+    </Compile>
+    <Content Include="forms\Zapros2.aspx" />
+    <Compile Include="forms\Zapros2.aspx.cs">
+      <DependentUpon>Zapros2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forms\Zapros2.aspx.designer.cs">
+      <DependentUpon>Zapros2.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
