@@ -13,6 +13,7 @@ namespace IIS.Склад
     using System.Linq;
     using ICSSoft.STORMNET.Windows.Forms;
     using ICSSoft.STORMNET.FunctionalLanguage;
+    using ICSSoft.STORMNET.Web.Tools.WGEFeatures;
 
     public partial class СкладE : BaseEditForm<Склад>
     {
@@ -37,52 +38,21 @@ namespace IIS.Склад
         /// </summary>
         protected override void Preload()
         {
+            //АГЕ ТоварНаСкладе сугубо для чтения, строки добавляются при добавлении поставок, руками в АГЕ ничего не добавляется
             ctrlТоварНаСкладе.Operations.Delete = false;
             ctrlТоварНаСкладе.Operations.Add = false;
             ctrlТоварНаСкладе.Operations.PlusInRow = false;
             ctrlТоварНаСкладе.Operations.DeleteInRow = false;
-        }
+            ctrlТоварНаСкладе.Enabled = false;
+            ctrlТоварНаСкладе.AddLookUpSettings(Information.ExtractPropertyPath<ТоварНаСкладе>(r => r.Товар), 
+                new LookUpSetting { LookUpBtnVisible = false, LookUpClearBtnVisible = false });}
 
         /// <summary>
         /// Здесь лучше всего писать бизнес-логику, оперируя только объектом данных.
         /// </summary>
         protected override void PreApplyToControls()
         {
-            if (!IsPostBack && (DataObject == null || DataObject.GetStatus(true) != ObjectStatus.Created))
-            {
-                var langdef = ExternalLangDef.LanguageDef;
-                var lcs = LoadingCustomizationStruct.GetSimpleStruct(typeof(Товар), Товар.Views.ТоварE);
-                lcs.LimitFunction = langdef.GetFunction(langdef.funcEQ,
-                                new VariableDef(langdef.GuidType, Information.ExtractPropertyName<Товар>(x => x.__PrimaryKey)), "172E31C1-78A0-42BA-A8B4-3A5FDC682B61");
-                //var товар = DataServiceProvider.DataService.LoadObjects(lcs);
 
-
-                var ds = (SQLDataService)DataServiceProvider.DataService;
-                var workers = ds.Query<Поставки>(Поставки.Views.ПоставкиL);
-                var query = from w in workers
-                                    where w.Склад == DataObject
-                                    select w;
-                List<Поставки> data = query.ToList(); // Вычитать данные в коллекцию.
-                List<Поставки> data2 = data.GroupBy(t => t.Товар)
-                    .Select(cl => new Поставки
-                    {
-                        Товар = cl.First().Товар,
-                        Количестсво = cl.Sum(q => q.Количестсво),
-                    }).ToList();
-                var sklad = new Склад();
-                data2.ForEach(delegate (Поставки name)
-                {
-                    //var foots = new DetailArrayOfТоварНаСкладе(sklad)
-                    var foots = new ТоварНаСкладе { Товар = name.Товар, Количество = name.Количестсво };
-                /*{
-                     new ТоварНаСкладе { Товар = name.Товар,
-                         Количество = name.Количестсво }
-                     //new ТоварНаСкладе { Товар = data[0].Товар }
-                };*/
-                   sklad.ТоварНаСкладе.Add(foots); 
-                });
-                    DataObject = sklad;
-            }
         }
 
         /// <summary>
@@ -91,7 +61,7 @@ namespace IIS.Склад
         /// </summary>
         protected override void PostApplyToControls()
         {
-            Page.Validate();
+
         }
 
         /// <summary>
@@ -101,22 +71,5 @@ namespace IIS.Склад
         {
         }
 
-        /// <summary>
-        /// Валидация объекта для сохранения.
-        /// </summary>
-        /// <returns>true - продолжать сохранение, иначе - прекратить.</returns>
-        protected override bool PreSaveObject()
-        {
-            return base.PreSaveObject();
-        }
-
-        /// <summary>
-        /// Нетривиальная логика сохранения объекта.
-        /// </summary>
-        /// <returns>Объект данных, который сохранился.</returns>
-        protected override DataObject SaveObject()
-        {
-            return base.SaveObject();
-        }
     }
 }

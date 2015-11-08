@@ -32,21 +32,29 @@ namespace IIS.Склад
             "Название as \'Название\'",
             "Вместимость as \'Вместимость\'",
             "ВладелецСклада as \'Владелец склада\'",
-            "ВладелецСклада.ФИО as \'ФИО\'"}, Hidden=new string[] {
-            "ВладелецСклада.ФИО"})]
+            "ВладелецСклада.Фамилия",
+            "ВладелецСклада.Имя",
+            "ВладелецСклада.Отчество"}, Hidden=new string[] {
+            "ВладелецСклада.Фамилия",
+            "ВладелецСклада.Имя",
+            "ВладелецСклада.Отчество"})]
     [AssociatedDetailViewAttribute("СкладE", "ТоварНаСкладе", "ТоварНаСкладеE", true, "-Товары на складе", "Товар на складе", true, new string[] {
             ""})]
-    [MasterViewDefineAttribute("СкладE", "ВладелецСклада", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "ФИО")]
+    [MasterViewDefineAttribute("СкладE", "ВладелецСклада", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Фамилия")]
     [View("СкладL", new string[] {
             "Название as \'Название\'",
             "Вместимость as \'Вместимость\'",
-            "ВладелецСклада.ФИО as \'ФИО\'"})]
+            "ВладелецСклада.Фамилия as \'Фамилия\'",
+            "ВладелецСклада.Имя as \'Имя\'",
+            "ВладелецСклада",
+            "ВладелецСклада.Отчество as \'Отчество\'"}, Hidden=new string[] {
+            "ВладелецСклада"})]
     public class Склад : ICSSoft.STORMNET.DataObject
     {
         
         private string fНазвание;
         
-        private int fВместимость;
+        private double fВместимость;
         
         private IIS.Склад.Личность fВладелецСклада;
         
@@ -95,14 +103,14 @@ namespace IIS.Склад
         // *** Start programmer edit section *** (Склад.Вместимость CustomAttributes)
 
         // *** End programmer edit section *** (Склад.Вместимость CustomAttributes)
-        public virtual int Вместимость
+        public virtual double Вместимость
         {
             get
             {
                 // *** Start programmer edit section *** (Склад.Вместимость Get start)
 
                 // *** End programmer edit section *** (Склад.Вместимость Get start)
-                int result = this.fВместимость;
+                double result = this.fВместимость;
                 // *** Start programmer edit section *** (Склад.Вместимость Get end)
 
                 // *** End programmer edit section *** (Склад.Вместимость Get end)

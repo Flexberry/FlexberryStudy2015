@@ -29,13 +29,21 @@ namespace IIS.Склад
     [AutoAltered()]
     [AccessType(ICSSoft.STORMNET.AccessType.none)]
     [View("ЛичностьE", new string[] {
-            "ФИО as \'ФИО\'"})]
+            "Фамилия",
+            "Имя",
+            "Отчество"})]
     [View("ЛичностьL", new string[] {
-            "ФИО as \'ФИО\'"})]
+            "Фамилия",
+            "Имя",
+            "Отчество"})]
     public class Личность : ICSSoft.STORMNET.DataObject
     {
         
-        private string fФИО;
+        private string fФамилия;
+        
+        private string fИмя;
+        
+        private string fОтчество;
         
         // *** Start programmer edit section *** (Личность CustomMembers)
 
@@ -43,34 +51,100 @@ namespace IIS.Склад
 
         
         /// <summary>
-        /// ФИО.
+        /// Фамилия.
         /// </summary>
-        // *** Start programmer edit section *** (Личность.ФИО CustomAttributes)
+        // *** Start programmer edit section *** (Личность.Фамилия CustomAttributes)
 
-        // *** End programmer edit section *** (Личность.ФИО CustomAttributes)
+        // *** End programmer edit section *** (Личность.Фамилия CustomAttributes)
         [StrLen(255)]
-        public virtual string ФИО
+        [NotNull()]
+        public virtual string Фамилия
         {
             get
             {
-                // *** Start programmer edit section *** (Личность.ФИО Get start)
+                // *** Start programmer edit section *** (Личность.Фамилия Get start)
 
-                // *** End programmer edit section *** (Личность.ФИО Get start)
-                string result = this.fФИО;
-                // *** Start programmer edit section *** (Личность.ФИО Get end)
+                // *** End programmer edit section *** (Личность.Фамилия Get start)
+                string result = this.fФамилия;
+                // *** Start programmer edit section *** (Личность.Фамилия Get end)
 
-                // *** End programmer edit section *** (Личность.ФИО Get end)
+                // *** End programmer edit section *** (Личность.Фамилия Get end)
                 return result;
             }
             set
             {
-                // *** Start programmer edit section *** (Личность.ФИО Set start)
+                // *** Start programmer edit section *** (Личность.Фамилия Set start)
 
-                // *** End programmer edit section *** (Личность.ФИО Set start)
-                this.fФИО = value;
-                // *** Start programmer edit section *** (Личность.ФИО Set end)
+                // *** End programmer edit section *** (Личность.Фамилия Set start)
+                this.fФамилия = value;
+                // *** Start programmer edit section *** (Личность.Фамилия Set end)
 
-                // *** End programmer edit section *** (Личность.ФИО Set end)
+                // *** End programmer edit section *** (Личность.Фамилия Set end)
+            }
+        }
+        
+        /// <summary>
+        /// Имя.
+        /// </summary>
+        // *** Start programmer edit section *** (Личность.Имя CustomAttributes)
+
+        // *** End programmer edit section *** (Личность.Имя CustomAttributes)
+        [StrLen(255)]
+        [NotNull()]
+        public virtual string Имя
+        {
+            get
+            {
+                // *** Start programmer edit section *** (Личность.Имя Get start)
+
+                // *** End programmer edit section *** (Личность.Имя Get start)
+                string result = this.fИмя;
+                // *** Start programmer edit section *** (Личность.Имя Get end)
+
+                // *** End programmer edit section *** (Личность.Имя Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (Личность.Имя Set start)
+
+                // *** End programmer edit section *** (Личность.Имя Set start)
+                this.fИмя = value;
+                // *** Start programmer edit section *** (Личность.Имя Set end)
+
+                // *** End programmer edit section *** (Личность.Имя Set end)
+            }
+        }
+        
+        /// <summary>
+        /// Отчество.
+        /// </summary>
+        // *** Start programmer edit section *** (Личность.Отчество CustomAttributes)
+
+        // *** End programmer edit section *** (Личность.Отчество CustomAttributes)
+        [StrLen(255)]
+        public virtual string Отчество
+        {
+            get
+            {
+                // *** Start programmer edit section *** (Личность.Отчество Get start)
+
+                // *** End programmer edit section *** (Личность.Отчество Get start)
+                string result = this.fОтчество;
+                // *** Start programmer edit section *** (Личность.Отчество Get end)
+
+                // *** End programmer edit section *** (Личность.Отчество Get end)
+                return result;
+            }
+            set
+            {
+                // *** Start programmer edit section *** (Личность.Отчество Set start)
+
+                // *** End programmer edit section *** (Личность.Отчество Set start)
+                this.fОтчество = value;
+                // *** Start programmer edit section *** (Личность.Отчество Set end)
+
+                // *** End programmer edit section *** (Личность.Отчество Set end)
             }
         }
         
