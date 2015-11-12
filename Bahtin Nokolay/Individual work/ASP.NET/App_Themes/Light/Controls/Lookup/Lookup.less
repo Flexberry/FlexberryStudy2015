@@ -1,0 +1,29 @@
+﻿@import '../../../BaseTheme/Controls/Lookup/Lookup.less';
+
+/**
+ * Файл визуального оформления контрола Lookup.
+ * Тема Light.
+ */
+
+.@{lookupMainClass} {
+    .@{lookupBtnClass} {
+        /**
+         * Индикатор загрузки.
+         */
+        &.@{lookupLoadingBtnClass} {
+            background: url(Images/indicator.gif);
+            background-repeat: no-repeat;
+        }
+    }
+}
+
+/**
+ * Лукап в модальном окне.
+ */
+.@{lookupFormClass} > body {
+    margin: 8px;
+    height: auto;
+}
+
+
+@import '_Settings.less';

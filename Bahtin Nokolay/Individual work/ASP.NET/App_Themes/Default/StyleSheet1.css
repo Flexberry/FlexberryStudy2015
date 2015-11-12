@@ -1,0 +1,24 @@
+﻿body
+{
+    background-color:rgba(0, 0, 0, 0.40)
+}
+
+.page-header a
+{
+    color:#00ff1d;
+}
+
+.page-header-image
+{    
+    background-image:url(../Default/Pages/MainPage/Images/mylogo.png)
+}
+
+#TreeView1n0Nodes img
+{
+    background-image:url(../Default/Pages/MainPage/Images/mylogotree1.png);
+}
+
+#TreeView1n6Nodes img
+{
+    background-image:url(../Default/Pages/MainPage/Images/mylogotree2.png);
+}
