@@ -1,0 +1,19 @@
+﻿.page-header a
+{
+    color:#ff00ea;       
+}
+
+.page-header-image
+{    
+    background-image:url(../Smart/Pages/MainPage/Images/mylogo.png)
+}
+
+#TreeView1n0Nodes img
+{
+    background-image:url(../Smart/Pages/MainPage/Images/mylogotree1.png);
+}
+
+#TreeView1n6Nodes img
+{
+    background-image:url(../Smart/Pages/MainPage/Images/mylogotree2.png);
+}

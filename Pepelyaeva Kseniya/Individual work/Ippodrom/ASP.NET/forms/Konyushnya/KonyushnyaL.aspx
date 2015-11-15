@@ -10,9 +10,3 @@
         </div>
     </div>
 </asp:Content>
-
-    <asp:Content runat="server" ContentPlaceHolderID="ContentPlaceHolder0">
-        <script>
-            alert('halo');
-            </script>
-    </asp:Content>
