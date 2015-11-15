@@ -27,5 +27,5 @@ Flexberry ORM. Работа с данными из веб-приложения: 
 Настройка полномочий и аудита в веб-приложениях на платформе Flexberry: [просмотр](https://sway.com/dWOIN5doHFiOI3te)
 
 ## Занятие №6
-Тестирование веб-приложений: [просмотр](https://sway.com/SwCTPRbOcP5tHDpV)
+Тестирование веб-приложений: [просмотр](https://sway.com/SwCTPRbOcP5tHDpV)  
 Тестовое приложение для занятия: [скачать](https://yadi.sk/d/YCteBOCckUew8)
