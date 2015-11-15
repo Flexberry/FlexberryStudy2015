@@ -91,6 +91,10 @@
       <Project>{e756d64f-4aa0-4be1-bc82-8d6aaea2e6f2}</Project>
       <Name>Склад(BusinessServers)</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BusinessServersBF\Склад(BusinessServersBF).csproj">
+      <Project>{61221e88-6706-40b0-b5c5-b0c0809fabd3}</Project>
+      <Name>Склад(BusinessServersBF)</Name>
+    </ProjectReference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-client\log4net.dll</HintPath>
     </Reference>
@@ -326,10 +330,6 @@
     <Reference Include="Stimulsoft.Report.WebDesignSL">
       <HintPath>..\packages\NewPlatform.Flexberry.AspNet.1.4.1\lib\net40\Stimulsoft.Report.WebDesignSL.dll</HintPath>
     </Reference>
-    <ProjectReference Include="..\BusinessServersBF\Склад%28BusinessServersBF%29.csproj">
-      <Project>{61221e88-6706-40b0-b5c5-b0c0809fabd3}</Project>
-      <Name>Склад%28BusinessServersBF%29</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="forms\Tovar\TovarE.aspx" />
@@ -1073,45 +1073,45 @@
     <Content Include="Xml\WebControlProvider.xsd" />
     <Content Include="Xml\Bindings\ExampleE.xml" />
     <Content Include="Xml\Sitemaps\Empty.sitemap" />
-    <Content Include="forms\Transliteration635820266791487734Zapros5.aspx" />
-    <Compile Include="forms\Transliteration635820266791487734Zapros5.aspx.cs">
-      <DependentUpon>Transliteration635820266791487734Zapros5.aspx</DependentUpon>
+    <Content Include="forms\Запросы\Zapros5.aspx" />
+    <Compile Include="forms\Запросы\Zapros5.aspx.cs">
+      <DependentUpon>Zapros5.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\Transliteration635820266791487734Zapros5.aspx.designer.cs">
-      <DependentUpon>Transliteration635820266791487734Zapros5.aspx</DependentUpon>
+    <Compile Include="forms\Запросы\Zapros5.aspx.designer.cs">
+      <DependentUpon>Zapros5.aspx</DependentUpon>
     </Compile>
-    <Content Include="forms\Transliteration635820266792425234Zapros1.aspx" />
-    <Compile Include="forms\Transliteration635820266792425234Zapros1.aspx.cs">
-      <DependentUpon>Transliteration635820266792425234Zapros1.aspx</DependentUpon>
+    <Content Include="forms\Запросы\Zapros1.aspx" />
+    <Compile Include="forms\Запросы\Zapros1.aspx.cs">
+      <DependentUpon>Zapros1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\Transliteration635820266792425234Zapros1.aspx.designer.cs">
-      <DependentUpon>Transliteration635820266792425234Zapros1.aspx</DependentUpon>
+    <Compile Include="forms\Запросы\Zapros1.aspx.designer.cs">
+      <DependentUpon>Zapros1.aspx</DependentUpon>
     </Compile>
-    <Content Include="forms\Transliteration635820266792737734Zapros3.aspx" />
-    <Compile Include="forms\Transliteration635820266792737734Zapros3.aspx.cs">
-      <DependentUpon>Transliteration635820266792737734Zapros3.aspx</DependentUpon>
+    <Content Include="forms\Запросы\Zapros3.aspx" />
+    <Compile Include="forms\Запросы\Zapros3.aspx.cs">
+      <DependentUpon>Zapros3.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\Transliteration635820266792737734Zapros3.aspx.designer.cs">
-      <DependentUpon>Transliteration635820266792737734Zapros3.aspx</DependentUpon>
+    <Compile Include="forms\Запросы\Zapros3.aspx.designer.cs">
+      <DependentUpon>Zapros3.aspx</DependentUpon>
     </Compile>
-    <Content Include="forms\Transliteration635820266793675234Zapros2.aspx" />
-    <Compile Include="forms\Transliteration635820266793675234Zapros2.aspx.cs">
-      <DependentUpon>Transliteration635820266793675234Zapros2.aspx</DependentUpon>
+    <Content Include="forms\Запросы\Zapros2.aspx" />
+    <Compile Include="forms\Запросы\Zapros2.aspx.cs">
+      <DependentUpon>Zapros2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\Transliteration635820266793675234Zapros2.aspx.designer.cs">
-      <DependentUpon>Transliteration635820266793675234Zapros2.aspx</DependentUpon>
+    <Compile Include="forms\Запросы\Zapros2.aspx.designer.cs">
+      <DependentUpon>Zapros2.aspx</DependentUpon>
     </Compile>
-    <Content Include="forms\Transliteration635820266794612734Zapros4.aspx" />
-    <Compile Include="forms\Transliteration635820266794612734Zapros4.aspx.cs">
-      <DependentUpon>Transliteration635820266794612734Zapros4.aspx</DependentUpon>
+    <Content Include="forms\Запросы\Zapros4.aspx" />
+    <Compile Include="forms\Запросы\Zapros4.aspx.cs">
+      <DependentUpon>Zapros4.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forms\Transliteration635820266794612734Zapros4.aspx.designer.cs">
-      <DependentUpon>Transliteration635820266794612734Zapros4.aspx</DependentUpon>
+    <Compile Include="forms\Запросы\Zapros4.aspx.designer.cs">
+      <DependentUpon>Zapros4.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

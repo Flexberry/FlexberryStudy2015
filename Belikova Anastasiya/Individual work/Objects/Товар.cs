@@ -30,10 +30,12 @@ namespace IIS.Склад
     [AccessType(ICSSoft.STORMNET.AccessType.none)]
     [View("ТоварE", new string[] {
             "Наименование as \'Наименование\'",
-            "Номер as \'Номер\'"})]
+            "Номер as \'Номер\'",
+            "Вес"})]
     [View("ТоварL", new string[] {
             "Наименование as \'Наименование\'",
-            "Номер as \'Номер\'"})]
+            "Номер as \'Номер\'",
+            "Вес"})]
     public class Товар : ICSSoft.STORMNET.DataObject
     {
         

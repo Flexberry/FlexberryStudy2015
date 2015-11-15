@@ -17,11 +17,11 @@
       <siteMapNode title="Склад" description="" url="~/forms/Sklad/SkladL.aspx" imageUrl="sklad.png" />
     </siteMapNode>
     <siteMapNode title="Запросы" roles="*" xmlns="">
-      <siteMapNode title="Запрос1" description="" url="~/forms/Transliteration635820266791487734Zapros1.aspx" />
-      <siteMapNode title="Запрос2" description="" url="~/forms/Transliteration635820266791487734Zapros2.aspx" />
-      <siteMapNode title="Запрос3" description="" url="~/forms/Transliteration635820266791487734Zapros3.aspx" />
-      <siteMapNode title="Запрос4" description="" url="~/forms/Transliteration635820266791487734Zapros4.aspx" />
-      <siteMapNode title="Запрос5" description="" url="~/forms/Transliteration635820266791487734Zapros5.aspx" />
+      <siteMapNode title="Запрос1" description="" url="~/forms/Запросы/Zapros1.aspx" imageUrl="query.png"/>
+      <siteMapNode title="Запрос2" description="" url="~/forms/Запросы/Zapros2.aspx" imageUrl="query.png"/>
+      <siteMapNode title="Запрос3" description="" url="~/forms/Запросы/Zapros3.aspx" imageUrl="query.png"/>
+      <siteMapNode title="Запрос4" description="" url="~/forms/Запросы/Zapros4.aspx" imageUrl="query.png"/>
+      <siteMapNode title="Запрос5" description="" url="~/forms/Запросы/Zapros5.aspx" imageUrl="query.png"/>
     </siteMapNode>
   </siteMapNode>
 </siteMap>

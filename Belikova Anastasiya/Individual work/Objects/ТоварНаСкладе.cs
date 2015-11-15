@@ -33,9 +33,11 @@ namespace IIS.Склад
             "Склад",
             "Товар.Наименование",
             "Товар",
-            "Количество"}, Hidden=new string[] {
+            "Количество",
+            "Склад.Название"}, Hidden=new string[] {
             "Склад",
-            "Товар.Наименование"})]
+            "Товар.Наименование",
+            "Склад.Название"})]
     [MasterViewDefineAttribute("ТоварНаСкладеE", "Товар", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Наименование")]
     public class ТоварНаСкладе : ICSSoft.STORMNET.DataObject
     {
