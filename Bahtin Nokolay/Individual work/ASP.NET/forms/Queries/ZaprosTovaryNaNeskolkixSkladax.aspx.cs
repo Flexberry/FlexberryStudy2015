@@ -9,6 +9,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using ICSSoft.STORMNET.Business.LINQProvider;
+using System.Linq;
+using ICSSoft.STORMNET.Business;
+using ICSSoft.STORMNET;
 
 namespace IIS.Indiv_Bahtin
 {
@@ -16,7 +20,42 @@ namespace IIS.Indiv_Bahtin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+            var товарPseudoDetail = new PseudoDetail<Товар, ТоварНаСкладе>
+                   (ТоварНаСкладе.Views.ТоварНаСкладеE,
+                   Information.ExtractPropertyPath<ТоварНаСкладе>(p => p.Товар));
+            var товарынаскладах = ds.Query<Товар>(Товар.Views.ТоварE).Where(t => товарPseudoDetail.Any()).ToList()
+                /*.Select(n => new { Наименование = n.Наименование })*/;
 
+            var склады = ds.Query<Склад>(Склад.Views.СкладE).ToList();
+
+            int количествоскладовсэтимтоваром;
+
+            TableRow tr;
+            TableCell tc;
+
+            foreach (Товар товар in товарынаскладах)
+            {
+                количествоскладовсэтимтоваром = 0;       
+                foreach(Склад склад in склады)
+                {
+                    var товарынаскладе = склад.ТоварНаСкладе.GetAllObjects();
+                    foreach (ТоварНаСкладе товарнаскладе in товарынаскладе)
+                    {
+                        if (товарнаскладе.Товар.__PrimaryKey.ToString()==товар.__PrimaryKey.ToString())
+                        {
+                            количествоскладовсэтимтоваром++;
+                        } 
+                    }
+                }
+                if (количествоскладовсэтимтоваром>1)
+                {
+                    tr = new TableRow();
+                    tc = new TableCell() { Text = товар.Наименование, BorderStyle = BorderStyle.Solid, BorderWidth = 1 };
+                    tr.Cells.Add(tc);
+                    TableТоварНаНесколькихСкладах.Rows.Add(tr);
+                }
+            }
         }
     }
 }

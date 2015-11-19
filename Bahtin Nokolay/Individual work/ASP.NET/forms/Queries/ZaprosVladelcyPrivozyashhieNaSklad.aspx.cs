@@ -25,26 +25,34 @@ namespace IIS.Indiv_Bahtin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            WolvOwners.DataObjectTypes = new[] { typeof(Поступление) };
-            WolvOwners.View = Поступление.Views.ПоступлениеE;            
-
             ctrlСклад.MasterViewName = Склад.Views.СкладL.Name;
             ctrlСклад.MasterTypeName = typeof(Склад).AssemblyQualifiedName;
             ctrlСклад.PropertyToShow = "Название";
 
             if (Session["storagepk"] != null)
             {
-                var ds = DataServiceProvider.DataService;
-                var q = ds.Query<Поступление>(Поступление.Views.ПоступлениеE.Name)
-                    .Where(g => g.Склад.__PrimaryKey.ToString() == ctrlСклад.SelectedMasterPK);
-                WolvOwners.LimitFunction = LinqToLcs.GetLcs(q.Expression, Поступление.Views.ПоступлениеE).LimitFunction;
-            }       
+                var ds = (SQLDataService)DataServiceProvider.DataService;
+                var автомашиныPseudoDetail = new PseudoDetail<Автомашина, Поступление>
+                    (Поступление.Views.ПоступлениеE,
+                    Information.ExtractPropertyPath<Поступление>(p => p.Автомашина));
+                var ВладельцыАвтомашинИзПоступленийНаСклад = ds.Query<Автомашина>(Автомашина.Views.АвтомашинаE)
+                    .Where(a => автомашиныPseudoDetail.Any(s => s.Склад.__PrimaryKey.ToString() == ctrlСклад.SelectedMasterPK)).ToList()
+                    .Select(c => new { Фамилия = c.ВладелецАвтомашины.Фамилия }).Distinct();
+                //var ВладельцыАвтомашин = АвтомашиныИзПоступленийНаСклад.Select(o => o.ВладелецАвтомашины.Фамилия).ToList();
 
-            //var q1 = ds.Query<Человек>(Человек.Views.ЧеловекL).Where<Автомашина>(g=>g.Марка=="Газель";            
-        }        
+                foreach (var Владелец in ВладельцыАвтомашинИзПоступленийНаСклад)
+                {
+                    TableRow tr = new TableRow();
+                    TableCell tc = new TableCell() { Text = Владелец.Фамилия };
+                    tr.Cells.Add(tc);
+                    TableВладельцы.Rows.Add(tr);
+                }
+            }
 
-        protected void PostApplyToControls()
-        {            
+            //WolvOwners.LimitFunction = LinqToLcs.GetLcs(АвтомашиныИзПоступленийНаСклад.Expression,
+            //Автомашина.Views.АвтомашинаE).LimitFunction;
+            //WolvOwners.LimitFunction = LinqToLcs.GetLcs(ВладельцыАвтомашин.ToList().AsQueryable().Expression,
+            //Человек.Views.ЧеловекE).LimitFunction;                     
         }
 
         protected void Button_Click(object sender, EventArgs e)

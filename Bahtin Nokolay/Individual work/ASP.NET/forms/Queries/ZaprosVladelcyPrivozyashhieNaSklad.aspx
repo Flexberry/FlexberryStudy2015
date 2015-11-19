@@ -15,7 +15,8 @@
         <asp:Button runat="server" Text="Выполнить" ID="Button" OnClick="Button_Click" />    
     </div>  
     <div>
-        <ac:WebObjectListView runat="server" ID="WolvOwners" />
+        <asp:Table ID="TableВладельцы" runat="server" BorderStyle="Solid" BorderWidth="1">
+        </asp:Table>
     </div>    
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder0" runat="server">

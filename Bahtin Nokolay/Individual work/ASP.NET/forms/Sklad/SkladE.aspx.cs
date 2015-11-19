@@ -59,7 +59,7 @@ namespace IIS.Indiv_Bahtin
         /// </summary>
         /// <returns>true - продолжать сохранение, иначе - прекратить.</returns>
         protected override bool PreSaveObject()
-        {
+        {            
             return base.PreSaveObject();
         }
 
@@ -68,7 +68,7 @@ namespace IIS.Indiv_Bahtin
         /// </summary>
         /// <returns>Объект данных, который сохранился.</returns>
         protected override DataObject SaveObject()
-        {
+        {            
             return base.SaveObject();
         }
     }

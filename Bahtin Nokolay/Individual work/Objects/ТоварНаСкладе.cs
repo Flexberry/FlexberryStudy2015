@@ -33,8 +33,10 @@ namespace IIS.Indiv_Bahtin
             "Количество as \'Количество\'",
             "ОбщийВес as \'Общий вес\'",
             "Товар as \'Товар\'",
-            "Товар.Наименование as \'Наименование\'"}, Hidden=new string[] {
-            "Товар.Наименование"})]
+            "Товар.Наименование as \'Наименование\'",
+            "Товар.Вес as \'Товар.Вес\'"}, Hidden=new string[] {
+            "Товар.Наименование",
+            "Товар.Вес"})]
     [MasterViewDefineAttribute("ТоварНаСкладеE", "Товар", ICSSoft.STORMNET.LookupTypeEnum.Standard, "", "Наименование")]
     public class ТоварНаСкладе : ICSSoft.STORMNET.DataObject
     {
@@ -46,7 +48,7 @@ namespace IIS.Indiv_Bahtin
         private IIS.Indiv_Bahtin.Склад fСклад;
         
         // *** Start programmer edit section *** (ТоварНаСкладе CustomMembers)
-
+        
         // *** End programmer edit section *** (ТоварНаСкладе CustomMembers)
 
         
@@ -65,7 +67,7 @@ namespace IIS.Indiv_Bahtin
                 // *** End programmer edit section *** (ТоварНаСкладе.Количество Get start)
                 int result = this.fКоличество;
                 // *** Start programmer edit section *** (ТоварНаСкладе.Количество Get end)
-
+                
                 // *** End programmer edit section *** (ТоварНаСкладе.Количество Get end)
                 return result;
             }
@@ -88,19 +90,27 @@ namespace IIS.Indiv_Bahtin
 
         // *** End programmer edit section *** (ТоварНаСкладе.ОбщийВес CustomAttributes)
         [ICSSoft.STORMNET.NotStored()]
+        [DataServiceExpression(typeof(ICSSoft.STORMNET.Business.SQLDataService), "SELECT Товар.Вес*ТоварНаСкладе.Количество FROM Товар join ТоварНаСкладе on Товар." +
+            "primaryKey=ТоварНаСкладе.Товар WHERE ТоварНаСкладе.Товар=StormMainObjectKey")]
         public virtual double ОбщийВес
         {
             get
             {
                 // *** Start programmer edit section *** (ТоварНаСкладе.ОбщийВес Get)
-
-                return 0;
+                if (Товар != null)
+                {
+                    return Количество * Товар.Вес;
+                }
+                else
+                {
+                    return 0;
+                }
                 // *** End programmer edit section *** (ТоварНаСкладе.ОбщийВес Get)
             }
             set
             {
                 // *** Start programmer edit section *** (ТоварНаСкладе.ОбщийВес Set)
-
+               
                 // *** End programmer edit section *** (ТоварНаСкладе.ОбщийВес Set)
             }
         }
@@ -123,7 +133,7 @@ namespace IIS.Indiv_Bahtin
                 // *** End programmer edit section *** (ТоварНаСкладе.Товар Get start)
                 IIS.Indiv_Bahtin.Товар result = this.fТовар;
                 // *** Start programmer edit section *** (ТоварНаСкладе.Товар Get end)
-
+                
                 // *** End programmer edit section *** (ТоварНаСкладе.Товар Get end)
                 return result;
             }

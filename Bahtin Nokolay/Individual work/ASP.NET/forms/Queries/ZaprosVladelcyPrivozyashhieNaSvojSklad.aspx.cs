@@ -9,6 +9,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using ICSSoft.STORMNET.Business.LINQProvider;
+using System.Linq;
+using ICSSoft.STORMNET.Business;
+using ICSSoft.STORMNET;
+using System.Collections.Generic;
 
 namespace IIS.Indiv_Bahtin
 {
@@ -16,7 +21,41 @@ namespace IIS.Indiv_Bahtin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            TableRow tr;
+            TableCell tc;
 
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+            var автомашиныPseudoDetail = new PseudoDetail<Автомашина, Поступление>
+                   (Поступление.Views.ПоступлениеE,
+                   Information.ExtractPropertyPath<Поступление>(p => p.Автомашина));
+            var автомашиныизпоступлений = ds.Query<Автомашина>(Автомашина.Views.АвтомашинаE).Where(a=>автомашиныPseudoDetail.Any()).ToList();
+
+            var складыPseudoDetail = new PseudoDetail<Склад, Поступление>
+                   (Поступление.Views.ПоступлениеE,
+                   Information.ExtractPropertyPath<Поступление>(p => p.Склад));
+            var складыизпоступлений = ds.Query<Склад>(Склад.Views.СкладE).Where(s => складыPseudoDetail.Any()).ToList();
+
+            List<Человек> владельцыпривозящиенасвойсклад=new List<Человек>();
+
+            foreach (Склад склад in складыизпоступлений)
+            {
+                var владелецпривозящийнасвойсклад = автомашиныизпоступлений.Select(d => d.ВладелецАвтомашины)
+                    .Distinct()
+                    .Where(a => a.__PrimaryKey.ToString() == склад.ВладелецСклада.__PrimaryKey.ToString()).ToList();
+                var владелец = владелецпривозящийнасвойсклад.FirstOrDefault();
+                if (владелец != null)
+                {
+                    владельцыпривозящиенасвойсклад.Add(владелец);
+                };                
+            }
+
+            foreach(Человек человек in владельцыпривозящиенасвойсклад)
+            {
+                tr = new TableRow();
+                tc = new TableCell() { Text = человек.Фамилия, BorderStyle = BorderStyle.Solid, BorderWidth = 1 };
+                tr.Cells.Add(tc);
+                TableВладельцыПривозящиеНаСвойСклад.Rows.Add(tr);
+            }
         }
     }
 }

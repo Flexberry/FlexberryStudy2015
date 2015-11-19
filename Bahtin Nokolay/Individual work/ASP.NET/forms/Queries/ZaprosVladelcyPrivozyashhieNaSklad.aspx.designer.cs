@@ -40,12 +40,12 @@ namespace IIS.Indiv_Bahtin {
         protected global::System.Web.UI.WebControls.Button Button;
         
         /// <summary>
-        /// WolvOwners элемент управления.
+        /// TableВладельцы элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::ICSSoft.STORMNET.Web.AjaxControls.WebObjectListView WolvOwners;
+        protected global::System.Web.UI.WebControls.Table TableВладельцы;
     }
 }

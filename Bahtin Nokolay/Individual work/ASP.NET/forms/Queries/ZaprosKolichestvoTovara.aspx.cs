@@ -9,6 +9,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using ICSSoft.STORMNET.Business.LINQProvider;
+using System.Linq;
+using ICSSoft.STORMNET.Business;
 
 namespace IIS.Indiv_Bahtin
 {
@@ -16,7 +19,61 @@ namespace IIS.Indiv_Bahtin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
 
+            var Склады = ds.Query<Склад>(Склад.Views.СкладE).ToList();
+
+            TableRow tr=new TableRow() { BackColor = System.Drawing.Color.Yellow };
+            TableCell tc;
+
+            tc = new TableCell() { Text = "", BorderStyle = BorderStyle.Solid, BorderWidth = 1 };
+            tr.Cells.Add(tc);
+            tc = new TableCell() { Text = "Наименование", BorderStyle = BorderStyle.Solid, BorderWidth = 1 };
+            tr.Cells.Add(tc);
+            tc = new TableCell() { Text = "Количество", BorderStyle = BorderStyle.Solid, BorderWidth = 1 };
+            tr.Cells.Add(tc);
+            tc = new TableCell() { Text = "Вес", BorderStyle = BorderStyle.Solid, BorderWidth = 1 };
+            tr.Cells.Add(tc);
+
+            TableКоличествоТовара.Rows.Add(tr);
+
+            foreach (Склад склад in Склады)
+            {
+                var товарынаскладе = склад.ТоварНаСкладе.GetAllObjects();
+                var количествотоваровнаскладе = товарынаскладе.Count();
+                tr = new TableRow() { HorizontalAlign = HorizontalAlign.Center, /*BackColor=System.Drawing.Color.Aqua*/ };
+                tc = new TableCell() { RowSpan = количествотоваровнаскладе+1, Text = склад.Название, BorderStyle = BorderStyle.Solid, BorderWidth = 1, BackColor = System.Drawing.Color.Aqua };
+                tr.Cells.Add(tc);
+                //TableКоличествоТовара.Rows.Add(tr);
+                int общееколичествотоваранаскладе = 0;
+                double общийвестоваровнаскладе = 0;
+
+                foreach (ТоварНаСкладе товарнаскладе in товарынаскладе)
+                {
+                    if (общееколичествотоваранаскладе != 0)
+                    {
+                        tr = new TableRow() { HorizontalAlign = HorizontalAlign.Center };
+                    };
+                    tc = new TableCell() { Text = товарнаскладе.Товар.Наименование, BorderStyle = BorderStyle.Solid, BorderWidth = 1 };
+                    tr.Cells.Add(tc);
+                    tc = new TableCell() { Text = товарнаскладе.Количество.ToString(), BorderStyle = BorderStyle.Solid, BorderWidth = 1 };
+                    tr.Cells.Add(tc);
+                    tc = new TableCell() { Text = товарнаскладе.ОбщийВес.ToString(), BorderStyle = BorderStyle.Solid, BorderWidth = 1 };
+                    tr.Cells.Add(tc);
+                    TableКоличествоТовара.Rows.Add(tr);
+                    общееколичествотоваранаскладе += товарнаскладе.Количество;
+                    общийвестоваровнаскладе += товарнаскладе.ОбщийВес;
+                }
+
+                tr = new TableRow() { HorizontalAlign = HorizontalAlign.Center, BackColor = System.Drawing.Color.Green };
+                tc = new TableCell() { Text = "Всего", BorderStyle = BorderStyle.Solid, BorderWidth = 1 };
+                tr.Cells.Add(tc);               
+                tc = new TableCell() { Text = общееколичествотоваранаскладе.ToString(), BorderStyle = BorderStyle.Solid, BorderWidth = 1 };
+                tr.Cells.Add(tc);
+                tc = new TableCell() { Text = общийвестоваровнаскладе.ToString(), BorderStyle = BorderStyle.Solid, BorderWidth = 1 };
+                tr.Cells.Add(tc);
+                TableКоличествоТовара.Rows.Add(tr);
+            }
         }
     }
 }

@@ -9,6 +9,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using ICSSoft.STORMNET;
+using ICSSoft.STORMNET.Business.LINQProvider;
+using System.Linq;
+using ICSSoft.STORMNET.Business;
+using ICSSoft.STORMNET.UserDataTypes;
 
 namespace IIS.Indiv_Bahtin
 {
@@ -16,7 +21,41 @@ namespace IIS.Indiv_Bahtin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var ds = (SQLDataService)DataServiceProvider.DataService;
+            /*var товарPseudoDetail = new PseudoDetail<Товар,ТоварНаСкладе>
+                    (Товар.Views.ТоварE,
+                    Information.ExtractPropertyPath<ТоварНаСкладе>(p => p.Товар));*/
+            var Склады = ds.Query<Склад>(Склад.Views.СкладE).ToList();
+            /*var ТоварыНаСкладе = ds.Query<Склад>(Склад.Views.СкладE)
+                   .Where(a => a.Название=="Ивановский").ToList();*/            
 
-        }
+            foreach (Склад sklad in Склады)
+            {
+                TableRow tr = new TableRow();
+                TableCell tc = new TableCell() { Text = sklad.Название, BorderStyle = BorderStyle.Solid, BorderWidth = 1 };
+                tr.Cells.Add(tc);
+
+                var tovari = sklad.ТоварНаСкладе.GetAllObjects();
+
+                string tovarnamemax="";
+                double weightmax = 0;
+
+                foreach (ТоварНаСкладе tovar in tovari)
+                {
+                    if (tovar.ОбщийВес>weightmax)
+                    {
+                        weightmax = tovar.ОбщийВес;
+                        tovarnamemax = tovar.Товар.Наименование;
+                    }
+                    /*var tovarpk = tovar.Товар.__PrimaryKey;
+                    var tv = ds.Query<Товар>(Товар.Views.ТоварE).Where(t => t.__PrimaryKey == tovarpk).ToList();*/                    
+                }
+                tc = new TableCell() { Text = tovarnamemax, BorderStyle = BorderStyle.Solid, BorderWidth = 1 };
+                tr.Cells.Add(tc);
+                tc = new TableCell() { Text = weightmax.ToString(), BorderStyle = BorderStyle.Solid, BorderWidth = 1 };
+                tr.Cells.Add(tc);
+                TableСамыйТяжелыйТоварНаСкладе.Rows.Add(tr);
+            }
+        }             
     }
 }

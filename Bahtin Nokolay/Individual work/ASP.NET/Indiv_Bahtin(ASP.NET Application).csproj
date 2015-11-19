@@ -50,6 +50,43 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System">
+      <HintPath>System</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>System.Data</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <HintPath>System.Drawing</HintPath>
+    </Reference>
+    <Reference Include="System.Linq">
+      <HintPath>System.Linq</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <HintPath>System.Web</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <HintPath>System.Web.Extensions</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions.Design">
+      <HintPath>System.Web.Extensions.Design</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <HintPath>System.Web.Services</HintPath>
+    </Reference>
+    <Reference Include="System.XML">
+      <HintPath>System.XML</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <HintPath>System.Xml.Linq</HintPath>
+    </Reference>
+    <Reference Include="System.Workflow.Runtime">
+      <HintPath>System.Workflow.Runtime</HintPath>
+    </Reference>
+    <ProjectReference Include="..\Objects\Indiv_Bahtin(Objects).csproj">
+      <Project>{7d892b0d-12b3-4254-9894-be13caf29efe}</Project>
+      <Name>Indiv_Bahtin(Objects)</Name>
+    </ProjectReference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-client\log4net.dll</HintPath>
     </Reference>
@@ -285,43 +322,6 @@
     <Reference Include="Stimulsoft.Report.WebDesignSL">
       <HintPath>..\packages\NewPlatform.Flexberry.AspNet.1.4.1\lib\net40\Stimulsoft.Report.WebDesignSL.dll</HintPath>
     </Reference>
-    <Reference Include="System">
-      <HintPath>System</HintPath>
-    </Reference>
-    <Reference Include="System.Data">
-      <HintPath>System.Data</HintPath>
-    </Reference>
-    <Reference Include="System.Drawing">
-      <HintPath>System.Drawing</HintPath>
-    </Reference>
-    <Reference Include="System.Linq">
-      <HintPath>System.Linq</HintPath>
-    </Reference>
-    <Reference Include="System.Web">
-      <HintPath>System.Web</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Extensions">
-      <HintPath>System.Web.Extensions</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Extensions.Design">
-      <HintPath>System.Web.Extensions.Design</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Services">
-      <HintPath>System.Web.Services</HintPath>
-    </Reference>
-    <Reference Include="System.XML">
-      <HintPath>System.XML</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <HintPath>System.Xml.Linq</HintPath>
-    </Reference>
-    <Reference Include="System.Workflow.Runtime">
-      <HintPath>System.Workflow.Runtime</HintPath>
-    </Reference>
-    <ProjectReference Include="..\Objects\Indiv_Bahtin%28Objects%29.csproj">
-      <Project>{7d892b0d-12b3-4254-9894-be13caf29efe}</Project>
-      <Name>Indiv_Bahtin%28Objects%29</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="forms\Sklad\SkladE.aspx" />
@@ -428,7 +428,9 @@
     <Compile Include="forms\Queries\ZaprosSamyjTyazhelyjTovar.aspx.designer.cs">
       <DependentUpon>ZaprosSamyjTyazhelyjTovar.aspx</DependentUpon>
     </Compile>
-    <Content Include="Web.sitemap" />
+    <Content Include="Web.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="forms\Tovar\TovarE.aspx" />
     <Compile Include="forms\Tovar\TovarE.aspx.cs">
       <DependentUpon>TovarE.aspx</DependentUpon>
@@ -1017,25 +1019,18 @@
     <Content Include="App_Themes\Smart\_VariablesBasic.less" />
     <None Include="packages.config" />
     <Compile Include="forms\BaseEditForm.cs">
-      <DependentUpon>
-      </DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="forms\BaseListForm.cs">
-      <DependentUpon>
-      </DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="forms\LookUpForm.cs">
-      <DependentUpon>
-      </DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FormUtils.cs">
-      <DependentUpon>
-      </DependentUpon>
-    </Compile>
-    <Content Include="Web.config" />
+    <Compile Include="FormUtils.cs" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Site1.Master" />
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
@@ -1099,7 +1094,9 @@
     <Content Include="Xml\WebControlProvider.xml" />
     <Content Include="Xml\WebControlProvider.xsd" />
     <Content Include="Xml\Bindings\ExampleE.xml" />
-    <Content Include="Xml\Sitemaps\Empty.sitemap" />
+    <Content Include="Xml\Sitemaps\Empty.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
