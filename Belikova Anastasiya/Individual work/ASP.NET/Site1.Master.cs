@@ -182,7 +182,8 @@
             {
                 // Только для технологических страниц.
                 var page = Page as BasePage;
-                if (page != null)
+                //Пусть будет для всех страниц (- закомментила).
+                //if (page != null)
                     themesList.SelectedValue = ThemeService.Current.Theme;
             }
         }
